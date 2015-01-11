@@ -1,0 +1,65 @@
+<?page title="Júris Acadêmico - Cadastro de Pessoa Física" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+	<window title="Cadastro de Pessoa Física" border="normal" self="@define(content)" vflex="1">
+	
+		<caption style="font-weight: bold;"/>
+	
+		<hlayout style="text-align: right;">
+			<button label="Novo" />
+			<!-- <button label="Salvar" onClick='Messagebox.show("Registro salvo com sucesso.", "Salvo", 1, "")'/> -->
+			<button label="Salvar" onClick='Clients.showNotification("Registro salvo com sucesso.", "info", null, null , 0)'/>
+			<button label="Abrir"/>
+		</hlayout>
+		<grid style="border: none;">
+			<columns>
+				<column hflex="min" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="Nome" />
+					<textbox width="100%" />
+				</row>
+				<row>
+					<label value="CPF" />
+					<textbox />
+				</row>
+				<row>
+					<label value="Data de Nascimento" />
+					<datebox
+						constraint="no future: Datas futuras não são permitidas." />
+				</row>
+				<row>
+					<label value="Telefone Fixo" />
+					<textbox />
+				</row>
+				<row>
+					<label value="Telefone Celular" />
+					<textbox />
+				</row>
+				<row>
+					<label value="E-Mail" />
+					<textbox width="100%" />
+				</row>
+				<row>
+					<label value="Endereço" />
+					<textbox hflex="1" />
+				</row>
+				<row>
+					<label value="Bairro" />
+					<textbox hflex="1" />
+				</row>
+				<row>
+					<label value="CEP" />
+					<cell>
+						<decimalbox maxlength="5" cols="5" />
+						-
+						<decimalbox maxlength="3" cols="3" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

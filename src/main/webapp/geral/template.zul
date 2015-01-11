@@ -1,0 +1,36 @@
+<?page title="Juris Concursos - Sistema Acadêmico"?>
+
+<?link rel="shortcut icon" href="http://www.jurisconcursosma.com.br/wp-content/uploads/2012/09/favicon.jpg"
+		type="image/x-icon"?>
+		
+<zk>
+	
+	<borderlayout width="1000px">
+		<north style="text-align: center;">
+			<image src="/geral/img/logo.jpg" />
+		</north>
+		
+		<west width="200px">
+			<menubar orient="vertical" hflex="1">
+				<menuitem label="Cadastro de Pessoa Física" href="/pessoafisica/form.zul" />
+				<menuitem label="Cadastro de Usuário" href="/Pages/Usuario/form.zul" />
+				<menuitem label="Cadastro de Docente" disabled="true" />
+				<menuitem label="Cadastro de Turma" disabled="true" />
+				<menuitem label="Matrícula" href="/Pages/matricula.zul" />
+				<menuitem label="Registro de Presença" disabled="true" />
+				<menu label="Relatório">
+					<menupopup>
+						<menuitem label="Emitir Contrato" disabled="true" />
+						<menuitem label="Balanço de Turma" disabled="true" />
+					</menupopup>
+				</menu>
+			</menubar>
+		</west>
+
+		<center id="mainContent" autoscroll="true" border="normal" self="@insert(content)" />
+
+		<south>
+			<image src="/geral/img/rodape.png" hflex="true" />
+		</south>
+	</borderlayout>
+</zk>

@@ -4,5 +4,8 @@
 		validationMessages="@id('vmsgs')">
 		<hlayout>count: <label value="@load(vm.count)" /></hlayout>
 		<button label="add" onClick="@command('cmd')"/>
+		<button label="mvc" onClick='alert("teste")'/>
+		<button label="cli" onClick='Clients.showNotification("Registro salvo com sucesso.", "info", null, null , 0)'/>
+		<button id="buttonSave" label="save" apply="br.com.juris.academico.geral.ComposerTeste"/>
 	</window>
 </zk>

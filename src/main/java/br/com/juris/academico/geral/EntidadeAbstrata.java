@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 @SuppressWarnings("serial")
-public class EntidadeAbs implements Serializable {
+public class EntidadeAbstrata implements Serializable {
 	
 	@Id
 	@Column

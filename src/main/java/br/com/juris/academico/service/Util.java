@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public abstract class Util implements DAO {
+public class Util implements DAO {
 
 	@PersistenceContext(unitName = "academico")
     private EntityManager em;

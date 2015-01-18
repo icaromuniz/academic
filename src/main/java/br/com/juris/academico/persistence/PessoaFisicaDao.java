@@ -5,5 +5,5 @@ import br.com.juris.academico.service.DAO;
 
 public interface PessoaFisicaDao extends DAO<PessoaFisica> {
 
-	public static final String URI = "";
+	public static final String URI = "java:app/academico/PessoaFisicaDaoImpl";
 }

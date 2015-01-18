@@ -2,16 +2,17 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<window title="Cadastro de Pessoa Física" border="normal" self="@define(content)" vflex="1">
+	<window id="win" title="Cadastro de Pessoa Física" border="normal" self="@define(content)" vflex="1"
+		apply="br.com.juris.academico.controller.PessoaFisicaComposer">
 	
 		<caption style="font-weight: bold;"/>
 	
 		<hlayout style="text-align: right;">
 			<button label="Novo" />
-			<!-- <button label="Salvar" onClick='Messagebox.show("Registro salvo com sucesso.", "Salvo", 1, "")'/> -->
-			<button label="Salvar" onClick='Clients.showNotification("Registro salvo com sucesso.", "info", null, null , 0)'/>
+			<button id="buttonSalvar" label="Salvar"/>
 			<button label="Abrir"/>
 		</hlayout>
+		
 		<grid style="border: none;">
 			<columns>
 				<column hflex="min" />
@@ -20,7 +21,7 @@
 			<rows>
 				<row>
 					<label value="Nome" />
-					<textbox width="100%" />
+					<textbox id="textboxNome" width="100%" value="${win$composer.model.nome}" />
 				</row>
 				<row>
 					<label value="CPF" />

@@ -1,17 +1,39 @@
 package br.com.juris.academico.persistence;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import br.com.juris.academico.model.PessoaFisica;
 
+@Stateless
 public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
+
+	@PersistenceContext
+    private EntityManager em;
 
 
 	public PessoaFisica findById(){
 		return null;
 	}
 
-	public EntityManager getEm() {
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void persist(PessoaFisica entidade) {
+		em.persist(entidade);
+	}
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remove(PessoaFisica entidade) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PessoaFisica find(Integer idEntidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}

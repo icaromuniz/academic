@@ -18,9 +18,9 @@ public class ComposerTeste extends ComposerAbstrato {
 			
 			DAO dao = InitialContext.doLookup("java:app/academico/Util");
 			
-			if( dao != null && dao.getEm() != null ){
-				Clients.showNotification("Dao carregadooo!");
-			}
+//			if( dao != null && dao.getEm() != null ){
+//				Clients.showNotification("Dao carregadooo!");
+//			}
 			
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block

@@ -1,5 +1,7 @@
 package br.com.juris.academico.persistence;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -36,5 +38,11 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
 	public PessoaFisica find(Integer idEntidade) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<PessoaFisica> findByFiltro() {
+		// TODO Auto-generated method stub
+		return em.createQuery("select pf from PessoaFisica pf", PessoaFisica.class).getResultList();
 	}
 }

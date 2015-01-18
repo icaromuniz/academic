@@ -1,0 +1,60 @@
+<?page title="Júris Acadêmico - Listagem de Pessoa Física" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+	<window id="win" title="Listagem de Pessoa Física" border="normal" self="@define(content)" vflex="1"
+		apply="br.com.juris.academico.controller.PessoaFisicaComposer">
+	
+		<caption style="font-weight: bold;"/>
+		
+		<hlayout style="text-align: right;">
+			<button label="Novo" />
+			<button label="Editar" />
+			<button id="buttonFiltrar" label="Filtrar"/>
+			<button label="Limpar"/>
+		</hlayout>
+		
+		<groupbox>
+	
+			<caption style="font-weight: bold;">Filtro</caption>
+		
+			<grid style="border: none;">
+				<columns>
+					<column hflex="min"/>
+					<column/>
+					<column hflex="min"/>
+					<column/>
+					<column hflex="min"/>
+				</columns>
+				<rows>
+					<row>
+						<label value="Nome"/>
+						<cell colspan="3">
+							<textbox hflex="true"/>
+						</cell>
+					</row>
+					<row>
+						<label value="CPF"/>
+						<textbox hflex="true"/>
+						<label value="Telefone"/>
+						<textbox hflex="true"/>
+					</row>
+				</rows>
+			</grid>
+			
+		</groupbox>
+		
+		<separator/>
+		
+		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="${win$composer.modelList}">
+			<listhead>
+				<listheader label="Nome"/>
+				<listheader label="CPF"/>
+				<listheader label="Telefone"/>
+			</listhead>
+			<listitem>
+				<listcell label="${each.nome}"/>
+			</listitem>
+		</listbox>
+	</window>
+</zk>

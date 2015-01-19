@@ -32,18 +32,9 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	}
 	
 	public void onClick$buttonSalvar(Event event){
+		
 		Clients.showNotification( "Nome: " + this.getModel().getNome());
 		
-		this.getModel().setNome(textboxNome.getValue());
-		
-		PessoaFisicaDao dao;
-		try {
-			dao = InitialContext.doLookup(PessoaFisicaDao.URI);
-			dao.persist(this.getModel());
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public void onClick$buttonFiltrar(Event event){
@@ -58,5 +49,9 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void onClick$buttonEditar(Event event){
+//		Executions.sendRedirect("/pessoafisica/form.zul?regId=999");
 	}
 }

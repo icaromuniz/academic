@@ -8,8 +8,8 @@
 		<caption style="font-weight: bold;"/>
 		
 		<hlayout style="text-align: right;">
-			<button label="Novo" />
-			<button label="Editar" />
+			<button label="Novo" href="/pessoafisica/form.zul"/>
+			<button label="Editar" href="/pessoafisica/form.zul?ref=123"/>
 			<button id="buttonFiltrar" label="Filtrar"/>
 			<button label="Limpar"/>
 		</hlayout>

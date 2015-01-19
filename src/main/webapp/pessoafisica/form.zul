@@ -1,17 +1,20 @@
 <?page title="Júris Acadêmico - Cadastro de Pessoa Física" contentType="text/html;charset=UTF-8"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+<!-- <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?> -->
 
 <zk>
 	<window id="win" title="Cadastro de Pessoa Física" border="normal" self="@define(content)" vflex="1"
-		apply="br.com.juris.academico.controller.PessoaFisicaComposer">
+		apply="br.com.juris.academico.controller.MySelectorComposer">
+	<!-- <window id="win" title="Cadastro de Pessoa Física" border="normal" self="@define(content)" vflex="1"
+		apply="br.com.juris.academico.controller.PessoaFisicaComposer"> -->
 	
 		<caption style="font-weight: bold;"/>
 	
 		<hlayout style="text-align: right;">
-			<button label="Novo" />
+			<button label="Novo" href="/pessoafisica/form.zul" />
 			<button id="buttonSalvar" label="Salvar"/>
 			<button label="Excluir"/>
-			<button label="Abrir"/>
+			<button label="Abrir" href="/pessoafisica/list.zul"/>
 		</hlayout>
 		
 		<grid style="border: none;">
@@ -22,7 +25,7 @@
 			<rows>
 				<row>
 					<label value="Nome" />
-					<textbox id="textboxNome" width="100%" value="${win$composer.model.nome}" />
+					<textbox id="textboxNome" width="100%" value="${$composer.model.nome}" />
 				</row>
 				<row>
 					<label value="CPF" />

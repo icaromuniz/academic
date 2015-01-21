@@ -16,7 +16,6 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
 	@PersistenceContext
     private EntityManager em;
 
-
 	public PessoaFisica findById(){
 		return null;
 	}
@@ -37,7 +36,7 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
 	@Override
 	public PessoaFisica find(Integer idEntidade) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.find(PessoaFisica.class, idEntidade);
 	}
 
 	@Override

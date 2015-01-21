@@ -4,8 +4,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zkplus.databind.AnnotateDataBinder;
+import org.zkoss.zkplus.databind.AnnotateDataBinderInit;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
@@ -29,12 +32,17 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
+
+		if( Executions.getCurrent().getParameter("ref") != null ){
+			PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
+			this.setModel(pessoaFisicaDao.find( new Integer(Executions.getCurrent().getParameter("ref"))));
+		}
 	}
 	
-	public void onClick$buttonSalvar(Event event){
-		
-		Clients.showNotification( "Nome: " + this.getModel().getNome());
-		
+	public void onClick$buttonSalvar(Event event) throws NamingException{
+		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
+		pessoaFisicaDao.persist(getModel());
+		Clients.showNotification( "Informações salvas." );
 	}
 	
 	public void onClick$buttonFiltrar(Event event){
@@ -51,7 +59,8 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		}
 	}
 	
-	public void onClick$buttonEditar(Event event){
-//		Executions.sendRedirect("/pessoafisica/form.zul?regId=999");
+	public void onSelect$listboxSelecao(Event event){
+		Executions.sendRedirect("/pessoafisica/form.zul?ref=" + 
+				((PessoaFisica)listboxSelecao.getSelectedItem().getValue()).getId());
 	}
 }

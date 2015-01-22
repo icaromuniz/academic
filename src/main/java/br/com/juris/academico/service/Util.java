@@ -17,12 +17,6 @@ public class Util implements DAO {
 	}
 
 	@Override
-	public void persist(EntidadeAbstrata entidade) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void remove(EntidadeAbstrata entidade) {
 		// TODO Auto-generated method stub
 		
@@ -30,6 +24,12 @@ public class Util implements DAO {
 
 	@Override
 	public EntidadeAbstrata find(Integer idEntidade) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EntidadeAbstrata save(EntidadeAbstrata entidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}

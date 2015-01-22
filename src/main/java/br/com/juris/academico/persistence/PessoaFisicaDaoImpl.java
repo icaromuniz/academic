@@ -22,26 +22,24 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void persist(PessoaFisica entidade) {
-		em.persist(entidade);
+	public PessoaFisica save(PessoaFisica entidade) {
+		return em.merge(entidade);
 	}
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void remove(PessoaFisica entidade) {
-		// TODO Auto-generated method stub
-		
+		PessoaFisica entidadeBD = em.find(PessoaFisica.class, entidade.getId());
+		em.remove(entidadeBD);
 	}
 
 	@Override
 	public PessoaFisica find(Integer idEntidade) {
-		// TODO Auto-generated method stub
 		return em.find(PessoaFisica.class, idEntidade);
 	}
 
 	@Override
 	public List<PessoaFisica> findByFiltro() {
-		// TODO Auto-generated method stub
 		return em.createQuery("select pf from PessoaFisica pf", PessoaFisica.class).getResultList();
 	}
 }

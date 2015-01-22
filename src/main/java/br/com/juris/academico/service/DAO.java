@@ -4,7 +4,7 @@ import br.com.juris.academico.geral.EntidadeAbstrata;
 
 public interface DAO<T extends EntidadeAbstrata> {
 
-	public void persist(T entidade);
+	public T save(T entidade);
 	
 	public void remove(T entidade);
 	

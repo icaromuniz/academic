@@ -40,15 +40,18 @@
 					</row>
 				</rows>
 			</grid>
-			
 		</groupbox>
 		
 		<separator/>
 		
-		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="@{$composer.modelList}"
-			selectedItem="@{$composer.model}">
+		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@{$composer.model}">
+			<listhead>
+				<listheader label="Nome"/>
+				<listheader label="CPF" hflex="min" sort="auto(cpf)"/>
+			</listhead>
 			<listitem self="@{each=obj}">
-				<listcell label="@{obj.id}" />
+				<listcell label="@{obj.id}"/>
+				<listcell label="@{obj.cpf }"/>
 			</listitem>
 		</listbox>
 	</window>

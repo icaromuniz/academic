@@ -7,11 +7,8 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
-import org.zkoss.zkplus.databind.AnnotateDataBinder;
-import org.zkoss.zkplus.databind.AnnotateDataBinderInit;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.geral.ComposerAbstrato;
 import br.com.juris.academico.model.PessoaFisica;
@@ -21,7 +18,6 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 
 	private static final long serialVersionUID = -2468944244027967584L;
 
-	private Textbox textboxNome;
 	private Listbox listboxSelecao;
 	
 	public PessoaFisicaComposer(){
@@ -41,20 +37,19 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	
 	public void onClick$buttonSalvar(Event event) throws NamingException{
 		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
-		pessoaFisicaDao.persist(getModel());
+		pessoaFisicaDao.save(getModel());
 		Clients.showNotification( "Informações salvas." );
 	}
 	
 	public void onClick$buttonFiltrar(Event event){
 		
 		try {
-			PessoaFisicaDao dao = InitialContext.doLookup(PessoaFisicaDao.URI);
 			
-			listboxSelecao.setModel(new ListModelList<PessoaFisica>(dao.findByFiltro()));
+			PessoaFisicaDao dao = InitialContext.doLookup(PessoaFisicaDao.URI);
+			listboxSelecao.setModel(new ListModelList<>(dao.findByFiltro()));
 			listboxSelecao.renderAll();
 			
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -62,5 +57,19 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	public void onSelect$listboxSelecao(Event event){
 		Executions.sendRedirect("/pessoafisica/form.zul?ref=" + 
 				((PessoaFisica)listboxSelecao.getSelectedItem().getValue()).getId());
+	}
+	
+	public void onClick$buttonExcluir(Event event){
+		
+		try {
+			
+			PessoaFisicaDao dao = InitialContext.doLookup(PessoaFisicaDao.URI);
+			dao.remove(getModel());
+			Clients.showNotification( "Exclusão efetuada com sucesso." );
+			setModel(new PessoaFisica());
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 	}
 }

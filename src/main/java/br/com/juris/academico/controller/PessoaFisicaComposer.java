@@ -9,6 +9,7 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.geral.ComposerAbstrato;
 import br.com.juris.academico.model.PessoaFisica;
@@ -20,6 +21,8 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 
 	private Listbox listboxSelecao;
 	AnnotateDataBinder binder = null;
+	
+	private Textbox textboxNome;
 	
 	public PessoaFisicaComposer(){
 		this.setModel(new PessoaFisica());

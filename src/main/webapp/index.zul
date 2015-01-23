@@ -1,7 +1,9 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
 <zk>
 	<window apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm')@init('br.com.juris.academico.MyViewModel')"
-		validationMessages="@id('vmsgs')">
+			viewModel="@id('vm')@init('br.com.juris.academico.MyViewModel')"
+			validationMessages="@id('vmsgs')">
 		<hlayout>count: <label value="@load(vm.count)" /></hlayout>
 		<button label="add" onClick="@command('cmd')"/>
 		<button label="mvc" onClick='alert("teste")'/>

@@ -29,7 +29,7 @@
 					<row>
 						<label value="Nome"/>
 						<cell colspan="3">
-							<textbox hflex="true"/>
+							<textbox id="textboxNome" hflex="true"/>
 						</cell>
 					</row>
 					<row>

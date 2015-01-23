@@ -53,7 +53,7 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		try {
 			
 			PessoaFisicaDao dao = InitialContext.doLookup(PessoaFisicaDao.URI);
-			this.setModelList(dao.findByFiltro());
+			this.setModelList(dao.findByFiltro(textboxNome.getValue(), null, null));
 			binder.loadAll();
 			
 		} catch (NamingException e) {

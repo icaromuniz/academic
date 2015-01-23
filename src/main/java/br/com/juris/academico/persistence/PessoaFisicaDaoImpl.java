@@ -39,7 +39,7 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
 	}
 
 	@Override
-	public List<PessoaFisica> findByFiltro() {
+	public List<PessoaFisica> findByFiltro(String nome, Long cpf, Long telefone) {
 		return em.createQuery("select pf from PessoaFisica pf", PessoaFisica.class).getResultList();
 	}
 }

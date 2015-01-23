@@ -9,5 +9,5 @@ public interface PessoaFisicaDao extends DAO<PessoaFisica> {
 
 	public static final String URI = "java:app/academico/PessoaFisicaDaoImpl";
 
-	public List<PessoaFisica> findByFiltro();
+	public List<PessoaFisica> findByFiltro(String nome, Long cpf, Long telefone);
 }

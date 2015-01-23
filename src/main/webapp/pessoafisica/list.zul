@@ -32,7 +32,7 @@
 					</row>
 					<row>
 						<label value="CPF"/>
-						<textbox hflex="true"/>
+						<decimalbox maxlength="11" hflex="true"/>
 						<label value="Telefone"/>
 						<textbox hflex="true"/>
 					</row>

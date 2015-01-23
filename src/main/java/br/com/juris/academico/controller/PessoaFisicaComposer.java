@@ -38,7 +38,7 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	public void onClick$buttonSalvar(Event event) throws NamingException{
 		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
 		pessoaFisicaDao.save(getModel());
-		Clients.showNotification( "Informações salvas." );
+		Clients.showNotification( "Informações salvas com sucesso." );
 	}
 	
 	public void onClick$buttonFiltrar(Event event){

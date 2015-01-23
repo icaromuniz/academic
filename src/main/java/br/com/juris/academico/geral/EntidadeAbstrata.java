@@ -16,8 +16,8 @@ public class EntidadeAbstrata implements Serializable {
 	
 	@Id
 	@Column
-	@SequenceGenerator(name="se_pessoafisica", sequenceName="se_pessoafisica")
-	@GeneratedValue(generator="se_pessoafisica", strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="seq_pessoa_fisica", sequenceName="seq_pessoa_fisica")
+	@GeneratedValue(generator="seq_pessoa_fisica", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
 	@Column(length=30, nullable=false)

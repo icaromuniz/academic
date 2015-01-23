@@ -9,8 +9,8 @@
 		
 		<hlayout style="text-align: right;">
 			<button label="Novo" href="/pessoafisica/form.zul"/>
+			<button label="Limpar" tooltiptext="Limpa os filtros"/>
 			<button id="buttonFiltrar" label="Filtrar"/>
-			<button label="Limpar"/>
 		</hlayout>
 		
 		<groupbox>
@@ -44,13 +44,16 @@
 		
 		<separator/>
 		
-		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@{$composer.model}">
+		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@{$composer.model}"
+				model="@{$composer.modelList}">
 			<listhead>
-				<listheader label="Nome"/>
-				<listheader label="CPF" hflex="min" sort="auto(cpf)"/>
+				<listheader label="Nome" sort="auto(nome)"/>
+				<listheader label="Celular" sort="auto(telefoneCelular)"/>
+				<listheader label="CPF" sort="auto(cpf)"/>
 			</listhead>
-			<listitem self="@{each=obj}">
-				<listcell label="@{obj.id}"/>
+			<listitem self="@{each=obj}" value="@{obj}">
+				<listcell label="@{obj.nome}"/>
+				<listcell label="@{obj.telefoneCelular}"/>
 				<listcell label="@{obj.cpf }"/>
 			</listitem>
 		</listbox>

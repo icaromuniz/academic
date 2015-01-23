@@ -7,7 +7,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
-import org.zkoss.zul.ListModelList;
+import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Listbox;
 
 import br.com.juris.academico.geral.ComposerAbstrato;
@@ -19,6 +19,7 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	private static final long serialVersionUID = -2468944244027967584L;
 
 	private Listbox listboxSelecao;
+	AnnotateDataBinder binder = null;
 	
 	public PessoaFisicaComposer(){
 		this.setModel(new PessoaFisica());
@@ -33,11 +34,14 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 			PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
 			this.setModel(pessoaFisicaDao.find( new Integer(Executions.getCurrent().getParameter("ref"))));
 		}
+		
+		binder = new AnnotateDataBinder(comp);
+		binder.loadAll();
 	}
 	
 	public void onClick$buttonSalvar(Event event) throws NamingException{
 		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
-		pessoaFisicaDao.save(getModel());
+		setModel(pessoaFisicaDao.save(getModel()));
 		Clients.showNotification( "Informações salvas com sucesso." );
 	}
 	
@@ -46,8 +50,8 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		try {
 			
 			PessoaFisicaDao dao = InitialContext.doLookup(PessoaFisicaDao.URI);
-			listboxSelecao.setModel(new ListModelList<>(dao.findByFiltro()));
-			listboxSelecao.renderAll();
+			this.setModelList(dao.findByFiltro());
+			binder.loadAll();
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -67,6 +71,7 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 			dao.remove(getModel());
 			Clients.showNotification( "Exclusão efetuada com sucesso." );
 			setModel(new PessoaFisica());
+			binder.loadAll();
 			
 		} catch (NamingException e) {
 			e.printStackTrace();

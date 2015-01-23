@@ -3,12 +3,10 @@ package br.com.juris.academico.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
 @Entity
-@Table
 public class PessoaFisica extends EntidadeAbstrata {
 
 	private static final long serialVersionUID = 6155130143446479872L;

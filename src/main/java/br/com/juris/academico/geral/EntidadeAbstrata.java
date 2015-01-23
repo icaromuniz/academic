@@ -21,7 +21,7 @@ public class EntidadeAbstrata implements Serializable {
 	private Integer id;
 	
 	@Column(length=30, nullable=false)
-	private String usuarioUltimaAlteracao;
+	private String usuarioUltimaAlteracao = "teste"; // TODO icaromuniz: Implementar atribuição do usuário logado no composerAbstrato
 	
 	@Version
 	@Column(nullable=false)

@@ -1,6 +1,5 @@
 <?page title="Júris Acadêmico - Cadastro de Pessoa Física" contentType="text/html;charset=UTF-8"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="win"?>
 
 <zk>
 	<style>
@@ -35,7 +34,7 @@
 				</row>
 				<row>
 					<label value="CPF" />
-					<textbox value="@{$composer.model.cpf}" />
+					<longbox maxlength="10" value="@{$composer.model.cpf}" />
 				</row>
 				<row>
 					<label value="Data de Nascimento" />
@@ -43,11 +42,11 @@
 				</row>
 				<row>
 					<label value="Telefone Fixo" />
-					<textbox value="@{$composer.model.telefoneFixo}" />
+					<longbox maxlength="10" value="@{$composer.model.telefoneFixo}" />
 				</row>
 				<row>
 					<label value="Telefone Celular" />
-					<textbox value="@{$composer.model.telefoneCelular}"/>
+					<longbox maxlength="10" value="@{$composer.model.telefoneCelular}"/>
 				</row>
 				<row>
 					<label value="E-Mail" />

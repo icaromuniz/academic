@@ -1,36 +1,21 @@
 package br.com.juris.academico.service;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
-import br.com.juris.academico.geral.EntidadeAbstrata;
 
-@Stateless
-public class Util implements DAO {
+public class Util{
 
-	@PersistenceContext(unitName = "academico")
-    private EntityManager em;
-
-	public EntityManager getEm() {
-		return em;
-	}
-
-	@Override
-	public void remove(EntidadeAbstrata entidade) {
-		// TODO Auto-generated method stub
+	@SuppressWarnings("unchecked")
+	public static <T extends Object> T getDao(@SuppressWarnings("rawtypes") Class classeDao){
 		
-	}
-
-	@Override
-	public EntidadeAbstrata find(Integer idEntidade) {
-		// TODO Auto-generated method stub
+		try {
+			return (T) InitialContext.doLookup("java:module/" + classeDao.getSimpleName());
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
-
-	@Override
-	public EntidadeAbstrata save(EntidadeAbstrata entidade) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

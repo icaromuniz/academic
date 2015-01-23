@@ -13,14 +13,12 @@
 			<button id="buttonFiltrar" label="Filtrar"/>
 		</hlayout>
 		
-		<groupbox>
+		<groupbox style="padding-top: 5px;">
 	
 			<caption style="font-weight: bold;">Filtro</caption>
 		
-			<grid style="border: none;">
+			<grid style="border: none; padding: 0px;">
 				<columns>
-					<column hflex="min"/>
-					<column/>
 					<column hflex="min"/>
 					<column/>
 					<column hflex="min"/>

@@ -2,14 +2,6 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<style>
-		.z-notification-content {
-		    width: 500px;
-		    min-height: 30px;
-		    font-size: 20px;
-		}
-	</style>
-
 	<window id="win" title="Cadastro de Pessoa Física" border="normal" self="@define(content)" vflex="1"
 		apply="br.com.juris.academico.controller.PessoaFisicaComposer">
 	

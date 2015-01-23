@@ -1,0 +1,35 @@
+<?page title="Júris Acadêmico - Cadastro de Pessoa Física" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+
+	<window id="win" title="Cadastro de Usuário do Sistema Acadêmico" border="normal" self="@define(content)" vflex="1"
+		apply="br.com.juris.academico.controller.UsuarioComposer">
+	
+		<caption style="font-weight: bold;"/>
+	
+		<hlayout style="text-align: right;">
+			<button id="buttonNovo" label="Novo" href="/usuario/form.zul" />
+			<button id="buttonSalvar" label="Salvar"/>
+			<button id="buttonExcluir" label="Excluir"/>
+			<button id="buttonBuscar" label="Buscar" href="/usuario/list.zul"/>
+		</hlayout>
+		
+		<grid style="border: none;">
+			<columns>
+				<column hflex="min" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="Pessoa Física" />
+					<bandbox width="50%"/>
+				</row>
+				<row>
+					<label value="Senha Temporária" />
+					<textbox />
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

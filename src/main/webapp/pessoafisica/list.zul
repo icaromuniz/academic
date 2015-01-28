@@ -9,7 +9,7 @@
 		
 		<hlayout style="text-align: right;">
 			<button label="Novo" href="/pessoafisica/form.zul"/>
-			<button label="Limpar" tooltiptext="Limpa os filtros"/>
+			<button label="Limpar" tooltiptext="Limpa os filtros" onClick="filtroCPF.setRawValue(null); filtroNome.setValue(null); filtroTelefone.setRawValue(null)"/>
 			<button id="buttonFiltrar" label="Filtrar"/>
 		</hlayout>
 		
@@ -27,14 +27,14 @@
 					<row>
 						<label value="Nome"/>
 						<cell colspan="3">
-							<textbox id="textboxNome" hflex="true"/>
+							<textbox id="filtroNome" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
 						</cell>
 					</row>
 					<row>
 						<label value="CPF"/>
-						<decimalbox maxlength="11" hflex="true"/>
+						<decimalbox id="filtroCPF" maxlength="11" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
 						<label value="Telefone"/>
-						<textbox hflex="true"/>
+						<decimalbox id="filtroTelefone" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
 					</row>
 				</rows>
 			</grid>
@@ -45,14 +45,20 @@
 		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@{$composer.model}"
 				model="@{$composer.modelList}">
 			<listhead>
+				<listheader hflex="min" label="CPF" sort="auto(cpf)"/>
 				<listheader label="Nome" sort="auto(nome)"/>
-				<listheader label="Celular" sort="auto(telefoneCelular)"/>
-				<listheader label="CPF" sort="auto(cpf)"/>
+				<listheader hflex="min" label="Telefone Residencial" sort="auto(telefoneFixo)"/>
+				<listheader hflex="min" label="Telefone Alternativo" sort="auto(telefoneAlternativo)"/>
 			</listhead>
 			<listitem self="@{each=obj}" value="@{obj}">
+				<listcell label="@{obj.cpf}"/>
 				<listcell label="@{obj.nome}"/>
-				<listcell label="@{obj.telefoneCelular}"/>
-				<listcell label="@{obj.cpf }"/>
+				<listcell>
+					(<label value="@{obj.dddFixo}"></label>) <label value="@{obj.telefoneFixo}"/>
+				</listcell>
+				<listcell>
+					(<label value="@{obj.dddAlternativo}"></label>) <label value="@{obj.telefoneAlternativo}"/>
+				</listcell>
 			</listitem>
 		</listbox>
 	</window>

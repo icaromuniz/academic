@@ -40,6 +40,22 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
 
 	@Override
 	public List<PessoaFisica> findByFiltro(String nome, Long cpf, Long telefone) {
-		return em.createQuery("select pf from PessoaFisica pf", PessoaFisica.class).getResultList();
+		
+		String qlString = "select pf from PessoaFisica pf where 1 = 1 ";
+		
+		if( nome != null && !nome.isEmpty() ){
+			qlString = qlString.concat("and nome like '%" + nome.toUpperCase() + "%' ");
+		}
+		
+		if( cpf != null ){
+			qlString = qlString.concat("and cpf like '" + cpf + "%' ");
+		}
+		
+		if( telefone != null ){
+			qlString = qlString.concat("and telefoneFixo like '" + telefone + 
+					"%' or telefoneAlternativo like '" + telefone + "%' ");
+		}
+		
+		return em.createQuery(qlString, PessoaFisica.class).getResultList();
 	}
 }

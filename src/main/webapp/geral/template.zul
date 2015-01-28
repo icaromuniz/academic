@@ -3,6 +3,7 @@
 		type="image/x-icon"?>
 		
 <zk>
+	<!-- Definição das dimensões da notificação -->
 	<style>
 		.z-notification-content {
 		    width: 400px;

@@ -33,12 +33,18 @@
 					<datebox constraint="no future: Datas futuras não são permitidas." value="@{$composer.model.nascimento}" />
 				</row>
 				<row>
-					<label value="Telefone Fixo" />
-					<longbox maxlength="10" value="@{$composer.model.telefoneFixo}" />
+					<label value="Telefone Residencial" />
+					<cell>
+						<intbox cols="2" maxlength="2" value="@{$composer.model.dddFixo}"/>
+						<longbox maxlength="9" value="@{$composer.model.telefoneFixo}"/>
+					</cell>
 				</row>
 				<row>
-					<label value="Telefone Celular" />
-					<longbox maxlength="10" value="@{$composer.model.telefoneCelular}"/>
+					<label value="Telefone Alternativo" />
+					<cell>
+						<intbox cols="2" maxlength="2" value="@{$composer.model.dddAlternativo}"/>
+						<longbox maxlength="9" value="@{$composer.model.telefoneAlternativo}"/>
+					</cell>
 				</row>
 				<row>
 					<label value="E-Mail" />

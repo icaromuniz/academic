@@ -71,7 +71,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	}
 
 	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+		this.endereço = endereço != null ? endereço.toUpperCase() : null;
 	}
 
 	public String getBairro() {
@@ -79,7 +79,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	}
 
 	public void setBairro(String bairro) {
-		this.bairro = bairro;
+		this.bairro = bairro != null ? bairro.toUpperCase() : null;
 	}
 
 	public String getCpf() {

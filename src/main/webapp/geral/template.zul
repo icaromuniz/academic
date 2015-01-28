@@ -14,7 +14,7 @@
 	
 	<borderlayout width="1000px">
 		<north style="text-align: center;">
-			<!-- <image src="/geral/img/logo.jpg" /> -->
+			<image src="/geral/img/logo.jpg" />
 		</north>
 		
 		<west width="200px">

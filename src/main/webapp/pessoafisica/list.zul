@@ -34,7 +34,7 @@
 						<label value="CPF"/>
 						<decimalbox id="filtroCPF" maxlength="11" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
 						<label value="Telefone"/>
-						<decimalbox id="filtroTelefone" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
+						<decimalbox id="filtroTelefone" maxlength="9" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
 					</row>
 				</rows>
 			</grid>

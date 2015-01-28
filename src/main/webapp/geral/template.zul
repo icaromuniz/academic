@@ -3,6 +3,7 @@
 		type="image/x-icon"?>
 		
 <zk>
+	<!-- Definição das dimensões da notificação -->
 	<style>
 		.z-notification-content {
 		    width: 400px;
@@ -13,7 +14,7 @@
 	
 	<borderlayout width="1000px">
 		<north style="text-align: center;">
-			<image src="/geral/img/logo.jpg" />
+			<!-- <image src="/geral/img/logo.jpg" /> -->
 		</north>
 		
 		<west width="200px">

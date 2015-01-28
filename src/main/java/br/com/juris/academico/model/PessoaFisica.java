@@ -2,7 +2,10 @@ package br.com.juris.academico.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
@@ -11,11 +14,27 @@ public class PessoaFisica extends EntidadeAbstrata {
 
 	private static final long serialVersionUID = 6155130143446479872L;
 	
+	@Column(nullable=false)
 	private String nome;
-	private Integer cpf; 
+	
+	@Column(length=11, nullable=false)
+	private String cpf;
+	
+	@Temporal(TemporalType.DATE)
 	private Date nascimento;
-	private Integer telefoneFixo;
-	private Integer telefoneCelular;
+	
+	@Column(length=2)
+	private String dddFixo;
+	
+	@Column(length=8)
+	private String telefoneFixo;
+	
+	@Column(length=2)
+	private String dddAlternativo;
+
+	@Column(length=9)
+	private String telefoneAlternativo;
+	
 	private String email;
 	private String endereço;
 	private String bairro;
@@ -28,15 +47,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Integer getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(Integer cpf) {
-		this.cpf = cpf;
+		this.nome = nome != null ? nome.toUpperCase() : null;
 	}
 
 	public Date getNascimento() {
@@ -45,22 +56,6 @@ public class PessoaFisica extends EntidadeAbstrata {
 
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
-	}
-
-	public Integer getTelefoneFixo() {
-		return telefoneFixo;
-	}
-
-	public void setTelefoneFixo(Integer telefoneFixo) {
-		this.telefoneFixo = telefoneFixo;
-	}
-
-	public Integer getTelefoneCelular() {
-		return telefoneCelular;
-	}
-
-	public void setTelefoneCelular(Integer telefoneCelular) {
-		this.telefoneCelular = telefoneCelular;
 	}
 
 	public String getEmail() {
@@ -85,5 +80,45 @@ public class PessoaFisica extends EntidadeAbstrata {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefoneFixo() {
+		return telefoneFixo;
+	}
+
+	public void setTelefoneFixo(String telefoneFixo) {
+		this.telefoneFixo = telefoneFixo;
+	}
+
+	public String getTelefoneAlternativo() {
+		return telefoneAlternativo;
+	}
+
+	public void setTelefoneAlternativo(String telefoneAlternativo) {
+		this.telefoneAlternativo = telefoneAlternativo;
+	}
+
+	public String getDddFixo() {
+		return dddFixo;
+	}
+
+	public void setDddFixo(String dddFixo) {
+		this.dddFixo = dddFixo;
+	}
+
+	public String getDddAlternativo() {
+		return dddAlternativo;
+	}
+
+	public void setDddAlternativo(String dddAlternativo) {
+		this.dddAlternativo = dddAlternativo;
 	}
 }

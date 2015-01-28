@@ -8,6 +8,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
+import org.zkoss.zul.Decimalbox;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 
@@ -22,7 +23,9 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	private Listbox listboxSelecao;
 	AnnotateDataBinder binder = null;
 	
-	private Textbox textboxNome;
+	private Textbox filtroNome;
+	private Decimalbox filtroCPF;
+	private Decimalbox filtroTelefone;
 	
 	public PessoaFisicaComposer(){
 		this.setModel(new PessoaFisica());
@@ -53,7 +56,10 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		try {
 			
 			PessoaFisicaDao dao = InitialContext.doLookup(PessoaFisicaDao.URI);
-			this.setModelList(dao.findByFiltro(textboxNome.getValue(), null, null));
+			this.setModelList(dao.findByFiltro(filtroNome.getValue(),
+					filtroCPF.getValue() != null ? filtroCPF.getValue().longValue() : null,
+					filtroTelefone.getValue() != null ? filtroTelefone.getValue().longValue() : null));
+			
 			binder.loadAll();
 			
 		} catch (NamingException e) {

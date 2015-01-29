@@ -1,9 +1,21 @@
 <?page title="Juris Concursos - Sistema Acadêmico"?>
-<?link rel="shortcut icon" href="http://www.jurisconcursosma.com.br/wp-content/uploads/2012/09/favicon.jpg"
-		type="image/x-icon"?>
+<!-- <?link rel="shortcut icon" href="http://www.jurisconcursosma.com.br/wp-content/uploads/2012/09/favicon.jpg" type="image/x-icon"?> -->
 		
 <zk>
+	<!-- ===================== -->
+	<!-- Atribuição do favicon -->
+	<!-- ===================== -->
+	<script id="script" type="text/javascript"><![CDATA[
+		var link = document.createElement('link');
+		link.type = 'image/x-icon';
+		link.rel = 'shortcut icon';
+		link.href = 'http://www.jurisconcursosma.com.br/wp-content/uploads/2012/09/favicon.jpg';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	]]></script>
+
+	<!-- ====================================== -->
 	<!-- Definição das dimensões da notificação -->
+	<!-- ====================================== -->
 	<style>
 		.z-notification-content {
 		    width: 400px;

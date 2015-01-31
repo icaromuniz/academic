@@ -11,6 +11,7 @@ import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Decimalbox;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.impl.InputElement;
 
 import br.com.juris.academico.geral.ComposerAbstrato;
 import br.com.juris.academico.model.PessoaFisica;
@@ -43,11 +44,44 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		
 		binder = new AnnotateDataBinder(comp);
 		binder.loadAll();
+		
+		recuperaPrimeiroInput(comp).focus();
 	}
 	
+	/** Percorre a árvore de componentes buscando pelo primeiro InputElement habilitado para retornar */
+	private InputElement recuperaPrimeiroInput(Component component) {
+		
+		InputElement inputElement = null;
+		
+		if(component instanceof InputElement && !((InputElement) component).isDisabled()){
+			return (InputElement) component;
+		}
+		
+		if (component.getChildren() != null) {
+			for (Component c : component.getChildren()) {
+				
+				inputElement = recuperaPrimeiroInput(c);
+				
+				if(inputElement != null){
+					break;
+				}
+			}
+		}
+		
+		return inputElement;
+	}
+
 	public void onClick$buttonSalvar(Event event) throws NamingException{
+		
 		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
-		setModel(pessoaFisicaDao.save(getModel()));
+		
+		/*Set<ConstraintViolation<PessoaFisica>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator().validate(this.getModel(), PessoaFisica.class);
+		
+		if(constraintViolations != null && !constraintViolations.isEmpty()){
+			throw new WrongValueException(self.getFellow("textboxNome"), constraintViolations.iterator().next().getMessage());
+		}*/
+		
+		this.setModel(pessoaFisicaDao.save(getModel()));
 		Clients.showNotification( "Informações salvas com sucesso!" );
 	}
 	

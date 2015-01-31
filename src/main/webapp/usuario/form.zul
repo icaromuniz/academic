@@ -3,7 +3,7 @@
 
 <zk>
 
-	<window id="win" title="Cadastro de Usuário do Sistema Acadêmico" border="normal" self="@define(content)" vflex="1"
+	<window id="win" title="Cadastro de Usuário do Sistema" border="normal" self="@define(content)" vflex="1"
 		apply="br.com.juris.academico.controller.UsuarioComposer">
 	
 		<caption style="font-weight: bold;"/>

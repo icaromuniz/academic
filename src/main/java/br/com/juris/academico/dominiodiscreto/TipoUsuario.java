@@ -3,8 +3,8 @@ package br.com.juris.academico.dominiodiscreto;
 public enum TipoUsuario {
 
 	/** Administrador do sistema */
-	ADM,
+	A,
 	
 	/** Usuário comum */
-	USR; 
+	C; 
 }

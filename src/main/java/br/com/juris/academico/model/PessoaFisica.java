@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
@@ -14,9 +15,11 @@ public class PessoaFisica extends EntidadeAbstrata {
 
 	private static final long serialVersionUID = 6155130143446479872L;
 	
+	@NotNull(message="Informação obrigatória!")
 	@Column(nullable=false)
 	private String nome;
-	
+
+	@NotNull(message="Informação obrigatória!")
 	@Column(length=11, nullable=false)
 	private String cpf;
 	

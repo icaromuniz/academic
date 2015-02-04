@@ -26,7 +26,7 @@
 				</row>
 				<row>
 					<label value="CPF" />
-					<longbox maxlength="10" value="@{$composer.model.cpf}" />
+					<longbox maxlength="11" value="@{$composer.model.cpf}" />
 				</row>
 				<row>
 					<label value="Data de Nascimento" />

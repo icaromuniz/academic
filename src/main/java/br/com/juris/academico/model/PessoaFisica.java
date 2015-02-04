@@ -8,6 +8,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
 @Entity
@@ -21,6 +23,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 
 	@NotNull(message="Informação obrigatória!")
 	@Column(length=11, nullable=false)
+	@CPF(message="Número de CPF inválido!")
 	private String cpf;
 	
 	@Temporal(TemporalType.DATE)

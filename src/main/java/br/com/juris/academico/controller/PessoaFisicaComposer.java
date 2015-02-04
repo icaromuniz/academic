@@ -1,10 +1,18 @@
 package br.com.juris.academico.controller;
 
+import java.util.Set;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import javax.validation.groups.Default;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
@@ -75,11 +83,11 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		
 		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
 		
-		/*Set<ConstraintViolation<PessoaFisica>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator().validate(this.getModel(), PessoaFisica.class);
+		Set<ConstraintViolation<PessoaFisica>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator().validate(this.getModel(), Default.class);
 		
 		if(constraintViolations != null && !constraintViolations.isEmpty()){
 			throw new WrongValueException(self.getFellow("textboxNome"), constraintViolations.iterator().next().getMessage());
-		}*/
+		}
 		
 		this.setModel(pessoaFisicaDao.save(getModel()));
 		Clients.showNotification( "Informações salvas com sucesso!" );

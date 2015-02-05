@@ -1,5 +1,7 @@
 package br.com.juris.academico.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.naming.InitialContext;
@@ -13,6 +15,7 @@ import javax.validation.groups.Default;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.WrongValueException;
+import org.zkoss.zk.ui.WrongValuesException;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
@@ -86,7 +89,14 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		Set<ConstraintViolation<PessoaFisica>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator().validate(this.getModel(), Default.class);
 		
 		if(constraintViolations != null && !constraintViolations.isEmpty()){
-			throw new WrongValueException(self.getFellow("textboxNome"), constraintViolations.iterator().next().getMessage());
+			
+			List<WrongValueException> listaExceções = new ArrayList<>();
+			
+			for (ConstraintViolation<PessoaFisica> cv : constraintViolations) {
+				listaExceções.add(new WrongValueException(self.getFellow(cv.getMessage().split("#")[0].trim()), cv.getMessage().split("#")[1]));
+			}
+			
+			throw new WrongValuesException(listaExceções.toArray(new WrongValueException[0]));
 		}
 		
 		this.setModel(pessoaFisicaDao.save(getModel()));

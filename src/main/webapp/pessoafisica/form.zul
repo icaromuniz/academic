@@ -26,11 +26,11 @@
 				</row>
 				<row>
 					<label value="CPF" />
-					<longbox maxlength="11" value="@{$composer.model.cpf}" />
+					<longbox id="longboxCpf" maxlength="11" value="@{$composer.model.cpf}" />
 				</row>
 				<row>
 					<label value="Data de Nascimento" />
-					<datebox constraint="no future: Datas futuras não são permitidas." value="@{$composer.model.nascimento}" />
+					<datebox id="dateboxNascimento" constraint="no future: Datas futuras não são permitidas." value="@{$composer.model.nascimento}" />
 				</row>
 				<row>
 					<label value="Telefone Residencial" />

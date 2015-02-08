@@ -1,0 +1,8 @@
+<zk>
+	<hlayout style="text-align: right;">
+		<button id="buttonNovo" label="Novo" href="/usuario/form.zul" />
+		<button id="buttonSalvar" label="Salvar" onClick="$composer.onClick$buttonSalvar(null)" />
+		<button id="buttonExcluir" label="Excluir" />
+		<button id="buttonBuscar" label="Buscar" href="/usuario/list.zul" />
+	</hlayout>
+</zk>

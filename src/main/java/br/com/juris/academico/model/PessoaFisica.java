@@ -23,7 +23,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	private String nome;
 
 	@NotNull(message="longboxCpf#Informação obrigatória!")
-	@Column(length=11, nullable=false)
+	@Column(length=11, nullable=false, unique=true)
 	@CPF(message="Número de CPF inválido!")
 	private String cpf;
 	

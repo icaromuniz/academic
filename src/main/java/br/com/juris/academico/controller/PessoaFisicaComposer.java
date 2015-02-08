@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.ejb.EJBException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import javax.validation.groups.Default;
 
 import org.zkoss.zk.ui.Component;
@@ -99,7 +98,13 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 			throw new WrongValuesException(listaExceções.toArray(new WrongValueException[0]));
 		}
 		
-		this.setModel(pessoaFisicaDao.save(getModel()));
+		try {
+			this.setModel(pessoaFisicaDao.save(getModel()));
+		} catch (EJBException e) {
+			// TODO Tratar exceção de unicidade do CPF
+			e.printStackTrace();
+		}
+		
 		Clients.showNotification( "Informações salvas com sucesso!" );
 	}
 	

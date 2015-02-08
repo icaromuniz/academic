@@ -8,12 +8,12 @@
 	
 		<caption style="font-weight: bold;"/>
 	
-		<hlayout style="text-align: right;">
+		<!-- <hlayout style="text-align: right;">
 			<button id="buttonNovo" label="Novo" href="/usuario/form.zul" />
-			<button id="buttonSalvar" label="Salvar"/>
+			<button id="buttonSalvar" label="Salvar" onClick="$composer.onClick$buttonSalvar(null)"/>
 			<button id="buttonExcluir" label="Excluir"/>
 			<button id="buttonBuscar" label="Buscar" href="/usuario/list.zul"/>
-		</hlayout>
+		</hlayout> -->
 		
 		<grid style="border: none;">
 			<columns>
@@ -26,8 +26,12 @@
 					<bandbox width="50%"/>
 				</row>
 				<row>
+					<label value="Login" />
+					<textbox width="50%" value="@bind($composer.modelo.login)"/>
+				</row>
+				<row>
 					<label value="Senha Temporária" />
-					<textbox />
+					<textbox value="@bind($composer.modelo.senha)" />
 				</row>
 			</rows>
 		</grid>

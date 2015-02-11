@@ -9,6 +9,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
@@ -18,13 +19,13 @@ public class PessoaFisica extends EntidadeAbstrata {
 
 	private static final long serialVersionUID = 6155130143446479872L;
 	
-	@NotNull(message="textboxNome#Informação obrigatória!")
+	@NotEmpty(message="textboxNome#Informação obrigatória!")
 	@Column(nullable=false)
 	private String nome;
 
 	@NotNull(message="longboxCpf#Informação obrigatória!")
 	@Column(length=11, nullable=false, unique=true)
-	@CPF(message="Número de CPF inválido!")
+	@CPF(message="longboxCpf#Número de CPF inválido!")
 	private String cpf;
 	
 	@Temporal(TemporalType.DATE)

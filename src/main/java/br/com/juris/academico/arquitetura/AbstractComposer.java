@@ -8,6 +8,8 @@ import org.zkoss.bind.BindComposer;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.util.ConventionWires;
+import org.zkoss.zul.Button;
+import org.zkoss.zul.Include;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
@@ -20,7 +22,9 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 
 	private List<T> listaModelo;
 
-	private DaoAbstrato<?> daoAbstrato;
+	private DaoAbstrato<T> daoAbstrato;
+	
+	private Include includeListaBotoes;
 
 	public AbstractComposer(Class<T> classeModelo) {
 		this.classeModelo = classeModelo;
@@ -33,6 +37,8 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 
 		daoAbstrato = InitialContext.doLookup("java:module/" + classeModelo.getSimpleName() + "Dao");
 
+		ConventionWires.wireFellows(getBinder().getView().getSpaceOwner(), this);
+
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) { // abertura do form
 
 			if (Executions.getCurrent().getParameter("ref") != null) { // carrega registro identificado
@@ -44,8 +50,28 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 				modelo = classeModelo.newInstance();
 			}
 		}
+		
+		if (includeListaBotoes != null) {
+			atualizaListaBotoes();
+		}
+	}
 
-		ConventionWires.wireFellows(getBinder().getView().getSpaceOwner(), this);
+	private void atualizaListaBotoes() {
+
+		String urlPath = Executions.getCurrent().getDesktop().getRequestPath();
+		boolean isList = urlPath.endsWith("/list.zul");
+		
+		// atualiza referências
+		((Button)includeListaBotoes.getFellow("buttonNovo")).setHref( urlPath.substring(0, urlPath.lastIndexOf("/")) + "/form.zul" );
+		((Button)includeListaBotoes.getFellow("buttonBuscar")).setHref( urlPath.substring(0, urlPath.lastIndexOf("/")) + "/list.zul" );
+		
+		// atribui visibilidade adequada
+		((Button)includeListaBotoes.getFellow("buttonSalvar")).setVisible(!isList);
+		((Button)includeListaBotoes.getFellow("buttonExcluir")).setVisible(!isList);
+		((Button)includeListaBotoes.getFellow("buttonBuscar")).setVisible(!isList);
+		((Button)includeListaBotoes.getFellow("buttonLimpar")).setVisible(isList);
+		((Button)includeListaBotoes.getFellow("buttonFiltrar")).setVisible(isList);
+			
 	}
 
 	public T getModelo() {

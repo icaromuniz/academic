@@ -1,0 +1,15 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+
+	<window id="win" title="Listagem de Usuário do Sistema" border="normal" self="@define(content)" vflex="1"
+		apply="br.com.juris.academico.controller.UsuarioComposer">
+	
+		<caption style="font-weight: bold;"/>
+		
+		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
+		
+		
+	</window>
+</zk>

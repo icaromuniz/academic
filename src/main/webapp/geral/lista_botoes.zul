@@ -1,8 +1,16 @@
 <zk>
 	<hlayout style="text-align: right;">
-		<button id="buttonNovo" label="Novo" href="/usuario/form.zul" />
-		<button id="buttonSalvar" label="Salvar" onClick="$composer.onClick$buttonSalvar(null)" />
-		<button id="buttonExcluir" label="Excluir" />
-		<button id="buttonBuscar" label="Buscar" href="/usuario/list.zul" />
+		<button id="buttonNovo" label="Novo"
+			tooltiptext="Inicia o formulário para o cadastro de um novo registro."/>
+		<button id="buttonLimpar" label="Limpar" onClick="$composer.limpaFiltro()"
+			tooltiptext="Limpa os filtros informados."/>
+		<button id="buttonFiltrar" label="Filtrar" onClick="$composer.filtra()"
+			tooltiptext="Filtra os registros cadastrados pelos dados informados."/>
+		<button id="buttonSalvar" label="Salvar" onClick="$composer.salva()"
+			tooltiptext="Salva o registro atual."/>
+		<button id="buttonExcluir" label="Excluir" onClick="$composer.exclui()"
+			tooltiptext="Exclui o registro atual."/>
+		<button id="buttonBuscar" label="Buscar"
+			tooltiptext="Exibe a tela de listagem dos registros cadastrados."/>
 	</hlayout>
 </zk>

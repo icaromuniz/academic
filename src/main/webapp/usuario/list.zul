@@ -1,4 +1,4 @@
-<?page title="" contentType="text/html;charset=UTF-8"?>
+<?page contentType="text/html;charset=UTF-8"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
@@ -10,6 +10,37 @@
 		
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
 		
+		<groupbox style="padding-top: 5px;">
 		
+			<caption label="Filtro"/>
+			
+			<grid style="border: none; padding: 0px;">
+				<columns>
+					<column hflex="min"/>
+					<column/>
+					<column hflex="min"/>
+					<column hflex="min"/>
+				</columns>
+				<rows>
+					<row>
+						<label value="Nome"/>
+						<textbox value="@{$composer.filtroNome}" hflex="true"/>
+						<label value="CPF"/>
+						<textbox maxlength="11" cols="15" value="@{$composer.filtroCpf}" hflex="true"/>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		
+		<separator/>
+		
+		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@{$composer.model}" model="@{$composer.listaModelo}">
+			<listhead>
+				<listheader label="Nome"/>
+				<listheader label="Login" hflex="min"/>
+				<listheader label="Perfil" hflex="min"/>
+			</listhead>
+		
+		</listbox>
 	</window>
 </zk>

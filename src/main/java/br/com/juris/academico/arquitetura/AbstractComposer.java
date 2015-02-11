@@ -10,6 +10,8 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.util.ConventionWires;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Include;
+import org.zkoss.zul.Window;
+import org.zkoss.zul.impl.InputElement;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
@@ -32,28 +34,58 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
-
+		
 		super.doAfterCompose(comp);
 
+		// atualiza o título da página
+		comp.getPage().setTitle("Júris Acadêmico - " + ((Window)comp).getTitle());
+
+		// carrega instância do Dao do caso de uso
 		daoAbstrato = InitialContext.doLookup("java:module/" + classeModelo.getSimpleName() + "Dao");
 
+		// executa os binds
 		ConventionWires.wireFellows(getBinder().getView().getSpaceOwner(), this);
 
+		// inicia o form
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) { // abertura do form
 
 			if (Executions.getCurrent().getParameter("ref") != null) { // carrega registro identificado
-
 				modelo = (T) daoAbstrato.find(new Integer(Executions.getCurrent().getParameter("ref")));
-
 			} else { // instancia novo objeto
-
 				modelo = classeModelo.newInstance();
 			}
 		}
 		
+		// atualiza o botões para o comportamento adequado à página
 		if (includeListaBotoes != null) {
 			atualizaListaBotoes();
 		}
+		
+		// coloca o foco no primeiro Input da página
+		recuperaPrimeiroInput(comp).focus();
+	}
+	
+	/** Percorre a árvore de componentes buscando pelo primeiro InputElement habilitado para retornar */
+	private InputElement recuperaPrimeiroInput(Component component) {
+		
+		InputElement inputElement = null;
+		
+		if(component instanceof InputElement && !((InputElement) component).isDisabled()){
+			return (InputElement) component;
+		}
+		
+		if (component.getChildren() != null) {
+			for (Component c : component.getChildren()) {
+				
+				inputElement = recuperaPrimeiroInput(c);
+				
+				if(inputElement != null){
+					break;
+				}
+			}
+		}
+		
+		return inputElement;
 	}
 
 	private void atualizaListaBotoes() {
@@ -65,13 +97,14 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 		((Button)includeListaBotoes.getFellow("buttonNovo")).setHref( urlPath.substring(0, urlPath.lastIndexOf("/")) + "/form.zul" );
 		((Button)includeListaBotoes.getFellow("buttonBuscar")).setHref( urlPath.substring(0, urlPath.lastIndexOf("/")) + "/list.zul" );
 		
-		// atribui visibilidade adequada
+		// atribui visibilidade adequada (form)
 		((Button)includeListaBotoes.getFellow("buttonSalvar")).setVisible(!isList);
 		((Button)includeListaBotoes.getFellow("buttonExcluir")).setVisible(!isList);
 		((Button)includeListaBotoes.getFellow("buttonBuscar")).setVisible(!isList);
+		
+		// atribui visibilidade adequada (list)
 		((Button)includeListaBotoes.getFellow("buttonLimpar")).setVisible(isList);
 		((Button)includeListaBotoes.getFellow("buttonFiltrar")).setVisible(isList);
-			
 	}
 
 	public T getModelo() {

@@ -21,8 +21,23 @@
 					<bandbox width="50%"/>
 				</row>
 				<row>
-					<label value="Senha Temporária" />
-					<textbox value="@bind($composer.modelo.senha)" />
+					<label value="Perfil" />
+					<combobox readonly="true" autodrop="true">
+						<comboitem label="Administrador"/>
+						<comboitem label="Padrão"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="Login" />
+					<textbox disabled="true"/>
+				</row>
+				<row>
+					<label value="Senha" />
+					<textbox value="@bind($composer.modelo.senha)" type="password" />
+				</row>
+				<row>
+					<label value="Confirmação" />
+					<textbox value="@bind($composer.modelo.senha)" type="password" />
 				</row>
 			</rows>
 		</grid>

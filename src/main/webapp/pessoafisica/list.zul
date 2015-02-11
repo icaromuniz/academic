@@ -45,14 +45,14 @@
 		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@{$composer.model}"
 				model="@{$composer.modelList}">
 			<listhead>
-				<listheader hflex="min" label="CPF" sort="auto(cpf)"/>
 				<listheader label="Nome" sort="auto(nome)"/>
+				<listheader hflex="min" label="CPF" sort="auto(cpf)"/>
 				<listheader hflex="min" label="Telefone Residencial" sort="auto(telefoneFixo)"/>
 				<listheader hflex="min" label="Telefone Alternativo" sort="auto(telefoneAlternativo)"/>
 			</listhead>
 			<listitem self="@{each=obj}" value="@{obj}">
-				<listcell label="@{obj.cpf}"/>
 				<listcell label="@{obj.nome}"/>
+				<listcell label="@{obj.cpf}"/>
 				<listcell>
 					(<label value="@{obj.dddFixo}"></label>) <label value="@{obj.telefoneFixo}"/>
 				</listcell>

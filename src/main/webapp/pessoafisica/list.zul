@@ -20,21 +20,20 @@
 			<grid style="border: none; padding: 0px;">
 				<columns>
 					<column hflex="min"/>
-					<column/>
 					<column hflex="min"/>
+					<column hflex="min"/>
+					<column/>
 				</columns>
 				<rows>
-					<row>
+					<row spans="1, 3">
 						<label value="Nome"/>
-						<cell colspan="3">
-							<textbox id="filtroNome" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
-						</cell>
+						<textbox id="filtroNome" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
 					</row>
 					<row>
 						<label value="CPF"/>
-						<decimalbox id="filtroCPF" maxlength="11" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
+						<decimalbox id="filtroCPF" cols="20" maxlength="11" forward="onOK = buttonFiltrar.onClick"/>
 						<label value="Telefone"/>
-						<decimalbox id="filtroTelefone" maxlength="9" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
+						<decimalbox id="filtroTelefone" cols="20" maxlength="9" forward="onOK = buttonFiltrar.onClick"/>
 					</row>
 				</rows>
 			</grid>

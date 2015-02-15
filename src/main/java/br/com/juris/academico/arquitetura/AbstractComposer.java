@@ -64,6 +64,8 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 		
 		// coloca o foco no primeiro Input da página
 		recuperaPrimeiroInput(comp).focus();
+		
+		getBinder().notifyChange(this, "*");
 	}
 	
 	/** Percorre a árvore de componentes buscando pelo primeiro InputElement habilitado para retornar */

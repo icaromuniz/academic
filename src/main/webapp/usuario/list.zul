@@ -24,11 +24,11 @@
 				<rows>
 					<row spans="1, 3">
 						<label value="Nome"/>
-						<textbox value="@{$composer.filtroNome}" hflex="true"/>
+						<textbox hflex="true" onOK="$composer.filtra()"/>
 					</row>
 					<row>
 						<label value="CPF"/>
-						<decimalbox cols="20" maxlength="11" value="@{$composer.filtroCpf}"/>
+						<decimalbox cols="20" maxlength="11"/>
 						<label value="Perfil"/>
 						<combobox readonly="true" autodrop="true">
 							<comboitem label="Administrador"/>
@@ -41,14 +41,19 @@
 		
 		<separator/>
 		
-		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@{$composer.model}" model="@{$composer.listaModelo}">
+		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="@bind($composer.listaModelo)" selectedItem="@bind($composer.modelo)"
+				onSelect='Executions.sendRedirect("/usuario/form.zul?ref=-39")'>
 			<listhead>
 				<listheader label="Nome"/>
 				<listheader label="CPF" hflex="min"/>
 				<listheader label="Login" hflex="min"/>
 				<listheader label="Perfil" hflex="min"/>
 			</listhead>
-		
+			<listitem value="@bind($composer.modelo.pessoaFisica.id)">
+				<template name="model">
+					<listcell label="${each.pessoaFisica.nome}"/>
+				</template>
+			</listitem>
 		</listbox>
 	</window>
 </zk>

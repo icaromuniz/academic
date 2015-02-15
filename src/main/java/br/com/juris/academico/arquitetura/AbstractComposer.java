@@ -7,6 +7,7 @@ import javax.naming.InitialContext;
 import org.zkoss.bind.BindComposer;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.ConventionWires;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Include;
@@ -16,7 +17,7 @@ import org.zkoss.zul.impl.InputElement;
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
 @SuppressWarnings("serial")
-public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<Component> {
+public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<Component> {
 
 	private Class<T> classeModelo;
 
@@ -24,7 +25,7 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 
 	private List<T> listaModelo;
 
-	private DaoAbstrato<T> daoAbstrato;
+	protected DaoAbstrato<T> dao;
 	
 	private Include includeListaBotoes;
 
@@ -41,7 +42,7 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 		comp.getPage().setTitle("Júris Acadêmico - " + ((Window)comp).getTitle());
 
 		// carrega instância do Dao do caso de uso
-		daoAbstrato = InitialContext.doLookup("java:module/" + classeModelo.getSimpleName() + "Dao");
+		dao = InitialContext.doLookup("java:module/" + classeModelo.getSimpleName() + "Dao");
 
 		// executa os binds
 		ConventionWires.wireFellows(getBinder().getView().getSpaceOwner(), this);
@@ -50,7 +51,7 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) { // abertura do form
 
 			if (Executions.getCurrent().getParameter("ref") != null) { // carrega registro identificado
-				modelo = (T) daoAbstrato.find(new Integer(Executions.getCurrent().getParameter("ref")));
+				modelo = (T) dao.find(new Integer(Executions.getCurrent().getParameter("ref")));
 			} else { // instancia novo objeto
 				modelo = classeModelo.newInstance();
 			}
@@ -106,11 +107,23 @@ public class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<C
 		((Button)includeListaBotoes.getFellow("buttonLimpar")).setVisible(isList);
 		((Button)includeListaBotoes.getFellow("buttonFiltrar")).setVisible(isList);
 	}
+	
+	public void salva(){
+		dao.save(modelo);
+		Clients.showNotification("Info salva!");
+	}
+
+	public void superFiltra(){
+		filtra();
+		Clients.showNotification("Info salva!");
+	}
+
+	public abstract void filtra();
 
 	public T getModelo() {
 		return modelo;
 	}
-
+	
 	public void setModelo(T modelo) {
 		this.modelo = modelo;
 	}

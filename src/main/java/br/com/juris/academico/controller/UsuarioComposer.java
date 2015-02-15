@@ -1,15 +1,26 @@
 package br.com.juris.academico.controller;
 
+import java.util.List;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zul.Combobox;
+import org.zkoss.zul.ListModelList;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
+import br.com.juris.academico.model.PessoaFisica;
 import br.com.juris.academico.model.Usuario;
+import br.com.juris.academico.persistence.PessoaFisicaDao;
 import br.com.juris.academico.persistence.UsuarioDao;
-import br.com.juris.academico.service.Util;
 
 public class UsuarioComposer extends AbstractComposer<Usuario>{
+	
+	private Combobox comboboxPf;
 
 	public UsuarioComposer() {
 		super(Usuario.class);
@@ -19,25 +30,33 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 	
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
+		
 		super.doAfterCompose(comp);
 		
-		this.setModelo(new Usuario());
-		this.getModelo().setSenha("teste");
-		
-		getBinder().notifyChange(this, "*");
+		// popula a lista de Pessoa Física
+		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) {
+			comboboxPf.setModel(new ListModelList<>(this.getListaPessoaFisica()));
+		} else {
+			this.setListaModelo(((UsuarioDao)dao).findByFiltro(null, null));
+		}
 	}
 
-	public void onClick$buttonSalvar(Event event){
-		
-		UsuarioDao dao = Util.getDao(UsuarioDao.class);
-		
-		System.out.println(getModelo().getTipoUsuario());
-		
-		Clients.showNotification(getModelo().getLogin());
-//		Clients.showNotification("Informações salvas com sucesso!");
+	public void salva(){
+		super.salva();
 	}
 
 	public void onClick$buttonExcluir(Event event){
 		Clients.showNotification("Exclusão efetuada com sucesso!");
+	}
+	
+	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{
+		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
+		return pessoaFisicaDao.findByFiltro(null, null, null);
+	}
+
+	@Override
+	public void filtra() {
+		this.setListaModelo(((UsuarioDao)dao).findByFiltro(null, null));
+		getBinder().notifyChange(this, "*");
 	}
 }

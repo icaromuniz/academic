@@ -4,7 +4,7 @@
 <zk>
 
 	<window id="win" title="Cadastro de Usuário do Sistema" border="normal" self="@define(content)" vflex="1"
-		apply="br.com.juris.academico.controller.UsuarioComposer">
+			apply="br.com.juris.academico.controller.UsuarioComposer">
 	
 		<caption style="font-weight: bold;"/>
 		
@@ -18,7 +18,11 @@
 			<rows>
 				<row>
 					<label value="Pessoa Física" />
-					<bandbox width="50%"/>
+					<combobox id="comboboxPf" hflex="true" selectedItem="@bind($composer.modelo.pessoaFisica)">
+						<template name="model">
+							<comboitem label="${each.nome}"/>
+						</template>
+					</combobox>
 				</row>
 				<row>
 					<label value="Perfil" />
@@ -29,7 +33,7 @@
 				</row>
 				<row>
 					<label value="Login" />
-					<textbox disabled="true"/>
+					<textbox id="textboxLogin" value="@bind($composer.modelo.pessoaFisica.cpf)" disabled="true" />
 				</row>
 				<row>
 					<label value="Senha" />

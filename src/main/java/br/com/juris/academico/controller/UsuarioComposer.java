@@ -7,8 +7,6 @@ import javax.naming.NamingException;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
 
@@ -33,30 +31,26 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 		
 		super.doAfterCompose(comp);
 		
-		// popula a lista de Pessoa Física
+		// carrega a lista de pessoas físicas
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) {
 			comboboxPf.setModel(new ListModelList<>(this.getListaPessoaFisica()));
-		} else {
-//			this.setListaModelo(((UsuarioDao)dao).findByFiltro(null, null));
 		}
 	}
 
-	public void salva(){
-		super.salva();
-	}
-
-	public void onClick$buttonExcluir(Event event){
-		Clients.showNotification("Exclusão efetuada com sucesso!");
+	@Override
+	public void limpaFiltro() {
+		// TODO Auto-generated method stub
+		
 	}
 	
+	@Override
+	public void filtraLista() {
+		this.setListaModelo(((UsuarioDao)dao).findByFiltro(null, null));
+		getBinder().notifyChange(this, "*");
+	}
+
 	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{
 		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
 		return pessoaFisicaDao.findByFiltro(null, null, null);
-	}
-
-	@Override
-	public void filtra() {
-		this.setListaModelo(((UsuarioDao)dao).findByFiltro(null, null));
-		getBinder().notifyChange(this, "*");
 	}
 }

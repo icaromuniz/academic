@@ -42,7 +42,7 @@
 		<separator/>
 		
 		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="@bind($composer.listaModelo)" selectedItem="@bind($composer.modelo)"
-				onSelect='Executions.sendRedirect("/usuario/form.zul?ref=-39")'>
+				onSelect='Executions.sendRedirect("/usuario/form.zul?ref=" + self.getSelectedItem().getValue().getId())'>
 			<listhead>
 				<listheader label="Nome"/>
 				<listheader label="CPF" hflex="min"/>
@@ -50,7 +50,7 @@
 				<listheader label="Perfil" hflex="min"/>
 			</listhead>
 			<template name="model" var="obj">
-				<listitem>
+				<listitem value="@bind(obj)">
 					<listcell label="@load(obj.pessoaFisica.nome)"/>
 					<listcell label="@load(obj.pessoaFisica.cpf)"/>
 					<listcell label="@load(obj.tipoUsuario)"/>

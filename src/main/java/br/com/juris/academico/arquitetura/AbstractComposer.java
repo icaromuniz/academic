@@ -68,6 +68,20 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 		getBinder().notifyChange(this, "*");
 	}
 	
+	public void salvaRegistro(){
+		dao.save(modelo);
+		Clients.showNotification( "Informações salvas com sucesso!" );
+	}
+	
+	public void excluiRegistro(){
+		dao.remove(modelo);
+		Clients.showNotification( "Exclusão efetuada com sucesso!" );
+	}
+	
+	public abstract void limpaFiltro();
+
+	public abstract void filtraLista();
+
 	/** Percorre a árvore de componentes buscando pelo primeiro InputElement habilitado para retornar */
 	private InputElement recuperaPrimeiroInput(Component component) {
 		
@@ -110,18 +124,6 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 		((Button)includeListaBotoes.getFellow("buttonFiltrar")).setVisible(isList);
 	}
 	
-	public void salva(){
-		dao.save(modelo);
-		Clients.showNotification("Info salva!");
-	}
-
-	public void superFiltra(){
-		filtra();
-		Clients.showNotification("Info salva!");
-	}
-
-	public abstract void filtra();
-
 	public T getModelo() {
 		return modelo;
 	}

@@ -4,11 +4,11 @@
 			tooltiptext="Inicia o formulário para o cadastro de um novo registro."/>
 		<button id="buttonLimpar" label="Limpar" onClick="$composer.limpaFiltro()"
 			tooltiptext="Limpa os filtros informados."/>
-		<button id="buttonFiltrar" label="Filtrar" onClick="$composer.filtra()"
+		<button id="buttonFiltrar" label="Filtrar" onClick="$composer.filtraLista()"
 			tooltiptext="Filtra os registros cadastrados pelos dados informados."/>
-		<button id="buttonSalvar" label="Salvar" onClick="$composer.salva()"
+		<button id="buttonSalvar" label="Salvar" onClick="$composer.salvaRegistro()"
 			tooltiptext="Salva o registro atual."/>
-		<button id="buttonExcluir" label="Excluir" onClick="$composer.exclui()"
+		<button id="buttonExcluir" label="Excluir" onClick="$composer.excluiRegistro()"
 			tooltiptext="Exclui o registro atual."/>
 		<button id="buttonBuscar" label="Buscar"
 			tooltiptext="Exibe a tela de listagem dos registros cadastrados."/>

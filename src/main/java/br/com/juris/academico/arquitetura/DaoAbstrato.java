@@ -20,8 +20,8 @@ public abstract class DaoAbstrato<T extends EntidadeAbstrata> {
 		return em.merge(entidade);
 	}
 	
-	public void remove(T entidade){
-		em.remove(entidade);
+	public void remove(Integer idEntidade){
+		em.remove(em.find(entityClass, idEntidade));
 	}
 	
 	public T find(Integer idEntidade){

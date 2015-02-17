@@ -1,5 +1,6 @@
 package br.com.juris.academico.arquitetura;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -51,9 +52,14 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) { // abertura do form
 
 			if (Executions.getCurrent().getParameter("ref") != null) { // carrega registro identificado
+				
 				modelo = (T) dao.find(new Integer(Executions.getCurrent().getParameter("ref")));
+				
 			} else { // instancia novo objeto
+				
 				modelo = classeModelo.newInstance();
+				modelo.setDataCriacao(new Date());
+				modelo.setUsuarioCriacao("???");
 			}
 		}
 		
@@ -74,7 +80,7 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 	}
 	
 	public void excluiRegistro(){
-		dao.remove(modelo);
+		dao.remove(modelo.getId());
 		Clients.showNotification( "Exclusão efetuada com sucesso!" );
 	}
 	

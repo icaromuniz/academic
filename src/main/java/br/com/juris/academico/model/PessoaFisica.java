@@ -4,6 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -18,6 +22,11 @@ import br.com.juris.academico.geral.EntidadeAbstrata;
 public class PessoaFisica extends EntidadeAbstrata {
 
 	private static final long serialVersionUID = 6155130143446479872L;
+	
+	@Id
+	@SequenceGenerator(name="seq_pessoa_fisica", sequenceName="seq_pessoa_fisica")
+	@GeneratedValue(generator="seq_pessoa_fisica", strategy=GenerationType.SEQUENCE)
+	private Integer id;
 	
 	@NotEmpty(message="textboxNome#Informação obrigatória!")
 	@Column(nullable=false)
@@ -129,5 +138,13 @@ public class PessoaFisica extends EntidadeAbstrata {
 
 	public void setDddAlternativo(String dddAlternativo) {
 		this.dddAlternativo = dddAlternativo;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

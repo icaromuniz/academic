@@ -46,14 +46,13 @@
 			<listhead>
 				<listheader label="Nome"/>
 				<listheader label="CPF" hflex="min"/>
-				<listheader label="Login" hflex="min"/>
 				<listheader label="Perfil" hflex="min"/>
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">
 					<listcell label="@load(obj.pessoaFisica.nome)"/>
 					<listcell label="@load(obj.pessoaFisica.cpf)"/>
-					<listcell label="@load(obj.tipoUsuario)"/>
+					<listcell label='@load(obj.isAdministrador() ? "Administrador" : "Padrão")'/>
 				</listitem>
 			</template>
 		</listbox>

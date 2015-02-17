@@ -1,7 +1,8 @@
 
     create table PessoaFisica (
         id int4 not null,
-        usuarioUltimaAlteracao varchar(30) not null,
+        dataCriacao time not null,
+        usuarioCriacao varchar(11) not null,
         versao int4 not null,
         bairro varchar(255),
         cpf varchar(11) not null unique,
@@ -18,12 +19,13 @@
 
     create table Usuario (
         id int4 not null,
-        usuarioUltimaAlteracao varchar(30) not null,
+        dataCriacao time not null,
+        usuarioCriacao varchar(11) not null,
         versao int4 not null,
-        login varchar(255),
-        senha varchar(255),
-        tipoUsuario varchar(255),
-        pessoaFisica_id int4,
+        administrador bool not null,
+        ativo bool not null,
+        senha varchar(10),
+        pessoaFisica_id int4 not null,
         primary key (id)
     );
 
@@ -31,5 +33,7 @@
         add constraint FK5B4D8B0E9C886F0D 
         foreign key (pessoaFisica_id) 
         references PessoaFisica;
+
+    create sequence SEQ_USUARIO;
 
     create sequence seq_pessoa_fisica;

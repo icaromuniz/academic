@@ -1,6 +1,7 @@
 package br.com.juris.academico.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -39,8 +40,6 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	private Decimalbox filtroTelefone;
 	
 	public PessoaFisicaComposer(){
-		this.setModel(new PessoaFisica());
-		this.getModel().setUsuarioUltimaAlteracao("???");
 	}
 	
 	@Override
@@ -50,6 +49,10 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		if( Executions.getCurrent().getParameter("ref") != null ){
 			PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
 			this.setModel(pessoaFisicaDao.find( new Integer(Executions.getCurrent().getParameter("ref"))));
+		} else {
+			this.setModel(new PessoaFisica());
+			this.getModel().setUsuarioCriacao("???");
+			this.getModel().setDataCriacao(new Date());
 		}
 		
 		binder = new AnnotateDataBinder(comp);

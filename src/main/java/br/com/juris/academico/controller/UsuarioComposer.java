@@ -37,7 +37,7 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) {
 			comboboxPf.setModel(new ListModelList<>(this.getListaPessoaFisica()));
 		} else {
-			this.setListaModelo(((UsuarioDao)dao).findByFiltro(null, null));
+//			this.setListaModelo(((UsuarioDao)dao).findByFiltro(null, null));
 		}
 	}
 

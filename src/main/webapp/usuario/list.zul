@@ -49,11 +49,13 @@
 				<listheader label="Login" hflex="min"/>
 				<listheader label="Perfil" hflex="min"/>
 			</listhead>
-			<listitem value="@bind($composer.modelo.pessoaFisica.id)">
-				<template name="model">
-					<listcell label="${each.pessoaFisica.nome}"/>
-				</template>
-			</listitem>
+			<template name="model" var="obj">
+				<listitem>
+					<listcell label="@load(obj.pessoaFisica.nome)"/>
+					<listcell label="@load(obj.pessoaFisica.cpf)"/>
+					<listcell label="@load(obj.tipoUsuario)"/>
+				</listitem>
+			</template>
 		</listbox>
 	</window>
 </zk>

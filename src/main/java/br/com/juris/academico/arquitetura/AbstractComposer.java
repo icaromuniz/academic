@@ -8,6 +8,8 @@ import javax.naming.InitialContext;
 import org.zkoss.bind.BindComposer;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Page;
+import org.zkoss.zk.ui.metainfo.ComponentInfo;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.ConventionWires;
 import org.zkoss.zul.Button;
@@ -32,6 +34,17 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 
 	public AbstractComposer(Class<T> classeModelo) {
 		this.classeModelo = classeModelo;
+	}
+	
+	@Override
+	public ComponentInfo doBeforeCompose(Page page, Component parent, ComponentInfo compInfo) throws Exception {
+		
+		// redireciona o usuário para a tela de login caso ele não esteja logado
+		if(Executions.getCurrent().getSession().getAttribute("user") == null){
+			Executions.sendRedirect("/geral/login.zul");
+		}
+		
+		return super.doBeforeCompose(page, parent, compInfo);
 	}
 
 	@Override
@@ -59,7 +72,7 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 				
 				modelo = classeModelo.newInstance();
 				modelo.setDataCriacao(new Date());
-				modelo.setUsuarioCriacao("???");
+				modelo.setUsuarioCriacao((String) Executions.getCurrent().getSession().getAttribute("user"));
 			}
 		}
 		

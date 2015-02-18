@@ -1,0 +1,45 @@
+<?page title="Júris Acadêmico" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="http://www.jurisconcursosma.com.br/wp-content/uploads/2012/09/favicon.jpg"?>
+
+<zk>
+	<window vflex="true" border="none" apply="br.com.juris.academico.controller.LoginComposer">
+		<vlayout height="35%"/>
+		<grid style="border: none;">
+			<columns>
+				<column/>
+				<column hflex="min"/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<cell/>
+					<window title="Acesso ao Sistema Acadêmico" border="normal">
+						<caption style="font-weight: bold; text-align: center;"/>
+						<grid>
+							<columns>
+								<column width="40%" align="center"/>
+								<column align="center"/>
+							</columns>
+							<rows>
+								<row>
+									<label value="CPF"/>
+									<decimalbox id="decimalboxCpf" cols="15" maxlength="11"/>
+								</row>
+								<row>
+									<label value="Senha"/>
+									<textbox id="textboxSenha" cols="15" maxlength="10" type="password"
+											tooltiptext="Dez dígitos incluíndo letras maiúsculas, minúsculas e números."/>
+								</row>
+								<row>
+									<cell/>
+									<button label="Entrar" onClick="$composer.executaLogin()"/>
+								</row>
+							</rows>
+						</grid>
+					</window>
+					<cell/>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

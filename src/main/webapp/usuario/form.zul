@@ -25,11 +25,11 @@
 					</combobox>
 				</row>
 				<row>
-					<label value="Perfil" />
+					<label value="Administrador" />
 					<combobox readonly="true" autodrop="true"
 							onSelect="$composer.modelo.setAdministrador( self.getSelectedIndex() == 0 ? true : false )">
-						<comboitem label="Administrador"/>
-						<comboitem label="Padrão"/>
+						<comboitem label="Sim"/>
+						<comboitem label="Não"/>
 					</combobox>
 				</row>
 				<row>

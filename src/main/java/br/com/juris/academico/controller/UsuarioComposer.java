@@ -30,8 +30,8 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 	public void doAfterCompose(Component comp) throws Exception {
 		
 		super.doAfterCompose(comp);
-		
-		// carrega a lista de pessoas físicas
+
+		// FIXME (icaromuniz) Retirar após implementar vinculado
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) {
 			comboboxPf.setModel(new ListModelList<>(this.getListaPessoaFisica()));
 		}

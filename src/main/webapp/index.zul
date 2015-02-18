@@ -1,4 +1,60 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
+	<window id="win" title="Início" border="normal" self="@define(content)" vflex="1">
+		<caption style="font-weight: bold;"/>
+		<groupbox>
+			<caption>Últimas Notícias</caption>
+			...
+		</groupbox>
+		<separator/>
+		<grid>
+			<columns>
+				<column label="Unidade"/>
+				<column label="Turma"/>
+				<column label="Início"/>
+				<column label="Alunos"/>
+			</columns>
+			<rows>
+				<row>
+					<label value="Renascença"/>
+					<label value="Manhã 01"/>
+					<label value="01/01/2015"/>
+					<label value="100"/>
+				</row>
+				<row>
+					<label value="Renascença"/>
+					<label value="Manhã 02"/>
+					<label value="01/01/2015"/>
+					<label value="100"/>
+				</row>
+				<row>
+					<label value="Renascença"/>
+					<label value="Tarde 01"/>
+					<label value="01/01/2015"/>
+					<label value="100"/>
+				</row>
+				<row>
+					<label value="Renascença"/>
+					<label value="Noite 01"/>
+					<label value="01/01/2015"/>
+					<label value="100"/>
+				</row>
+				<row>
+					<label value="Cohama"/>
+					<label value="Manhã 01"/>
+					<label value="01/01/2015"/>
+					<label value="100"/>
+				</row>
+			</rows>
+		</grid>
+		<groupbox>
+			<caption>Próximas Turmas</caption>
+			...
+		</groupbox>
+		<groupbox>
+			<caption>Próximos Concursos</caption>
+			...
+		</groupbox>
+	</window>
 </zk>

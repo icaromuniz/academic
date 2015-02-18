@@ -18,6 +18,7 @@ import org.zkoss.zul.Window;
 import org.zkoss.zul.impl.InputElement;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
+import br.com.juris.academico.model.Usuario;
 
 @SuppressWarnings("serial")
 public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindComposer<Component> {
@@ -40,7 +41,8 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 	public ComponentInfo doBeforeCompose(Page page, Component parent, ComponentInfo compInfo) throws Exception {
 		
 		// redireciona o usuário para a tela de login caso ele não esteja logado
-		if(Executions.getCurrent().getSession().getAttribute("user") == null){
+		if( !Executions.getCurrent().getDesktop().getRequestPath().equals("/geral/login.zul") && 
+				Executions.getCurrent().getSession().getAttribute("usuario") == null ){
 			Executions.sendRedirect("/geral/login.zul");
 		}
 		
@@ -71,8 +73,12 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 			} else { // instancia novo objeto
 				
 				modelo = classeModelo.newInstance();
-				modelo.setDataCriacao(new Date());
-				modelo.setUsuarioCriacao((String) Executions.getCurrent().getSession().getAttribute("user"));
+				modelo.setDataCriacao( new Date() );
+				
+				// FIXME (icaromuniz) Gamb para não dar exceção; Rever método de login
+				if( Executions.getCurrent().getSession().getAttribute("usuario") != null ){
+					modelo.setUsuarioCriacao( ((Usuario) Executions.getCurrent().getSession().getAttribute("usuario")).getPessoaFisica().getCpf() );
+				}
 			}
 		}
 		

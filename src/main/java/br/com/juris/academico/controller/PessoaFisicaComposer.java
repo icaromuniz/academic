@@ -26,6 +26,7 @@ import org.zkoss.zul.impl.InputElement;
 
 import br.com.juris.academico.geral.ComposerAbstrato;
 import br.com.juris.academico.model.PessoaFisica;
+import br.com.juris.academico.model.Usuario;
 import br.com.juris.academico.persistence.PessoaFisicaDao;
 
 public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
@@ -47,11 +48,14 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 		super.doAfterCompose(comp);
 
 		if( Executions.getCurrent().getParameter("ref") != null ){
+			
 			PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
 			this.setModel(pessoaFisicaDao.find( new Integer(Executions.getCurrent().getParameter("ref"))));
-		} else {
+			
+		} else {// FIXME (icaromuniz) Estender de AbstractComposer para iniciar automaticamente
+			
 			this.setModel(new PessoaFisica());
-			this.getModel().setUsuarioCriacao("???");
+			this.getModel().setUsuarioCriacao(((Usuario) Executions.getCurrent().getSession().getAttribute("usuario")).getPessoaFisica().getCpf()); 
 			this.getModel().setDataCriacao(new Date());
 		}
 		

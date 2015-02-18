@@ -4,6 +4,7 @@ import org.zkoss.bind.BindComposer;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.WrongValueException;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.ConventionWires;
 import org.zkoss.zul.Decimalbox;
 import org.zkoss.zul.Textbox;
@@ -23,6 +24,7 @@ public class LoginComposer extends BindComposer<Component> {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		ConventionWires.wireFellows(getBinder().getView().getSpaceOwner(), this);
+		getBinder().notifyChange(this, "*");
 	}
 
 	public void executaLogin(){
@@ -38,13 +40,14 @@ public class LoginComposer extends BindComposer<Component> {
 			throw new WrongValueException(textboxSenha, "Informação obrigatória!");
 		}
 		
-		// recupera o usuário cadastrado 
-//		usuario = usuarioDao.findByAutenticacao(decimalboxCpf.getValue(), textboxSenha.getValue())
+		// recupera o usuário cadastrado
+		usuario = usuarioDao.findByAutenticacao(decimalboxCpf.getValue().longValue() + "", textboxSenha.getValue());
 		
 		if( usuario != null ){
 			Executions.getCurrent().getSession().setAttribute("usuario", usuario);
+			Executions.sendRedirect("/index.zul");
 		} else {
-			
+			Clients.showNotification("Informações inválidas. Tente novamente.", "error", null, null, 0);
 		}
 	}
 }

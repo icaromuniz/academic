@@ -14,7 +14,7 @@ import javax.persistence.Version;
 public abstract class EntidadeAbstrata implements Serializable {
 	
 	@Column(length=11, nullable=false)
-	private String usuarioCriacao = "teste"; // TODO icaromuniz: Implementar atribuição do usuário logado no composerAbstrato
+	private String usuarioCriacao;
 	
 	@Column(nullable=false)
 	@Temporal(TemporalType.TIME)

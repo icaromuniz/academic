@@ -35,7 +35,7 @@
 				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul" />
 				<menuitem label="Cadastro de Docente" disabled="true" />
 				<menuitem label="Cadastro de Turma" disabled="true" />
-				<menuitem label="Matrícula" href="/Pages/matricula.zul" />
+				<menuitem label="Matrícula" href="/matricula/matricula.zul" />
 				<menuitem label="Registro de Presença" disabled="true" />
 				<menu label="Relatório">
 					<menupopup>
@@ -43,7 +43,7 @@
 						<menuitem label="Balanço de Turma" disabled="true" />
 					</menupopup>
 				</menu>
-				<menuitem label="Sair" onClick='Executions.getCurrent().getSession().removeAttribute("usuario")' href="/geral/login.zul" />
+				<menuitem label="Sair" apply="br.com.juris.academico.controller.LoginComposer" onClick='$composer.executaLogout()'/>
 			</menubar>
 		</west>
 

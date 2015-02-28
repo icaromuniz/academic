@@ -28,7 +28,7 @@
 					</row>
 					<row>
 						<label value="CPF"/>
-						<decimalbox cols="20" maxlength="11"/>
+						<textbox id="filtroCpf" cols="20" maxlength="11"/>
 						<label value="Perfil"/>
 						<combobox readonly="true" autodrop="true">
 							<comboitem label="Administrador"/>

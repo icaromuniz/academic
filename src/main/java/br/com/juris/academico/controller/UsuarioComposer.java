@@ -9,6 +9,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.PessoaFisica;
@@ -19,6 +20,9 @@ import br.com.juris.academico.persistence.UsuarioDao;
 public class UsuarioComposer extends AbstractComposer<Usuario>{
 	
 	private Combobox comboboxPf;
+	
+	// componentes do list
+	private Textbox filtroCpf;
 
 	public UsuarioComposer() {
 		super(Usuario.class);

@@ -50,4 +50,8 @@ public class LoginComposer extends BindComposer<Component> {
 			Clients.showNotification("Informações inválidas. Tente novamente.", "error", null, null, 0);
 		}
 	}
+	
+	public void executaLogout(){
+		
+	}
 }

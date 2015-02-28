@@ -36,6 +36,8 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 	private Listbox listboxSelecao;
 	AnnotateDataBinder binder = null;
 	
+	private Textbox longboxCpf;
+	
 	private Textbox filtroNome;
 	private Decimalbox filtroCPF;
 	private Decimalbox filtroTelefone;
@@ -51,6 +53,7 @@ public class PessoaFisicaComposer extends ComposerAbstrato<PessoaFisica> {
 			
 			PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
 			this.setModel(pessoaFisicaDao.find( new Integer(Executions.getCurrent().getParameter("ref"))));
+			longboxCpf.setDisabled(true);
 			
 		} else {// FIXME (icaromuniz) Estender de AbstractComposer para iniciar automaticamente
 			

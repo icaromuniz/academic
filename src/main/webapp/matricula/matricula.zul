@@ -1,0 +1,59 @@
+<?page title="Júris Acadêmico - Matrícula" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+	<window title="Matrícula" vflex="1" border="normal" self="@define(content)">
+		<caption style="font-weight: bold;"/>
+		<grid style="border: none;">
+			<columns>
+				<column hflex="min"/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<label value="Pessoa Física"/>
+					<combobox hflex="1">
+						<comboitem label="Guilherme Barbosa"/>
+						<comboitem label="Ícaro Muniz"/>
+						<comboitem label="Ubiraci Fonseca"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="Turma"/>
+					<combobox hflex="1">
+						<comboitem label="Cohama - Manhã (01/01/2014 a 31/12/2014)"/>
+						<comboitem label="Renascença - Tarde (01/01/2014 a 31/12/2014)"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="Pagamento"/>
+					<combobox hflex="1">
+						<comboitem label="Espécie"/>
+						<comboitem label="Cartão de Crédito"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="Como conheceu o Júris"/>
+					<combobox hflex="1">
+						<comboitem label="Televisão"/>
+						<comboitem label="Internet"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="Material"/>
+					<cell>
+						<hlayout spacing="30px">
+							<checkbox label="Módulo 1" />
+							<checkbox label="Módulo 2" />
+							<checkbox label="Módulo 3" />
+						</hlayout>
+					</cell>
+				</row>
+				<row>
+					<label value="Observação"/>
+					<textbox rows="3" width="100%"/>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

@@ -6,7 +6,6 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.ConventionWires;
-import org.zkoss.zul.Decimalbox;
 import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.model.Usuario;
@@ -17,7 +16,7 @@ public class LoginComposer extends BindComposer<Component> {
 
 	private static final long serialVersionUID = -715245669746435907L;
 	
-	private Decimalbox decimalboxCpf;
+	private Textbox textboxCpf;
 	private Textbox textboxSenha;
 	
 	@Override
@@ -25,6 +24,9 @@ public class LoginComposer extends BindComposer<Component> {
 		super.doAfterCompose(comp);
 		ConventionWires.wireFellows(getBinder().getView().getSpaceOwner(), this);
 		getBinder().notifyChange(this, "*");
+		if (textboxCpf != null) {
+			textboxCpf.focus();
+		}
 	}
 
 	public void executaLogin(){
@@ -32,8 +34,8 @@ public class LoginComposer extends BindComposer<Component> {
 		UsuarioDao usuarioDao = Util.getDao(UsuarioDao.class);
 		Usuario usuario = null;
 		
-		if( decimalboxCpf.getValue() == null ){
-			throw new WrongValueException(decimalboxCpf, "Informação obrigatória!");
+		if( textboxCpf.getValue() == null || textboxCpf.getValue().isEmpty() ){
+			throw new WrongValueException(textboxCpf, "Informação obrigatória!");
 		}
 		
 		if( textboxSenha.getValue() == null || textboxSenha.getValue().isEmpty() ){
@@ -41,17 +43,23 @@ public class LoginComposer extends BindComposer<Component> {
 		}
 		
 		// recupera o usuário cadastrado
-		usuario = usuarioDao.findByAutenticacao(decimalboxCpf.getValue().longValue() + "", textboxSenha.getValue());
+		usuario = usuarioDao.findByAutenticacao(textboxCpf.getValue(), textboxSenha.getValue());
 		
 		if( usuario != null ){
 			Executions.getCurrent().getSession().setAttribute("usuario", usuario);
 			Executions.sendRedirect("/index.zul");
 		} else {
-			Clients.showNotification("Informações inválidas. Tente novamente.", "error", null, null, 0);
+			
+			textboxCpf.setValue(null);
+			textboxSenha.setValue(null);
+			textboxCpf.focus();
+			
+			Clients.showNotification("Informações inválidas. Verifique os dados e tente novamente.", "error", null, null, 0);
 		}
 	}
 	
 	public void executaLogout(){
-		
+		Executions.getCurrent().getSession().invalidate();
+		Executions.sendRedirect("/geral/login.zul");
 	}
 }

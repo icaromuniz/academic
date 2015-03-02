@@ -118,7 +118,7 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 			throw new WrongValuesException(listaExceções.toArray(new WrongValueException[0]));
 		}
 		
-		dao.save(modelo);
+		modelo = dao.save(modelo);
 		getBinder().notifyChange(this, "*");
 		Clients.showNotification( "Informações salvas com sucesso!" );
 	}

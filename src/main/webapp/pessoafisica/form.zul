@@ -17,7 +17,7 @@
 			<rows>
 				<row>
 					<label value="Nome" />
-					<textbox id="textboxNome" hflex="true" value="@bind($composer.modelo.nome)" />
+					<textbox id="textboxNome" maxlength="250" hflex="true" value="@bind($composer.modelo.nome)" />
 				</row>
 				<row>
 					<label value="CPF" />
@@ -43,15 +43,15 @@
 				</row>
 				<row>
 					<label value="E-Mail" />
-					<textbox id="textboxEmail" width="100%" value="@bind($composer.modelo.email)" />
+					<textbox id="textboxEmail" maxlength="250" width="100%" value="@bind($composer.modelo.email)" />
 				</row>
 				<row>
 					<label value="Endereço" />
-					<textbox hflex="1" value="@bind($composer.modelo.endereco)" />
+					<textbox hflex="1" maxlength="250" value="@bind($composer.modelo.endereco)" />
 				</row>
 				<row>
 					<label value="Bairro" />
-					<textbox hflex="1" value="@bind($composer.modelo.bairro)" />
+					<textbox hflex="1" maxlength="250" value="@bind($composer.modelo.bairro)" />
 				</row>
 			</rows>
 		</grid>

@@ -27,12 +27,12 @@ public class Usuario extends EntidadeAbstrata {
 
 	@ManyToOne
 	@JoinColumn(nullable=false)
-	@NotNull(message="Informação obrigatória.")
+	@NotNull(message="comboboxPessoaFisica#Informação obrigatória.")
 	private PessoaFisica pessoaFisica;
 	
 	@Column(length=10)
-	@NotEmpty(message="Informação obrigatória.")
-	@Length(message="A senha deve ter dez caracteres.")
+	@NotEmpty(message="textboxSenha#Informação obrigatória.")
+	@Length(message="textboxSenha#A senha deve ter dez caracteres.", min=10)
 	private String senha;
 	
 	private boolean administrador = false;

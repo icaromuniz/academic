@@ -6,7 +6,6 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zul.Decimalbox;
-import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
@@ -22,7 +21,7 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 	private static final long serialVersionUID = -2468944244027967584L;
 	
 	// componentes do form
-	private Longbox longboxCpf;
+	private Textbox textboxCpf;
 	
 	// componentes do list
 	private Textbox filtroNome;
@@ -35,7 +34,7 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 		
 		// desabilita o cpf na edição
 		if (Executions.getCurrent().getParameter("ref") != null) {
-			longboxCpf.setDisabled(true);
+//			decimalboxCpf.setDisabled(true);
 		}
 	}
 	
@@ -63,7 +62,7 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 		} catch (EJBException e) {
 			if (e.getCause().getCause().getCause().getCause().getLocalizedMessage().startsWith(
 					"ERROR: duplicate key value violates unique constraint \"pessoafisica_cpf_key\"")) {
-				throw new WrongValueException(longboxCpf, "O CPF informado já está cadastrado no sistema.");
+				throw new WrongValueException(textboxCpf, "O CPF informado já está cadastrado no sistema.");
 			}
 		}
 	}
@@ -74,7 +73,7 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 		super.excluiRegistro();
 		
 		if(getModelo().getId() == null){
-			longboxCpf.setDisabled(false);
+			textboxCpf.setDisabled(false);
 		}
 	}
 }

@@ -1,23 +1,12 @@
 package br.com.juris.academico.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
-import javax.ejb.EJBException;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.groups.Default;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.WrongValueException;
-import org.zkoss.zk.ui.WrongValuesException;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Decimalbox;
 import org.zkoss.zul.Listbox;
@@ -28,7 +17,6 @@ import org.zkoss.zul.impl.InputElement;
 import br.com.juris.academico.geral.ComposerAbstrato;
 import br.com.juris.academico.model.PessoaFisica;
 import br.com.juris.academico.model.Usuario;
-import br.com.juris.academico.persistence.PessoaFisicaDao;
 
 public class PessoaFisicaComposerOld extends ComposerAbstrato<PessoaFisica> {
 

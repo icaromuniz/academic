@@ -31,6 +31,6 @@ public class PessoaFisicaDao extends DaoAbstrato<PessoaFisica>{
 					"%' or telefoneAlternativo like '" + telefone + "%') ");
 		}
 		
-		return getEm().createQuery(qlString, PessoaFisica.class).getResultList();
+		return getEm().createQuery(qlString.concat(" order by nome, cpf"), PessoaFisica.class).getResultList();
 	}
 }

@@ -144,8 +144,10 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 			e.printStackTrace();
 		}
 		
-		getBinder().notifyChange(this, "*");
+		getModelo().setDataCriacao(new Date());
+		getModelo().setUsuarioCriacao( ((Usuario) Executions.getCurrent().getSession().getAttribute("usuario")).getPessoaFisica().getCpf() );
 		
+		getBinder().notifyChange(this, "*");
 		Clients.showNotification( "Exclusão efetuada com sucesso!" );
 	}
 	

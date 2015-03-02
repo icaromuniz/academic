@@ -32,9 +32,9 @@ public class PessoaFisica extends EntidadeAbstrata {
 	@Column(nullable=false)
 	private String nome;
 
-	@NotNull(message="longboxCpf#Informação obrigatória!")
+	@NotNull(message="textboxCpf#Informação obrigatória!")
 	@Column(length=11, nullable=false, unique=true)
-	@CPF(message="longboxCpf#Número de CPF inválido!")
+	@CPF(message="textboxCpf#Número de CPF inválido!")
 	private String cpf;
 	
 	@Temporal(TemporalType.DATE)
@@ -52,7 +52,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	@Column(length=9)
 	private String telefoneAlternativo;
 	
-	@Email(message = "Endereço de e-mail inválido!")
+	@Email(message = "textboxEmail#Endereço de e-mail inválido!")
 	private String email;
 	private String endereco;
 	private String bairro;
@@ -65,7 +65,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome != null ? nome.toUpperCase() : null;
+		this.nome = nome != null ? nome.trim().toUpperCase() : null;
 	}
 
 	public Date getNascimento() {
@@ -81,7 +81,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.trim().toLowerCase();
 	}
 
 	public String getEndereco() {

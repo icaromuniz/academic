@@ -21,14 +21,14 @@
 				</row>
 				<row>
 					<label value="CPF" />
-					<longbox id="longboxCpf" format="00000000000" maxlength="11" value="@bind($composer.modelo.cpf)" />
+					<textbox id="textboxCpf" maxlength="11" value="@bind($composer.modelo.cpf)" />
 				</row>
 				<row>
 					<label value="Data de Nascimento" />
 					<datebox id="dateboxNascimento" constraint="no future: Datas futuras não são permitidas." value="@bind($composer.modelo.nascimento)" />
 				</row>
 				<row>
-					<label value="Telefone Residencial" />
+					<label value="Telefone Fixo" />
 					<cell>
 						<intbox cols="2" maxlength="2" value="@bind($composer.modelo.dddFixo)"/>
 						<longbox maxlength="8" value="@bind($composer.modelo.telefoneFixo)"/>
@@ -43,7 +43,7 @@
 				</row>
 				<row>
 					<label value="E-Mail" />
-					<textbox width="100%" value="@bind($composer.modelo.email)" />
+					<textbox id="textboxEmail" width="100%" value="@bind($composer.modelo.email)" />
 				</row>
 				<row>
 					<label value="Endereço" />

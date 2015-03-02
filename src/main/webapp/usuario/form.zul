@@ -18,7 +18,7 @@
 			<rows>
 				<row>
 					<label value="Pessoa Física" />
-					<combobox id="comboboxPf" hflex="true" selectedItem="@bind($composer.modelo.pessoaFisica)">
+					<combobox id="comboboxPessoaFisica" hflex="true" selectedItem="@bind($composer.modelo.pessoaFisica)">
 						<template name="model">
 							<comboitem label="${each.nome}"/>
 						</template>
@@ -38,7 +38,7 @@
 				</row>
 				<row>
 					<label value="Senha" />
-					<textbox value="@bind($composer.modelo.senha)" type="password" />
+					<textbox id="textboxSenha" value="@bind($composer.modelo.senha)" type="password" maxlength="10"/>
 				</row>
 				<row>
 					<label value="Confirmação" />

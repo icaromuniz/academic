@@ -8,7 +8,6 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
-import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.PessoaFisica;
@@ -19,10 +18,8 @@ import br.com.juris.academico.service.Util;
 
 public class UsuarioComposer extends AbstractComposer<Usuario>{
 	
-	private Combobox comboboxPf;
-	
-	// componentes do list
-	private Textbox filtroCpf;
+	// componentes do form
+	private Combobox comboboxPessoaFisica;
 
 	public UsuarioComposer() {
 		super(Usuario.class);
@@ -37,7 +34,7 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 
 		// FIXME (icaromuniz) Retirar após implementar vinculado
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) {
-//			comboboxPf.setModel(new ListModelList<>(this.getListaPessoaFisica()));
+			comboboxPessoaFisica.setModel(new ListModelList<>(this.getListaPessoaFisica()));
 		}
 	}
 

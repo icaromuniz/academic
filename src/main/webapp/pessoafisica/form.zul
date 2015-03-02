@@ -6,13 +6,8 @@
 		apply="br.com.juris.academico.controller.PessoaFisicaComposer">
 	
 		<caption style="font-weight: bold;"/>
-	
-		<hlayout style="text-align: right;">
-			<button id="buttonNovo" label="Novo" href="/pessoafisica/form.zul" />
-			<button id="buttonSalvar" label="Salvar"/>
-			<button id="buttonExcluir" label="Excluir"/>
-			<button id="buttonBuscar" label="Buscar" href="/pessoafisica/list.zul"/>
-		</hlayout>
+		
+		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
 		
 		<grid style="border: none;">
 			<columns>
@@ -22,41 +17,41 @@
 			<rows>
 				<row>
 					<label value="Nome" />
-					<textbox id="textboxNome" hflex="true" value="@{$composer.model.nome}" />
+					<textbox id="textboxNome" hflex="true" value="@bind($composer.modelo.nome)" />
 				</row>
 				<row>
 					<label value="CPF" />
-					<longbox id="longboxCpf" maxlength="11" value="@{$composer.model.cpf}" />
+					<longbox id="longboxCpf" format="00000000000" maxlength="11" value="@bind($composer.modelo.cpf)" />
 				</row>
 				<row>
 					<label value="Data de Nascimento" />
-					<datebox id="dateboxNascimento" constraint="no future: Datas futuras não são permitidas." value="@{$composer.model.nascimento}" />
+					<datebox id="dateboxNascimento" constraint="no future: Datas futuras não são permitidas." value="@bind($composer.modelo.nascimento)" />
 				</row>
 				<row>
 					<label value="Telefone Residencial" />
 					<cell>
-						<intbox cols="2" maxlength="2" value="@{$composer.model.dddFixo}"/>
-						<longbox maxlength="8" value="@{$composer.model.telefoneFixo}"/>
+						<intbox cols="2" maxlength="2" value="@bind($composer.modelo.dddFixo)"/>
+						<longbox maxlength="8" value="@bind($composer.modelo.telefoneFixo)"/>
 					</cell>
 				</row>
 				<row>
 					<label value="Telefone Alternativo" />
 					<cell>
-						<intbox cols="2" maxlength="2" value="@{$composer.model.dddAlternativo}"/>
-						<longbox maxlength="9" value="@{$composer.model.telefoneAlternativo}"/>
+						<intbox cols="2" maxlength="2" value="@bind($composer.modelo.dddAlternativo)"/>
+						<longbox maxlength="9" value="@bind($composer.modelo.telefoneAlternativo)"/>
 					</cell>
 				</row>
 				<row>
 					<label value="E-Mail" />
-					<textbox width="100%" value="@{$composer.model.email}" />
+					<textbox width="100%" value="@bind($composer.modelo.email)" />
 				</row>
 				<row>
 					<label value="Endereço" />
-					<textbox hflex="1" value="@{$composer.model.endereço}" />
+					<textbox hflex="1" value="@bind($composer.modelo.endereco)" />
 				</row>
 				<row>
 					<label value="Bairro" />
-					<textbox hflex="1" value="@{$composer.model.bairro}" />
+					<textbox hflex="1" value="@bind($composer.modelo.bairro)" />
 				</row>
 			</rows>
 		</grid>

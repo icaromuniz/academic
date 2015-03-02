@@ -1,14 +1,22 @@
 package br.com.juris.academico.arquitetura;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.naming.InitialContext;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.groups.Default;
 
 import org.zkoss.bind.BindComposer;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Page;
+import org.zkoss.zk.ui.WrongValueException;
+import org.zkoss.zk.ui.WrongValuesException;
 import org.zkoss.zk.ui.metainfo.ComponentInfo;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.ConventionWires;
@@ -94,12 +102,50 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 	}
 	
 	public void salvaRegistro(){
+		
+		Set<ConstraintViolation<T>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator().validate(this.getModelo(), Default.class);
+
+		if(constraintViolations != null && !constraintViolations.isEmpty()){
+			
+			List<WrongValueException> listaExceções = new ArrayList<>();
+			
+			// exibe as violações
+			for (ConstraintViolation<T> cv : constraintViolations) {
+				listaExceções.add(new WrongValueException(getBinder().getView().getFellow(cv.getMessage().split("#")[0].trim()),
+						cv.getMessage().split("#")[1]));
+			}
+			
+			throw new WrongValuesException(listaExceções.toArray(new WrongValueException[0]));
+		}
+		
 		dao.save(modelo);
+		getBinder().notifyChange(this, "*");
 		Clients.showNotification( "Informações salvas com sucesso!" );
 	}
 	
 	public void excluiRegistro(){
-		dao.remove(modelo.getId());
+		
+		try {
+			dao.remove(modelo.getId());
+		} catch (EJBTransactionRolledbackException e) {
+
+			// informa que o registro está sendo referenciado
+			if( e.getCause().getCause().getMessage().contains("violates foreign key constraint") ){
+				Clients.showNotification("Este registro não pode ser excluído.", "error", null, null, 0);
+				return;
+			} else {
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			setModelo(classeModelo.newInstance());
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		getBinder().notifyChange(this, "*");
+		
 		Clients.showNotification( "Exclusão efetuada com sucesso!" );
 	}
 	

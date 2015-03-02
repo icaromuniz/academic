@@ -2,7 +2,6 @@ package br.com.juris.academico.controller;
 
 import java.util.List;
 
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.zkoss.zk.ui.Component;
@@ -16,6 +15,7 @@ import br.com.juris.academico.model.PessoaFisica;
 import br.com.juris.academico.model.Usuario;
 import br.com.juris.academico.persistence.PessoaFisicaDao;
 import br.com.juris.academico.persistence.UsuarioDao;
+import br.com.juris.academico.service.Util;
 
 public class UsuarioComposer extends AbstractComposer<Usuario>{
 	
@@ -54,7 +54,7 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{
-		PessoaFisicaDao pessoaFisicaDao = InitialContext.doLookup(PessoaFisicaDao.URI);
+		PessoaFisicaDao pessoaFisicaDao = Util.getDao(PessoaFisicaDao.class);
 		return pessoaFisicaDao.findByFiltro(null, null, null);
 	}
 }

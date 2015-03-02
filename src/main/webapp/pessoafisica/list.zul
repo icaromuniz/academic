@@ -7,11 +7,7 @@
 	
 		<caption style="font-weight: bold;"/>
 		
-		<hlayout style="text-align: right;">
-			<button label="Novo" href="/pessoafisica/form.zul"/>
-			<button label="Limpar" tooltiptext="Limpa os filtros" onClick="filtroCPF.setRawValue(null); filtroNome.setValue(null); filtroTelefone.setRawValue(null)"/>
-			<button id="buttonFiltrar" label="Filtrar"/>
-		</hlayout>
+		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
 		
 		<groupbox style="padding-top: 5px;">
 	
@@ -27,13 +23,13 @@
 				<rows>
 					<row spans="1, 3">
 						<label value="Nome"/>
-						<textbox id="filtroNome" hflex="true" forward="onOK = buttonFiltrar.onClick"/>
+						<textbox id="filtroNome" hflex="true" onOK="$composer.filtraLista()"/>
 					</row>
 					<row>
 						<label value="CPF"/>
-						<decimalbox id="filtroCPF" cols="20" maxlength="11" forward="onOK = buttonFiltrar.onClick"/>
+						<textbox id="filtroCPF" cols="20" maxlength="11" onOK="$composer.filtraLista()"/>
 						<label value="Telefone"/>
-						<decimalbox id="filtroTelefone" cols="20" maxlength="9" forward="onOK = buttonFiltrar.onClick"/>
+						<decimalbox id="filtroTelefone" cols="20" maxlength="9" onOK="$composer.filtraLista()"/>
 					</row>
 				</rows>
 			</grid>
@@ -41,24 +37,26 @@
 		
 		<separator/>
 		
-		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@{$composer.model}"
-				model="@{$composer.modelList}">
+		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" selectedItem="@bind($composer.modelo)" model="@load($composer.listaModelo)"
+				onSelect='Executions.sendRedirect("/pessoafisica/form.zul?ref=" + self.getSelectedItem().getValue().getId())'>
 			<listhead>
 				<listheader label="Nome" sort="auto(nome)"/>
 				<listheader hflex="min" label="CPF" sort="auto(cpf)"/>
 				<listheader hflex="min" label="Telefone Residencial" sort="auto(telefoneFixo)"/>
 				<listheader hflex="min" label="Telefone Alternativo" sort="auto(telefoneAlternativo)"/>
 			</listhead>
-			<listitem self="@{each=obj}" value="@{obj}">
-				<listcell label="@{obj.nome}"/>
-				<listcell label="@{obj.cpf}"/>
-				<listcell>
-					(<label value="@{obj.dddFixo}"></label>) <label value="@{obj.telefoneFixo}"/>
-				</listcell>
-				<listcell>
-					(<label value="@{obj.dddAlternativo}"></label>) <label value="@{obj.telefoneAlternativo}"/>
-				</listcell>
-			</listitem>
+			<template name="model" var="obj">
+				<listitem value="@bind(obj)">
+					<listcell label="@load(obj.nome)"/>
+					<listcell label="@load(obj.cpf)"/>
+					<listcell>
+						(<label value="@load(obj.dddFixo)"></label>) <label value="@load(obj.telefoneFixo)"/>
+					</listcell>
+					<listcell>
+						(<label value="@load(obj.dddAlternativo)"></label>) <label value="@load(obj.telefoneAlternativo)"/>
+					</listcell>
+				</listitem>
+			</template>
 		</listbox>
 	</window>
 </zk>

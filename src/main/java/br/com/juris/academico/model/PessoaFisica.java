@@ -54,7 +54,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	
 	@Email(message = "Endereço de e-mail inválido!")
 	private String email;
-	private String endereço;
+	private String endereco;
 	private String bairro;
 
 	public PessoaFisica() {
@@ -84,12 +84,12 @@ public class PessoaFisica extends EntidadeAbstrata {
 		this.email = email;
 	}
 
-	public String getEndereço() {
-		return endereço;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setEndereço(String endereço) {
-		this.endereço = endereço != null ? endereço.toUpperCase() : null;
+	public void setEndereco(String endereço) {
+		this.endereco = endereço != null ? endereço.toUpperCase() : null;
 	}
 
 	public String getBairro() {

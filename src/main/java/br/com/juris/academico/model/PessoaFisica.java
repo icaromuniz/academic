@@ -59,6 +59,8 @@ public class PessoaFisica extends EntidadeAbstrata {
 
 	public PessoaFisica() {
 	}
+	
+	// TODO (icaromuniz) Validar cpf duplicado com assertTrue
 
 	public String getNome() {
 		return nome;

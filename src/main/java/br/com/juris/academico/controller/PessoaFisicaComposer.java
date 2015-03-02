@@ -34,7 +34,7 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 		
 		// desabilita o cpf na edição
 		if (Executions.getCurrent().getParameter("ref") != null) {
-//			decimalboxCpf.setDisabled(true);
+			textboxCpf.setDisabled(true);
 		}
 	}
 	

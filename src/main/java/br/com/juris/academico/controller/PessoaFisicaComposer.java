@@ -67,4 +67,14 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 			}
 		}
 	}
+	
+	@Override
+	public void excluiRegistro() {
+		
+		super.excluiRegistro();
+		
+		if(getModelo().getId() == null){
+			longboxCpf.setDisabled(false);
+		}
+	}
 }

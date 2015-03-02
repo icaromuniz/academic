@@ -37,7 +37,7 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 
 		// FIXME (icaromuniz) Retirar após implementar vinculado
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) {
-			comboboxPf.setModel(new ListModelList<>(this.getListaPessoaFisica()));
+//			comboboxPf.setModel(new ListModelList<>(this.getListaPessoaFisica()));
 		}
 	}
 

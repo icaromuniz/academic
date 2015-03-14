@@ -1,4 +1,4 @@
-<?page title="Júris Acadêmico - Cadastro de Pessoa Física" contentType="text/html;charset=UTF-8"?>
+<?page contentType="text/html;charset=UTF-8"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>

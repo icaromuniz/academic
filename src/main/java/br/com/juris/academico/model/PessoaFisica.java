@@ -24,7 +24,7 @@ public class PessoaFisica extends EntidadeAbstrata {
 	private static final long serialVersionUID = 6155130143446479872L;
 	
 	@Id
-	@SequenceGenerator(name="seq_pessoa_fisica", sequenceName="seq_pessoa_fisica")
+	@SequenceGenerator(name="seq_pessoa_fisica", sequenceName="seq_pessoa_fisica", allocationSize=1)
 	@GeneratedValue(generator="seq_pessoa_fisica", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	

@@ -21,7 +21,7 @@ public class Usuario extends EntidadeAbstrata {
 	private static final long serialVersionUID = 6123911495403158914L;
 	
 	@Id
-	@SequenceGenerator(name="SEQ_USUARIO", sequenceName="SEQ_USUARIO")
+	@SequenceGenerator(name="SEQ_USUARIO", sequenceName="SEQ_USUARIO", allocationSize=1)
 	@GeneratedValue(generator="SEQ_USUARIO", strategy=GenerationType.SEQUENCE)
 	protected Integer id;
 

@@ -2,8 +2,36 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<window id="win" title="Cadastro de Docente" border="normal" self="@define(content)" vflex="1" >
+	<window id="win" title="Cadastro de Turma" border="normal" self="@define(content)" vflex="1" >
 		<caption style="font-weight: bold;"/>
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
+		
+		<grid style="border: none;">
+			<columns>
+				<column hflex="min"/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<label value="Nome"/>
+					<textbox hflex="true"/>
+				</row>
+				<row>
+					<label value="Unidade"/>
+					<combobox>
+						<comboitem label="Cohama"/>
+						<comboitem label="Renascença"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="Início"/>
+					<datebox/>
+				</row>
+				<row>
+					<label value="Término"/>
+					<datebox/>
+				</row>
+			</rows>
+		</grid>
 	</window>
 </zk>

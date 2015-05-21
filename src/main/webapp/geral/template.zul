@@ -32,11 +32,11 @@
 			<menubar orient="vertical" hflex="1">
 				<menuitem label="Início" href="/index.zul" />
 				<menuitem label="Cadastro de Pessoa Física" href="/pessoafisica/form.zul" />
-				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul" disabled="true"  />
-				<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul" disabled="true" />
-				<menuitem label="Cadastro de Docente" href="/docente/form.zul" disabled="true" />
-				<menuitem label="Cadastro de Turma" href="/turma/form.zul" disabled="true" />
-				<menuitem label="Matrícula" href="/matricula/matricula.zul" disabled="true" />
+				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul"  />
+				<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul" />
+				<menuitem label="Cadastro de Docente" href="/docente/form.zul" />
+				<menuitem label="Cadastro de Turma" href="/turma/form.zul" />
+				<menuitem label="Matrícula" href="/matricula/matricula.zul" />
 				<menuitem label="Registro de Presença" disabled="true" />
 				<menu label="Relatório">
 					<menupopup>

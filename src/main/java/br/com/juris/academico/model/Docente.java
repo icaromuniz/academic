@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
@@ -16,12 +17,13 @@ public class Docente extends EntidadeAbstrata {
 	private static final long serialVersionUID = 3952165882848385526L;
 	
 	@Id
-	@SequenceGenerator(name="SE_DOCENTE", sequenceName="SE_DOCENTE")
+	@SequenceGenerator(name="SE_DOCENTE", sequenceName="SE_DOCENTE", allocationSize=1)
 	@GeneratedValue(generator="SE_DOCENTE", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="ID_PESSOA_FISICA", nullable=false)
+	@NotNull(message="comboboxPessoaFisica#Informação obrigatória.")
 	private PessoaFisica pessoaFisica;
 	
 	private String banco;

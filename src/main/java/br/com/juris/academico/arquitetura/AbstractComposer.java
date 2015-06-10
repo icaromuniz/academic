@@ -125,6 +125,8 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 	
 	public void excluiRegistro(){
 		
+		// // TODO (icaromuniz) Implementar solicitação de confirmação antes de excluir
+		
 		try {
 			dao.remove(modelo.getId());
 		} catch (EJBTransactionRolledbackException e) {

@@ -2,8 +2,54 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<window id="win" title="Cadastro de Docente" border="normal" self="@define(content)" vflex="1" >
+	<window id="win" title="Cadastro de Docente" border="normal" self="@define(content)" vflex="1" 
+			apply="br.com.juris.academico.controller.DocenteComposer">
+			
 		<caption style="font-weight: bold;"/>
+		
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
+		
+		<grid style="border: none;">
+			<columns>
+				<column hflex="min"/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<label value="Pessoa Física"/>
+					<combobox id="comboboxPessoaFisica" hflex="true" model="@bind($composer.listaPessoaFisica)" >
+						<template name="model">
+							<comboitem label="${each.nome}"/>
+						</template>
+					</combobox>
+				</row>
+				<row>
+					<label>Banco para Pagamento</label>
+					<combobox>
+						<comboitem label="Banco do Brasil"/>
+						<comboitem label="Banco Bradesco"/>
+						<comboitem label="Caixa Econômica Federal"/>
+						<comboitem label="HSBC"/>
+						<comboitem label="Itaú"/>
+						<comboitem label="Santander"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="Agência (com dígito)"/>
+					<decimalbox/>
+				</row>
+				<row>
+					<label>Tipo de Conta</label>
+					<combobox>
+						<comboitem label="Corrente"/>
+						<comboitem label="Poupança"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="Conta"/>
+					<decimalbox/>
+				</row>
+			</rows>
+		</grid>
 	</window>
 </zk>

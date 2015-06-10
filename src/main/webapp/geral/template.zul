@@ -33,15 +33,16 @@
 				<menuitem label="Início" href="/index.zul" />
 				<menuitem label="Cadastro de Pessoa Física" href="/pessoafisica/form.zul" />
 				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul"  />
-				<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul" />
 				<menuitem label="Cadastro de Docente" href="/docente/form.zul" />
 				<menuitem label="Cadastro de Turma" href="/turma/form.zul" />
 				<menuitem label="Matrícula" href="/matricula/matricula.zul" />
 				<menuitem label="Registro de Presença" disabled="true" />
+				<!-- <menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul" /> -->
 				<menu label="Relatório">
 					<menupopup>
 						<menuitem label="Emitir Contrato" disabled="true" />
 						<menuitem label="Balanço de Turma" disabled="true" />
+						<menuitem label="Histórico do Aluno" disabled="true" tooltiptext="Emite o histórico"/>
 					</menupopup>
 				</menu>
 				<menuitem label="Sair" apply="br.com.juris.academico.controller.LoginComposer" onClick='$composer.executaLogout()'/>

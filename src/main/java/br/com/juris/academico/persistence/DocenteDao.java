@@ -1,5 +1,7 @@
 package br.com.juris.academico.persistence;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 
 import br.com.juris.academico.arquitetura.DaoAbstrato;
@@ -13,4 +15,8 @@ public class DocenteDao extends DaoAbstrato<Docente> {
 		// TODO Auto-generated constructor stub
 	}
 
+	public List<Docente> findByFiltro(Integer idPessoaFisica, String cpf){
+		// TODO Implementar filtro 
+		return getEm().createQuery("select d from Docente d", Docente.class).getResultList();
+	}
 }

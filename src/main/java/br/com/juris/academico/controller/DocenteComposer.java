@@ -7,6 +7,7 @@ import javax.naming.NamingException;
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Docente;
 import br.com.juris.academico.model.PessoaFisica;
+import br.com.juris.academico.persistence.DocenteDao;
 import br.com.juris.academico.persistence.PessoaFisicaDao;
 import br.com.juris.academico.service.Util;
 
@@ -27,8 +28,8 @@ public class DocenteComposer extends AbstractComposer<Docente> {
 
 	@Override
 	public void filtraLista() {
-		// TODO Auto-generated method stub
-
+		this.setListaModelo(((DocenteDao)dao).findByFiltro(null, null));
+		getBinder().notifyChange(this, "*");
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{

@@ -16,6 +16,7 @@ public class UsuarioDao extends DaoAbstrato<Usuario> {
 	}
 	
 	public List<Usuario> findByFiltro(String nomePessoaFisica, String tipoUsuario){
+		// TODO Implementar filtro
 		return getEm().createQuery("select u from Usuario u", Usuario.class).getResultList();
 	}
 

@@ -43,7 +43,7 @@
     );
 
     alter table Docente 
-        add constraint FKD03455F2B9FD90DC 
+        add constraint FK_docente__pessoaFisica 
         foreign key (ID_PESSOA_FISICA) 
         references PessoaFisica;
 

@@ -25,18 +25,7 @@
 				</row>
 				<row>
 					<label>Banco para Pagamento</label>
-					<combobox>
-						<comboitem label="Banco do Brasil"/>
-						<comboitem label="Banco Bradesco"/>
-						<comboitem label="Caixa Econômica Federal"/>
-						<comboitem label="HSBC"/>
-						<comboitem label="Itaú"/>
-						<comboitem label="Santander"/>
-					</combobox>
-				</row>
-				<row>
-					<label value="Agência (com dígito)"/>
-					<decimalbox/>
+					<textbox value="@bind($composer.modelo.banco)"></textbox>
 				</row>
 				<row>
 					<label>Tipo de Conta</label>
@@ -46,8 +35,20 @@
 					</combobox>
 				</row>
 				<row>
-					<label value="Conta"/>
-					<decimalbox/>
+					<label value="Agência (com dígito)"/>
+					<div>
+						<decimalbox maxlength="10" value="@bind($composer.modelo.agencia)"/>
+						<space/>
+						<decimalbox cols="3" maxlength="3"/>
+					</div>
+				</row>
+				<row>
+					<label value="Número da Conta"/>
+					<div>
+						<decimalbox maxlength="10" value="@bind($composer.modelo.numeroConta)"/>
+						<space/>
+						<decimalbox cols="3" maxlength="3"/>
+					</div>
 				</row>
 			</rows>
 		</grid>

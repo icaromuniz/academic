@@ -1,5 +1,6 @@
 package br.com.juris.academico.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,10 +29,13 @@ public class Docente extends EntidadeAbstrata {
 	
 	private String banco;
 	
+	@Column(length=10)
 	private String agencia;
 	
+	@Column(length=20)
 	private String tipoConta;
 	
+	@Column(length=20)
 	private String numeroConta;
 
 	public Integer getId() {

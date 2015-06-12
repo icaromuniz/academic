@@ -2,7 +2,7 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<window title="Matrícula" vflex="1" border="normal" self="@define(content)">
+	<window title="Matrícula de Aluno" vflex="1" border="normal" self="@define(content)">
 		<caption style="font-weight: bold;"/>
 		<grid style="border: none;">
 			<columns>
@@ -41,13 +41,13 @@
 				</row>
 				<row>
 					<label value="Material"/>
-					<cell>
+					<div>
 						<hlayout spacing="30px">
 							<checkbox label="Módulo 1" />
 							<checkbox label="Módulo 2" />
 							<checkbox label="Módulo 3" />
 						</hlayout>
-					</cell>
+					</div>
 				</row>
 				<row>
 					<label value="Observação"/>

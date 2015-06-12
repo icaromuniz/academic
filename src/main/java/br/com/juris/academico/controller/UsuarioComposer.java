@@ -8,6 +8,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.PessoaFisica;
@@ -20,6 +21,10 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 	
 	// componentes do form
 	private Combobox comboboxPessoaFisica;
+	
+	// componentes do list
+	private Textbox filtroNome;
+	private Textbox filtroCpf;
 
 	public UsuarioComposer() {
 		super(Usuario.class);
@@ -40,13 +45,13 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 
 	@Override
 	public void limpaFiltro() {
-		// TODO Auto-generated method stub
-		
+		filtroNome.setValue(null);
+		filtroCpf.setValue(null);
 	}
 	
 	@Override
 	public void filtraLista() {
-		this.setListaModelo(((UsuarioDao)dao).findByFiltro(null, null));
+		this.setListaModelo(((UsuarioDao)dao).findByFiltro(filtroNome.getValue(), filtroCpf.getValue()));
 		getBinder().notifyChange(this, "*");
 	}
 

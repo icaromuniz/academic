@@ -25,6 +25,8 @@ public class DocenteComposer extends AbstractComposer<Docente> {
 		// TODO Auto-generated method stub
 
 	}
+	
+	// TODO (icaromuniz) Implementar exibição de mensagem pro usuário quando tentar salvar com pessoaFísica já utilizada
 
 	@Override
 	public void filtraLista() {

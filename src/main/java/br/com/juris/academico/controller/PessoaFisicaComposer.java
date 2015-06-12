@@ -28,6 +28,8 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 	private Textbox filtroCPF;
 	private Decimalbox filtroTelefone;
 	
+	// TODO (icaromuniz) Implementar verificação para evitar que dê exceção quando o usuário digitar letras no campo CPF
+	
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);

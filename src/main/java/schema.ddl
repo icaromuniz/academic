@@ -8,7 +8,7 @@
         banco varchar(255),
         numeroConta varchar(255),
         tipoConta varchar(255),
-        ID_PESSOA_FISICA int4 not null,
+        ID_PESSOA_FISICA int4 not null unique,
         primary key (id)
     );
 
@@ -43,7 +43,7 @@
     );
 
     alter table Docente 
-        add constraint FK_docente__pessoaFisica 
+        add constraint FKD03455F2B9FD90DC 
         foreign key (ID_PESSOA_FISICA) 
         references PessoaFisica;
 

@@ -22,7 +22,7 @@ public class Docente extends EntidadeAbstrata {
 	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name="ID_PESSOA_FISICA", nullable=false)
+	@JoinColumn(name="ID_PESSOA_FISICA", nullable=false, unique=true)
 	@NotNull(message="comboboxPessoaFisica#Informação obrigatória.")
 	private PessoaFisica pessoaFisica;
 	

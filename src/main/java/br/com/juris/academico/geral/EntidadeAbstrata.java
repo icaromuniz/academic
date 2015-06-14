@@ -51,4 +51,9 @@ public abstract class EntidadeAbstrata implements Serializable {
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.getId() != null && obj != null && this.getId().equals(((EntidadeAbstrata)obj).getId());
+	}
 }

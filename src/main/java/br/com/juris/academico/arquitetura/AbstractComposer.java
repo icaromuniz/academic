@@ -22,6 +22,7 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.ConventionWires;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Include;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.impl.InputElement;
 
@@ -125,7 +126,10 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 	
 	public void excluiRegistro(){
 		
-		// // TODO (icaromuniz) Implementar solicitação de confirmação antes de excluir
+		if (getModelo().getId() == null) {
+			Messagebox.show("O registro atual não está salvo, portanto não pode ser excluído.", "Exclusão", 1, Messagebox.EXCLAMATION);
+			return;
+		}
 		
 		try {
 			dao.remove(modelo.getId());

@@ -5,5 +5,49 @@
 	<window id="win" title="Cadastro de Disciplina" border="normal" self="@define(content)" vflex="1" >
 		<caption style="font-weight: bold;"/>
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
+		
+		<grid style="border: none;">
+			<columns>
+				<column hflex="min"/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<label value="Turma"/>
+					<combobox/>
+				</row>
+				<row>
+					<label value="Docente"/>
+					<combobox/>
+				</row>
+				<row>
+					<label value="Nome"/>
+					<textbox/>
+				</row>
+				<row>
+					<label value="Ementa"/>
+					<textbox hflex="true" rows="3"/>
+				</row>
+				<row>
+					<label value="Sala"/>
+					<textbox/>
+				</row>
+			</rows>
+		</grid>
+		
+		<separator/>
+		
+		<groupbox open="false">
+		
+			<caption>Sumário</caption>
+			
+			<vbox>
+				<label value="Horas/Aulas ministradas: ???"/>
+				<label value="Mínimo de alunos presentes: ???"/>
+				<label value="Média de alunos presentes: ???"/>
+				<label value="Máximo de alunos presentes: ???"/>
+			</vbox>
+			
+		</groupbox>
 	</window>
 </zk>

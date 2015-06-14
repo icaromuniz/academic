@@ -4,6 +4,7 @@
         dataCriacao time not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
+        areaFormacao varchar(255),
         digitoAgencia varchar(3),
         digitoConta varchar(3),
         nomeBanco varchar(255),

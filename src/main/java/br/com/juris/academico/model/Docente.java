@@ -27,6 +27,8 @@ public class Docente extends EntidadeAbstrata {
 	@NotNull(message="comboboxPessoaFisica#Informação obrigatória.")
 	private PessoaFisica pessoaFisica;
 	
+	private String areaFormacao;
+	
 	private String nomeBanco;
 	
 	@Column(length=20)
@@ -106,5 +108,13 @@ public class Docente extends EntidadeAbstrata {
 
 	public void setDigitoConta(String digitoConta) {
 		this.digitoConta = digitoConta;
+	}
+
+	public String getAreaFormacao() {
+		return areaFormacao;
+	}
+
+	public void setAreaFormacao(String areaFormacao) {
+		this.areaFormacao = areaFormacao;
 	}
 }

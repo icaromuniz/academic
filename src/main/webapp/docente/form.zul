@@ -24,15 +24,16 @@
 					</combobox>
 				</row>
 				<row>
+					<label>Área de Formação</label>
+					<textbox value="@bind($composer.modelo.areaFormacao)" cols="60" maxlength="250"/>
+				</row>
+				<row>
 					<label>Banco para Pagamento</label>
-					<textbox value="@bind($composer.modelo.nomeBanco)"/>
+					<textbox value="@bind($composer.modelo.nomeBanco)" cols="40" maxlength="250"/>
 				</row>
 				<row>
 					<label>Tipo de Conta</label>
-					<combobox>
-						<comboitem label="Corrente"/>
-						<comboitem label="Poupança"/>
-					</combobox>
+					<textbox value="@bind($composer.modelo.tipoConta)" maxlength="20" cols="20"/>
 				</row>
 				<row>
 					<label value="Agência (com dígito)"/>

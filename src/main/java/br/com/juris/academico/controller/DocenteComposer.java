@@ -73,6 +73,13 @@ public class DocenteComposer extends AbstractComposer<Docente> {
 		
 		comboboxPessoaFisica.setDisabled(true);
 	}
+	
+	@Override
+	public void excluiRegistro() {
+		super.excluiRegistro();
+		comboboxPessoaFisica.setSelectedIndex(-1);
+		comboboxPessoaFisica.setDisabled(false);
+	}
 
 	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{
 		PessoaFisicaDao pessoaFisicaDao = Util.getDao(PessoaFisicaDao.class);

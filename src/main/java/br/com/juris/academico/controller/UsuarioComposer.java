@@ -42,6 +42,10 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) {
 			comboboxPessoaFisica.setModel(new ListModelList<>(this.getListaPessoaFisica()));
 		}
+		
+		if (getModelo() != null && getModelo().getId() != null) {
+			comboboxPessoaFisica.setDisabled(true);
+		}
 	}
 
 	@Override
@@ -56,6 +60,18 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 		this.setListaModelo(((UsuarioDao)dao).findByFiltro(filtroNome.getValue(), filtroCpf.getValue(),
 				filtroPerfil.getSelectedItem() != null ? (String) filtroPerfil.getSelectedItem().getValue() : null));
 		getBinder().notifyChange(this, "*");
+	}
+	
+	@Override
+	public void salvaRegistro() {
+		super.salvaRegistro();
+		comboboxPessoaFisica.setDisabled(true);
+	}
+	
+	@Override
+	public void excluiRegistro() {
+		super.excluiRegistro();
+		comboboxPessoaFisica.setDisabled(false);
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{

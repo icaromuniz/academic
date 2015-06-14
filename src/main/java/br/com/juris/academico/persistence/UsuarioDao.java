@@ -20,23 +20,25 @@ public class UsuarioDao extends DaoAbstrato<Usuario> {
 		String sqlQuery = "select u from Usuario u where 1=1 ";
 		
 		if (nomePessoaFisica != null && !nomePessoaFisica.isEmpty()) {
-			sqlQuery = sqlQuery.concat("and u.pessoaFisica.nome like '%" + nomePessoaFisica.trim().toUpperCase() + "%'");
+			sqlQuery = sqlQuery.concat("and u.pessoaFisica.nome like '%" + nomePessoaFisica.trim().toUpperCase() + "%' ");
 		}
 		
 		if (cpf != null && !cpf.isEmpty()) {
-			sqlQuery = sqlQuery.concat("and u.pessoaFisica.cpf like '" + cpf.trim() + "%'");
+			sqlQuery = sqlQuery.concat("and u.pessoaFisica.cpf like '" + cpf.trim() + "%' ");
 		}
 		
 		if (perfil != null) {
 			
 			if ("A".equals(perfil)) {
-				sqlQuery = sqlQuery.concat("and u.administrador = true");
+				sqlQuery = sqlQuery.concat("and u.administrador = true ");
 			} else if ("D".equals(perfil)) {
-				sqlQuery = sqlQuery.concat("and u.administrador is null");
+				sqlQuery = sqlQuery.concat("and u.administrador is null ");
 			} else if ("P".equals(perfil)) {
-				sqlQuery = sqlQuery.concat("and u.administrador = false");
+				sqlQuery = sqlQuery.concat("and u.administrador = false ");
 			}
 		}
+		
+		sqlQuery = sqlQuery.concat("order by u.administrador desc, u.pessoaFisica.nome");
 		
 		return getEm().createQuery(sqlQuery, Usuario.class).getResultList();
 	}

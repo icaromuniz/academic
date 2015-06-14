@@ -5,8 +5,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import br.com.juris.academico.arquitetura.DaoAbstrato;
 import br.com.juris.academico.model.Usuario;
 
@@ -17,15 +15,28 @@ public class UsuarioDao extends DaoAbstrato<Usuario> {
 		super(Usuario.class);
 	}
 	
-	public List<Usuario> findByFiltro(String nomePessoaFisica, String tipoUsuario){
+	public List<Usuario> findByFiltro(String nomePessoaFisica, String cpf, String perfil){
 		
 		String sqlQuery = "select u from Usuario u where 1=1 ";
 		
 		if (nomePessoaFisica != null && !nomePessoaFisica.isEmpty()) {
-			sqlQuery = sqlQuery.concat("and u.pessoaFisica.nome like '" + nomePessoaFisica.trim().toUpperCase() + "%'");
+			sqlQuery = sqlQuery.concat("and u.pessoaFisica.nome like '%" + nomePessoaFisica.trim().toUpperCase() + "%'");
 		}
 		
-		// TODO Implementar filtro tipoUsuario
+		if (cpf != null && !cpf.isEmpty()) {
+			sqlQuery = sqlQuery.concat("and u.pessoaFisica.cpf like '" + cpf.trim() + "%'");
+		}
+		
+		if (perfil != null) {
+			
+			if ("A".equals(perfil)) {
+				sqlQuery = sqlQuery.concat("and u.administrador = true");
+			} else if ("D".equals(perfil)) {
+				sqlQuery = sqlQuery.concat("and u.administrador is null");
+			} else if ("P".equals(perfil)) {
+				sqlQuery = sqlQuery.concat("and u.administrador = false");
+			}
+		}
 		
 		return getEm().createQuery(sqlQuery, Usuario.class).getResultList();
 	}

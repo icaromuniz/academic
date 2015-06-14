@@ -25,6 +25,7 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 	// componentes do list
 	private Textbox filtroNome;
 	private Textbox filtroCpf;
+	private Combobox filtroPerfil;
 
 	public UsuarioComposer() {
 		super(Usuario.class);
@@ -47,11 +48,13 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 	public void limpaFiltro() {
 		filtroNome.setValue(null);
 		filtroCpf.setValue(null);
+		filtroPerfil.setSelectedIndex(-1);
 	}
 	
 	@Override
 	public void filtraLista() {
-		this.setListaModelo(((UsuarioDao)dao).findByFiltro(filtroNome.getValue(), filtroCpf.getValue()));
+		this.setListaModelo(((UsuarioDao)dao).findByFiltro(filtroNome.getValue(), filtroCpf.getValue(),
+				filtroPerfil.getSelectedItem() != null ? (String) filtroPerfil.getSelectedItem().getValue() : null));
 		getBinder().notifyChange(this, "*");
 	}
 

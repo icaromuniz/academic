@@ -15,8 +15,18 @@ public class DocenteDao extends DaoAbstrato<Docente> {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<Docente> findByFiltro(Integer idPessoaFisica, String cpf){
-		// TODO Implementar filtro 
-		return getEm().createQuery("select d from Docente d", Docente.class).getResultList();
+	public List<Docente> findByFiltro(String nomePessoaFisica, String numeroCpf){
+		
+		String sqlQuery = "select d from Docente d where true is true ";
+		
+		if (nomePessoaFisica != null && !nomePessoaFisica.isEmpty()) {
+			sqlQuery = sqlQuery.concat("and d.pessoaFisica.nome like '%" + nomePessoaFisica.trim().toUpperCase() + "%' ");
+		}
+		
+		if (numeroCpf != null && !numeroCpf.isEmpty()) {
+			sqlQuery = sqlQuery.concat("and d.pessoaFisica.cpf like '" + numeroCpf.trim().toUpperCase() + "%' ");
+		}
+		
+		return getEm().createQuery(sqlQuery, Docente.class).getResultList();
 	}
 }

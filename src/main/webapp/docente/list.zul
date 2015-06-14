@@ -20,7 +20,7 @@
 				<rows>
 					<row>
 						<label value="Nome"/>
-						<textbox hflex="true" onOK="$composer.filtraLista()"/>
+						<textbox id="filtroNome" hflex="true" onOK="$composer.filtraLista()"/>
 					</row>
 					<row>
 						<label value="CPF"/>

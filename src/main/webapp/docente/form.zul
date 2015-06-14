@@ -38,7 +38,6 @@
 					<label value="Agência (com dígito)"/>
 					<div>
 						<decimalbox style="text-align: right;" maxlength="10" value="@bind($composer.modelo.numeroAgencia)"/>
-						<space/>
 						<decimalbox style="text-align: right;" cols="3" maxlength="3" value="@bind($composer.modelo.digitoAgencia)"/>
 					</div>
 				</row>
@@ -46,7 +45,6 @@
 					<label value="Número da Conta"/>
 					<div>
 						<decimalbox maxlength="10" value="@bind($composer.modelo.numeroConta)" style="text-align: right;"/>
-						<space/>
 						<decimalbox style="text-align: right;" cols="3" maxlength="3" value="@bind($composer.modelo.digitoConta)"/>
 					</div>
 				</row>

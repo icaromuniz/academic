@@ -2,7 +2,13 @@ package br.com.juris.academico.controller;
 
 import java.util.List;
 
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.naming.NamingException;
+
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Docente;
@@ -14,24 +20,58 @@ import br.com.juris.academico.service.Util;
 public class DocenteComposer extends AbstractComposer<Docente> {
 
 	private static final long serialVersionUID = 3273136131855629444L;
+	
+	// componentes do form
+	private Combobox comboboxPessoaFisica;
+	
+	// componentes do list
+	private Textbox filtroNome;
+	private Textbox filtroCpf;
 
 	public DocenteComposer() {
 		super(Docente.class);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public void doAfterCompose(Component comp) throws Exception {
+
+		super.doAfterCompose(comp);
+		
+		// desabilita a alteração da Pessoa Física
+		if (getModelo() != null && getModelo().getId() != null) {
+			comboboxPessoaFisica.setDisabled(true);
+		}
+	}
 
 	@Override
 	public void limpaFiltro() {
-		// TODO Auto-generated method stub
-
+		filtroNome.setValue(null);
+		filtroCpf.setValue(null);
 	}
 	
-	// TODO (icaromuniz) Implementar exibição de mensagem pro usuário quando tentar salvar com pessoaFísica já utilizada
-
 	@Override
 	public void filtraLista() {
-		this.setListaModelo(((DocenteDao)dao).findByFiltro(null, null));
+		this.setListaModelo(((DocenteDao)dao).findByFiltro(filtroNome.getValue(), filtroCpf.getValue()));
 		getBinder().notifyChange(this, "*");
+	}
+	
+	@Override
+	public void salvaRegistro() {
+		try {
+			super.salvaRegistro();
+		} catch (EJBTransactionRolledbackException e) {
+			
+			if (e.getCause().getCause().getMessage().contains("docente_id_pessoa_fisica_key")) {
+				Clients.showNotification("Pessoa já cadastrada como Docente.", "error", null, null, 0);
+			} else {
+				e.printStackTrace();
+			}
+			
+			return;
+		}
+		
+		comboboxPessoaFisica.setDisabled(true);
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{

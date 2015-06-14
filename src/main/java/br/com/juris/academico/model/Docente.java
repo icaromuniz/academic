@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
 @Entity
-public class Docente extends EntidadeAbstrata {
+public class Docente extends EntidadeAbstrata { 
 
 	private static final long serialVersionUID = 3952165882848385526L;
 	
@@ -27,16 +27,22 @@ public class Docente extends EntidadeAbstrata {
 	@NotNull(message="comboboxPessoaFisica#Informação obrigatória.")
 	private PessoaFisica pessoaFisica;
 	
-	private String banco;
-	
-	@Column(length=10)
-	private String agencia;
+	private String nomeBanco;
 	
 	@Column(length=20)
 	private String tipoConta;
 	
+	@Column(length=10)
+	private String numeroAgencia;
+	
+	@Column(length=3)
+	private String digitoAgencia;
+	
 	@Column(length=20)
 	private String numeroConta;
+
+	@Column(length=3)
+	private String digitoConta;
 
 	public Integer getId() {
 		return id;
@@ -54,20 +60,20 @@ public class Docente extends EntidadeAbstrata {
 		this.pessoaFisica = pessoaFisica;
 	}
 
-	public String getBanco() {
-		return banco;
+	public String getNomeBanco() {
+		return nomeBanco;
 	}
 
-	public void setBanco(String banco) {
-		this.banco = banco;
+	public void setNomeBanco(String banco) {
+		this.nomeBanco = banco;
 	}
 
-	public String getAgencia() {
-		return agencia;
+	public String getNumeroAgencia() {
+		return numeroAgencia;
 	}
 
-	public void setAgencia(String agencia) {
-		this.agencia = agencia;
+	public void setNumeroAgencia(String agencia) {
+		this.numeroAgencia = agencia;
 	}
 
 	public String getTipoConta() {
@@ -84,5 +90,21 @@ public class Docente extends EntidadeAbstrata {
 
 	public void setNumeroConta(String numerocConta) {
 		this.numeroConta = numerocConta;
+	}
+
+	public String getDigitoAgencia() {
+		return digitoAgencia;
+	}
+
+	public void setDigitoAgencia(String digitoAgencia) {
+		this.digitoAgencia = digitoAgencia;
+	}
+
+	public String getDigitoConta() {
+		return digitoConta;
+	}
+
+	public void setDigitoConta(String digitoConta) {
+		this.digitoConta = digitoConta;
 	}
 }

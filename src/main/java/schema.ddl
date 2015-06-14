@@ -4,10 +4,12 @@
         dataCriacao time not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
-        agencia varchar(255),
-        banco varchar(255),
-        numeroConta varchar(255),
-        tipoConta varchar(255),
+        digitoAgencia varchar(3),
+        digitoConta varchar(3),
+        nomeBanco varchar(255),
+        numeroAgencia varchar(10),
+        numeroConta varchar(20),
+        tipoConta varchar(20),
         ID_PESSOA_FISICA int4 not null unique,
         primary key (id)
     );

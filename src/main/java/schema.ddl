@@ -33,6 +33,19 @@
         primary key (id)
     );
 
+    create table Turma (
+        id int4 not null,
+        dataCriacao time not null,
+        usuarioCriacao varchar(11) not null,
+        versao int4 not null,
+        dataInicio date not null,
+        dataTermino date,
+        nome varchar(255) not null,
+        sala varchar(50),
+        unidade varchar(50) not null,
+        primary key (id)
+    );
+
     create table Usuario (
         id int4 not null,
         dataCriacao time not null,
@@ -60,3 +73,5 @@
     create sequence SE_DOCENTE;
 
     create sequence seq_pessoa_fisica;
+
+    create sequence seq_turma;

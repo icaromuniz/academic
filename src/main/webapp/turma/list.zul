@@ -1,0 +1,53 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+	<window id="win" title="Listagem de Turma" border="normal" self="@define(content)" vflex="1"
+			apply="br.com.juris.academico.controller.TurmaComposer">
+		<caption style="font-weight: bold;"/>
+		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
+		
+		<groupbox style="padding-top: 5px;">
+		
+			<caption label="Filtro"/>
+			
+			<grid style="border: none; padding: 0px;">
+				<columns>
+					<column hflex="min"/>
+					<column/>
+				</columns>
+				<rows>
+					<row>
+						<label value="Nome"/>
+						<textbox id="filtroNome" hflex="true" onOK="$composer.filtraLista()"/>
+					</row>
+					<row>
+						<label value="Unidade"/>
+						<combobox>
+							<comboitem label="Cohama"/>
+							<comboitem label="Renascença"/>
+						</combobox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		
+		<separator/>
+		
+		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="@bind($composer.listaModelo)" selectedItem="@bind($composer.modelo)"
+				onSelect='Executions.sendRedirect("/turma/form.zul?ref=" + self.getSelectedItem().getValue().getId())'>
+			<listhead>
+				<listheader label="Nome"/>
+				<listheader label="Unidade" hflex="min"/>
+				<listheader label="Início" hflex="min"/>
+			</listhead>
+			<template name="model" var="obj">
+				<listitem value="@bind(obj)">
+					<listcell label="@load(obj.nome)"/>
+					<listcell label="@load(obj.unidade)"/>
+					<listcell label="@load(obj.dataInicio) @converter('formatedDate', format='dd/MM/yyyy')"/>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

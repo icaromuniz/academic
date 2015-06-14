@@ -2,7 +2,8 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<window id="win" title="Cadastro de Turma" border="normal" self="@define(content)" vflex="1" >
+	<window id="win" title="Cadastro de Turma" border="normal" self="@define(content)" vflex="1" 
+			apply="br.com.juris.academico.controller.TurmaComposer">
 		<caption style="font-weight: bold;"/>
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
 		
@@ -14,22 +15,26 @@
 			<rows>
 				<row>
 					<label value="Nome"/>
-					<textbox hflex="true"/>
+					<textbox id="textboxNome" hflex="true" value="@bind($composer.modelo.nome)"/>
 				</row>
 				<row>
 					<label value="Unidade"/>
-					<combobox>
+					<combobox id="comboboxUnidade" value="@bind($composer.modelo.unidade)">
 						<comboitem label="Cohama"/>
 						<comboitem label="Renascença"/>
 					</combobox>
 				</row>
 				<row>
+					<label value="Sala"/>
+					<textbox maxlength="50" value="@bind($composer.modelo.sala)"/>
+				</row>
+				<row>
 					<label value="Início"/>
-					<datebox/>
+					<datebox id="dateboxInicio" value="@bind($composer.modelo.dataInicio)"/>
 				</row>
 				<row>
 					<label value="Término"/>
-					<datebox/>
+					<datebox value="@bind($composer.modelo.dataTermino)"/>
 				</row>
 			</rows>
 		</grid>

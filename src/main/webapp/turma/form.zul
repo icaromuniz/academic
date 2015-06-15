@@ -45,9 +45,9 @@
 			<caption>Sumário</caption>
 			<vbox>
 				<label value="Quantidade atual de disciplinas: ???"/>
+				<label value="Quantidade de alunos matriculados: ???"/>
 				<label value="Quantidade de aulas realizadas no mês: ???"/>
 				<label value="Quantidade de aulas realizadas no ano: ???"/>
-				<label value="Quantidade de alunos matriculados: ???"/>
 			</vbox>
 		</groupbox>
 	</window>

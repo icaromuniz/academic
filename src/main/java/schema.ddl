@@ -15,6 +15,22 @@
         primary key (id)
     );
 
+    create table Matricula (
+        id int4 not null,
+        dataCriacao time not null,
+        usuarioCriacao varchar(11) not null,
+        versao int4 not null,
+        comoConheceu varchar(100) not null,
+        formaPagamento varchar(100) not null,
+        modulo1 bool not null,
+        modulo2 bool not null,
+        modulo3 bool not null,
+        observacao varchar(255),
+        id_pessoa_fisica int4 not null,
+        id_turma int4 not null,
+        primary key (id)
+    );
+
     create table PessoaFisica (
         id int4 not null,
         dataCriacao time not null,
@@ -63,6 +79,16 @@
         foreign key (ID_PESSOA_FISICA) 
         references PessoaFisica;
 
+    alter table Matricula 
+        add constraint FKB5B91D5EB9FD90DC 
+        foreign key (id_pessoa_fisica) 
+        references PessoaFisica;
+
+    alter table Matricula 
+        add constraint FKB5B91D5E2DADA413 
+        foreign key (id_turma) 
+        references Turma;
+
     alter table Usuario 
         add constraint FK5B4D8B0E9C886F0D 
         foreign key (pessoaFisica_id) 
@@ -71,6 +97,8 @@
     create sequence SEQ_USUARIO;
 
     create sequence SE_DOCENTE;
+
+    create sequence seq_matricula;
 
     create sequence seq_pessoa_fisica;
 

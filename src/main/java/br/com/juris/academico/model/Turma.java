@@ -90,4 +90,14 @@ public class Turma extends EntidadeAbstrata {
 	public void setSala(String sala) {
 		this.sala = sala;
 	}
+	
+	@Override
+	public String toString() {
+		
+		if (getNome() != null && getUnidade() != null) {
+			return getNome() + " [" + getUnidade() + "]";
+		}
+		
+		return super.toString();
+	}
 }

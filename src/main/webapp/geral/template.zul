@@ -8,7 +8,7 @@
 		var link = document.createElement('link');
 		link.type = 'image/x-icon';
 		link.rel = 'shortcut icon';
-		link.href = 'http://www.jurisconcursosma.com.br/wp-content/uploads/2012/09/favicon.jpg';
+		link.href = 'http://www.jurisconcursos.com/templates/juris_concursos/favicon.ico';
 		document.getElementsByTagName('head')[0].appendChild(link);
 	]]></script>
 
@@ -32,11 +32,11 @@
 			<menubar orient="vertical" hflex="1">
 				<menuitem label="Início" href="/index.zul" />
 				<menuitem label="Cadastro de Pessoa Física" href="/pessoafisica/form.zul" />
-				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul"  />
+				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul" disabled="true" />
 				<menuitem label="Cadastro de Docente" href="/docente/form.zul" />
 				<menuitem label="Cadastro de Turma" href="/turma/form.zul" />
-				<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul" />
 				<menuitem label="Matrícula de Aluno" href="/matricula/matricula.zul" />
+				<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul" disabled="true"/>
 				<menuitem label="Registro de Aula" disabled="true" />
 				<menu label="Relatório">
 					<menupopup>

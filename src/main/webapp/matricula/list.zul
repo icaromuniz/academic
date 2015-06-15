@@ -28,8 +28,10 @@
 					</row>
 					<row>
 						<label value="Unidade"/>
-						<combobox/>
-						
+						<combobox readonly="true" autodrop="true">
+							<comboitem label="Cohama"/>
+							<comboitem label="Renascença"/>
+						</combobox>
 						<label value="Turma"/>
 						<combobox id="filtroTurma" hflex="true" model="@bind($composer.listaTurma)">
 							<template name="model">
@@ -38,7 +40,7 @@
 						</combobox>
 						
 						<label value="Pagamento"/>
-						<combobox id="filtroFormaPagamento" value="@bind($composer.modelo.formaPagamento)">
+						<combobox id="filtroFormaPagamento">
 							<comboitem label="Internet"/>
 							<comboitem label="Espécie"/>
 							<comboitem label="Cartão de Débito"/>

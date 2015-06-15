@@ -23,7 +23,7 @@
 					</row>
 					<row>
 						<label value="Unidade"/>
-						<combobox>
+						<combobox id="filtroUnidade">
 							<comboitem label="Cohama"/>
 							<comboitem label="Renascença"/>
 						</combobox>
@@ -37,9 +37,9 @@
 		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="@bind($composer.listaModelo)" selectedItem="@bind($composer.modelo)"
 				onSelect='Executions.sendRedirect("/turma/form.zul?ref=" + self.getSelectedItem().getValue().getId())'>
 			<listhead>
-				<listheader label="Nome"/>
-				<listheader label="Unidade" hflex="min"/>
-				<listheader label="Início" hflex="min"/>
+				<listheader label="Nome" sort="auto(nome)"/>
+				<listheader label="Unidade" hflex="min" sort="auto(unidade)"/>
+				<listheader label="Início" hflex="min" sort="auto(dataInicio)"/>
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">

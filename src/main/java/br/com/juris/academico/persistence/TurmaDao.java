@@ -15,6 +15,19 @@ public class TurmaDao extends DaoAbstrato<Turma> {
 	}
 
 	public List<Turma> findByFiltro (String nomeTurma, String unidade){
-		return getEm().createQuery("select t from Turma t", Turma.class).getResultList();
+		
+		String sqlQuery = "select t from Turma t where true is true ";
+		
+		if (nomeTurma != null && !nomeTurma.isEmpty()) {
+			sqlQuery = sqlQuery.concat("and t.nome like '%" + nomeTurma + "%' ");
+		}
+		
+		if (unidade != null && !unidade.isEmpty()) {
+			sqlQuery = sqlQuery.concat("and t.unidade = '" + unidade + "' ");
+		}
+		
+		sqlQuery = sqlQuery.concat("order by t.dataInicio");
+		
+		return getEm().createQuery(sqlQuery, Turma.class).getResultList();
 	}
 }

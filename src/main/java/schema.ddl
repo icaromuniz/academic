@@ -75,17 +75,17 @@
     );
 
     alter table Docente 
-        add constraint FKD03455F2B9FD90DC 
+        add constraint FK_docente__pessoa_fisica
         foreign key (ID_PESSOA_FISICA) 
         references PessoaFisica;
 
     alter table Matricula 
-        add constraint FKB5B91D5EB9FD90DC 
+        add constraint FK_matricula__pessoa_fisica
         foreign key (id_pessoa_fisica) 
         references PessoaFisica;
 
     alter table Matricula 
-        add constraint FKB5B91D5E2DADA413 
+        add constraint FK_matricula__turma
         foreign key (id_turma) 
         references Turma;
 

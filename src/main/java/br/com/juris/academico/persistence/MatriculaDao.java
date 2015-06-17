@@ -14,7 +14,7 @@ public class MatriculaDao extends DaoAbstrato<Matricula> {
 		super(Matricula.class);
 	}
 
-	public List<Matricula> findByFiltro(String nomeAluno, String cpfAluno, String turma, String formaPagamento){
+	public List<Matricula> findByFiltro(String nomeAluno, String unidade, String turma, String formaPagamento){
 		String sqlQuery = "select m from Matricula m where true is true ";
 		return getEm().createQuery(sqlQuery, Matricula.class).getResultList();
 	}

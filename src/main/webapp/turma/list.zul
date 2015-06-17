@@ -23,7 +23,7 @@
 					</row>
 					<row>
 						<label value="Unidade"/>
-						<combobox id="filtroUnidade">
+						<combobox id="filtroUnidade" onOK="$composer.filtraLista()" autodrop="true">
 							<comboitem label="Cohama"/>
 							<comboitem label="Renascença"/>
 						</combobox>

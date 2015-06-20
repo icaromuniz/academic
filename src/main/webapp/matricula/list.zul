@@ -35,11 +35,7 @@
 						
 						<label value="Turma"/>
 						<combobox id="filtroTurma" hflex="true" model="@bind($composer.listaTurma)" readonly="true"
-								autodrop="true" onOK="$composer.filtraLista()">
-							<template name="model">
-								<comboitem label="${each.nome}"/>
-							</template>
-						</combobox>
+								autodrop="true" onOK="$composer.filtraLista()"/>
 						
 						<label value="Pagamento"/>
 						<combobox id="filtroFormaPagamento" readonly="true" autodrop="true" onOK="$composer.filtraLista()">

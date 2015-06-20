@@ -3,6 +3,7 @@ package br.com.juris.academico.controller;
 import java.util.List;
 
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
@@ -31,16 +32,18 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 
 	@Override
 	public void limpaFiltro() {
-		// TODO Auto-generated method stub
-
+		filtroNome.setValue(null);
+		filtroUnidade.setSelectedIndex(-1);
+		((ListModelList<?>)filtroTurma.getModel()).clearSelection();
+		filtroFormaPagamento.setSelectedIndex(-1);
 	}
 
 	@Override
 	public void filtraLista() {
 		setListaModelo(((MatriculaDao)dao).findByFiltro(filtroNome.getValue(), 
-				filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getValue().toString() : null,
-				filtroTurma.getSelectedItem() != null ? filtroTurma.getSelectedItem().getValue().toString() : null,
-				filtroFormaPagamento.getSelectedItem() != null ? filtroFormaPagamento.getSelectedItem().getValue().toString() : null));
+				filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null,
+				filtroTurma.getSelectedItem() != null ? ((Turma)filtroTurma.getSelectedItem().getValue()).getId() : null,
+				filtroFormaPagamento.getSelectedItem() != null ? filtroFormaPagamento.getSelectedItem().getLabel() : null));
 		getBinder().notifyChange(this, "*");
 	}
 

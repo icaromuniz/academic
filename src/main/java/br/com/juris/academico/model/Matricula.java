@@ -37,6 +37,7 @@ public class Matricula extends EntidadeAbstrata {
 	private String formaPagamento;
 	
 	@Column(nullable=false, length=100)
+	@NotNull(message="comboboxComoConheceu#Informação obrigatória.")
 	private String comoConheceu;
 	private boolean modulo1 = false;
 	private boolean modulo2 = false;

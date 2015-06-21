@@ -1,5 +1,6 @@
 package br.com.juris.academico.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -42,6 +43,9 @@ public class Turma extends EntidadeAbstrata {
 	
 	@Column(length=50)
 	private String sala;
+	
+	@NotNull(message="decimalboxPreco#Informação obrigatória.")
+	private BigDecimal preco; 
 
 	public Integer getId() {
 		return id;
@@ -91,6 +95,14 @@ public class Turma extends EntidadeAbstrata {
 		this.sala = sala;
 	}
 	
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preço) {
+		this.preco = preço;
+	}
+
 	@Override
 	public String toString() {
 		

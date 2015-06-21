@@ -36,6 +36,11 @@
 					<label value="Término"/>
 					<datebox value="@bind($composer.modelo.dataTermino)"/>
 				</row>
+				<row>
+					<label value="Preço"/>
+					<decimalbox id="decimalboxPreco" style="text-align: right;" format=",##0.00" maxlength="10"
+							value="@bind($composer.modelo.preco)"/>
+				</row>
 			</rows>
 		</grid>
 		

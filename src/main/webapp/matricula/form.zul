@@ -31,7 +31,7 @@
 				<row>
 					<label value="Forma de Pagamento"/>
 					<combobox id="comboboxFormaPagamento" readonly="true" autodrop="true" value="@bind($composer.modelo.formaPagamento)">
-						<comboitem label="Internet"/>
+						<comboitem label="PagSeguro"/>
 						<comboitem label="Espécie"/>
 						<comboitem label="Cartão de Débito"/>
 						<comboitem label="Cartão de Crédito"/>
@@ -51,9 +51,9 @@
 					<label value="Material Entregue"/>
 					<div>
 						<hlayout spacing="30px">
-							<checkbox label="Módulo 1" />
-							<checkbox label="Módulo 2" />
-							<checkbox label="Módulo 3" />
+							<checkbox label="Módulo 1" checked="@bind($composer.modelo.modulo1)" />
+							<checkbox label="Módulo 2" checked="@bind($composer.modelo.modulo2)" />
+							<checkbox label="Módulo 3" checked="@bind($composer.modelo.modulo3)" />
 						</hlayout>
 					</div>
 				</row>

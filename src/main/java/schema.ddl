@@ -57,6 +57,7 @@
         dataInicio date not null,
         dataTermino date,
         nome varchar(255) not null,
+        preço numeric(19, 2),
         sala varchar(50),
         unidade varchar(50) not null,
         primary key (id)
@@ -75,17 +76,17 @@
     );
 
     alter table Docente 
-        add constraint FK_docente__pessoa_fisica
+        add constraint FKD03455F2B9FD90DC 
         foreign key (ID_PESSOA_FISICA) 
         references PessoaFisica;
 
     alter table Matricula 
-        add constraint FK_matricula__pessoa_fisica
+        add constraint FKB5B91D5EB9FD90DC 
         foreign key (id_pessoa_fisica) 
         references PessoaFisica;
 
     alter table Matricula 
-        add constraint FK_matricula__turma
+        add constraint FKB5B91D5E2DADA413 
         foreign key (id_turma) 
         references Turma;
 

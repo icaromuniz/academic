@@ -19,7 +19,7 @@ public class TurmaDao extends DaoAbstrato<Turma> {
 		String sqlQuery = "select t from Turma t where true is true ";
 		
 		if (nomeTurma != null && !nomeTurma.isEmpty()) {
-			sqlQuery = sqlQuery.concat("and t.nome like '%" + nomeTurma + "%' ");
+			sqlQuery = sqlQuery.concat("and upper(t.nome) like '%" + nomeTurma.toUpperCase() + "%' ");
 		}
 		
 		if (unidade != null && !unidade.isEmpty()) {

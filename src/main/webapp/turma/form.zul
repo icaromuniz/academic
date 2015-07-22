@@ -37,7 +37,7 @@
 					<datebox value="@bind($composer.modelo.dataTermino)"/>
 				</row>
 				<row>
-					<label value="Preço"/>
+					<label value="Valor"/>
 					<decimalbox id="decimalboxPreco" style="text-align: right;" format=",##0.00" maxlength="10"
 							value="@bind($composer.modelo.preco)"/>
 				</row>

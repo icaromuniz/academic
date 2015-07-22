@@ -2,9 +2,12 @@ package br.com.juris.academico.controller;
 
 import java.util.List;
 
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.impl.InputElement;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Matricula;
@@ -19,6 +22,9 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 
 	private static final long serialVersionUID = -8078166359065772931L;
 	
+	// componentes do form
+	private Combobox comboboxPessoaFisica;
+	
 	// componentes do list
 	private Textbox filtroNome;
 	private Combobox filtroUnidade;
@@ -27,7 +33,27 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 
 	public MatriculaComposer() {
 		super(Matricula.class);
-		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void doAfterCompose(Component comp) throws Exception {
+		
+		super.doAfterCompose(comp);
+		
+		// desabilita edição da matrícula
+		if (Executions.getCurrent().getDesktop().getRequestPath().contains("/form.zul")) {
+			atribuiPermissaoEdicao(comboboxPessoaFisica.getParent().getParent(), getModelo().getId() == null);
+		}
+	}
+	
+	@Override
+	public void salvaRegistro() {
+		
+		// TODO Verificar se o aluno já está matriculado
+		
+		super.salvaRegistro();
+		
+		atribuiPermissaoEdicao(comboboxPessoaFisica.getParent().getParent(), false);
 	}
 
 	@Override
@@ -45,6 +71,19 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 				filtroTurma.getSelectedItem() != null ? ((Turma)filtroTurma.getSelectedItem().getValue()).getId() : null,
 				filtroFormaPagamento.getSelectedItem() != null ? filtroFormaPagamento.getSelectedItem().getLabel() : null));
 		getBinder().notifyChange(this, "*");
+	}
+	
+	public void atribuiPermissaoEdicao(Component component, boolean isEdicaoPermitida){
+		
+		if (component.getChildren() != null) {
+			for (Component c : component.getChildren()) {
+				atribuiPermissaoEdicao(c, isEdicaoPermitida);
+			}
+		}
+		
+		if(component instanceof InputElement && component.isVisible()){
+			((InputElement) component).setDisabled(!isEdicaoPermitida);
+		}
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica(){

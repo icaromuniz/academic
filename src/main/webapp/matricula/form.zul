@@ -25,7 +25,7 @@
 				</row>
 				<row>
 					<label value="Turma"/>
-					<combobox id="comboboxTurma" hflex="true" model="@bind($composer.listaTurma)"
+					<combobox id="comboboxTurma" readonly="true" autodrop="true" hflex="true" model="@bind($composer.listaTurma)"
 							selectedItem="@bind($composer.modelo.turma)"/>
 				</row>
 				<row>
@@ -59,7 +59,18 @@
 				</row>
 				<row>
 					<label value="Observação"/>
-					<textbox rows="3" width="100%" value="@bind($composer.modelo.observacao)"/>
+					<textbox id="textboxObservacao" style="resize: none;" rows="4" width="100%" value="@bind($composer.modelo.observacao)"/>
+				</row>
+				<!-- <row spans="2" align="right">
+					<progressmeter value="90"/>
+				</row>
+				<row spans="2" align="right">
+					<slider/>
+				</row> -->
+				<row spans="2" align="right">
+					<div>
+						<button label="Contrato" tooltiptext="Emitir Contrato" onClick="$composer.emiteContrato()"/>
+					</div>
 				</row>
 			</rows>
 		</grid>

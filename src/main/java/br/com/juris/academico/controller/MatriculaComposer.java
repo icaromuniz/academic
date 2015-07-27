@@ -49,7 +49,7 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	@Override
 	public void salvaRegistro() {
 		
-		// TODO Verificar se o aluno já está matriculado
+		// TODO Verificar se o aluno já está matriculado nessa turma
 		
 		super.salvaRegistro();
 		
@@ -73,6 +73,10 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 		getBinder().notifyChange(this, "*");
 	}
 	
+	public void emiteContrato(){
+		System.out.println("contrato");
+	}
+	
 	public void atribuiPermissaoEdicao(Component component, boolean isEdicaoPermitida){
 		
 		if (component.getChildren() != null) {
@@ -81,7 +85,7 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 			}
 		}
 		
-		if(component instanceof InputElement && component.isVisible()){
+		if(component instanceof InputElement && component.isVisible() && !component.getId().equals("textboxObservacao")){
 			((InputElement) component).setDisabled(!isEdicaoPermitida);
 		}
 	}
@@ -94,5 +98,12 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	public List<Turma> getListaTurma(){
 		TurmaDao turmaDao = Util.getDao(TurmaDao.class);
 		return turmaDao.findByFiltro(null, null);
+	}
+	
+	public boolean isContratoDesabilitado(){
+		
+		// TODO (icaromuniz) Implementar verificação de 'Turma encerrada' e 'Matrícula Cancelada'
+		
+		return false;
 	}
 }

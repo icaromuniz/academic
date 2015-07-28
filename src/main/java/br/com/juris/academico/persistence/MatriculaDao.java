@@ -19,21 +19,23 @@ public class MatriculaDao extends DaoAbstrato<Matricula> {
 		String sqlQuery = "select m from Matricula m where true is true ";
 		
 		if (nomeAluno != null && !nomeAluno.isEmpty()) {
-			sqlQuery = sqlQuery.concat(" and m.pessoaFisica.nome like '%" + nomeAluno.toUpperCase() + "%' ");
+			sqlQuery += " and m.pessoaFisica.nome like '%" + nomeAluno.toUpperCase() + "%' ";
 		}
 		
 		if (nomeUnidade != null && !nomeUnidade.isEmpty()) {
-			sqlQuery = sqlQuery.concat(" and m.turma.unidade like '" + nomeUnidade + "' ");
+			sqlQuery += " and m.turma.unidade like '" + nomeUnidade + "' ";
 		}
 		
 		if (idTurma != null) {
-			sqlQuery = sqlQuery.concat(" and m.turma.id = " + idTurma + " ");
+			sqlQuery += " and m.turma.id = " + idTurma + " ";
 		}
 		
 		if (formaPagamento != null && !formaPagamento.isEmpty()) {
-			sqlQuery = sqlQuery.concat(" and m.formaPagamento = '" + formaPagamento + "' ");
+			sqlQuery += " and m.formaPagamento = '" + formaPagamento + "' ";
 		}
 		
+		sqlQuery += " order by m.pessoaFisica.nome, m.turma.nome";
+				
 		return getEm().createQuery(sqlQuery, Matricula.class).getResultList();
 	}
 }

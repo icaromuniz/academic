@@ -2,10 +2,15 @@ package br.com.juris.academico.controller;
 
 import java.util.List;
 
+import javax.ejb.EJBTransactionRolledbackException;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.impl.InputElement;
 
@@ -21,6 +26,16 @@ import br.com.juris.academico.service.Util;
 public class MatriculaComposer extends AbstractComposer<Matricula> {
 
 	private static final long serialVersionUID = -8078166359065772931L;
+	
+	private EventListener<Event> listenerExclusao = new EventListener<Event>() {
+
+		@Override
+		public void onEvent(Event event) throws Exception {
+			if (event.getName().equals("onOK")) {
+				cancelaMatricula(getModelo());
+			}
+		}
+	};
 	
 	// componentes do form
 	private Combobox comboboxPessoaFisica;
@@ -49,11 +64,28 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	@Override
 	public void salvaRegistro() {
 		
-		// TODO Verificar se o aluno já está matriculado nessa turma
-		
-		super.salvaRegistro();
+		// Verifica se o aluno já está matriculado na turma selecionada
+		try {
+			
+			super.salvaRegistro();
+			
+		} catch (EJBTransactionRolledbackException e) {
+			
+			if (e.getCausedByException().getCause().getMessage().contains("un_pessoa_turma")) {
+				Messagebox.show("O Aluno informado já está matriculado \nna Turma selecionada.",
+						"Matrícula duplicada!", 1, Messagebox.EXCLAMATION);
+				return;
+			}
+			
+			throw e;
+		}
 		
 		atribuiPermissaoEdicao(comboboxPessoaFisica.getParent().getParent(), false);
+	}
+	
+	@Override
+	public void excluiRegistro() {
+		Messagebox.show("Confirma o cancelamento?", "Cancelamento de Matrícula", 3, Messagebox.EXCLAMATION, listenerExclusao);
 	}
 
 	@Override
@@ -77,7 +109,7 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 		System.out.println("contrato");
 	}
 	
-	public void atribuiPermissaoEdicao(Component component, boolean isEdicaoPermitida){
+	private void atribuiPermissaoEdicao(Component component, boolean isEdicaoPermitida){
 		
 		if (component.getChildren() != null) {
 			for (Component c : component.getChildren()) {
@@ -88,6 +120,10 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 		if(component instanceof InputElement && component.isVisible() && !component.getId().equals("textboxObservacao")){
 			((InputElement) component).setDisabled(!isEdicaoPermitida);
 		}
+	}
+
+	private void cancelaMatricula(Matricula modelo) {
+		super.excluiRegistro();
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica(){

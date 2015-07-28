@@ -1,5 +1,6 @@
 package br.com.juris.academico.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJBTransactionRolledbackException;
@@ -18,6 +19,7 @@ import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Matricula;
 import br.com.juris.academico.model.PessoaFisica;
 import br.com.juris.academico.model.Turma;
+import br.com.juris.academico.model.Usuario;
 import br.com.juris.academico.persistence.MatriculaDao;
 import br.com.juris.academico.persistence.PessoaFisicaDao;
 import br.com.juris.academico.persistence.TurmaDao;
@@ -64,13 +66,13 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	@Override
 	public void salvaRegistro() {
 		
-		// Verifica se o aluno já está matriculado na turma selecionada
 		try {
 			
 			super.salvaRegistro();
 			
 		} catch (EJBTransactionRolledbackException e) {
 			
+			// alerta se o aluno já estiver matriculado na turma selecionada
 			if (e.getCausedByException().getCause().getMessage().contains("un_pessoa_turma")) {
 				Messagebox.show("O Aluno informado já está matriculado \nna Turma selecionada.",
 						"Matrícula duplicada!", 1, Messagebox.EXCLAMATION);
@@ -122,8 +124,13 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 		}
 	}
 
-	private void cancelaMatricula(Matricula modelo) {
-		super.excluiRegistro();
+	private void cancelaMatricula(Matricula matricula) {
+		
+		matricula.setMatriculaAtiva(false);
+		matricula.setUsuarioCancelamento((Usuario) Executions.getCurrent().getSession().getAttribute("usuario"));
+		matricula.setDataCancelamento(new Date());
+		
+		super.salvaRegistro();
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica(){
@@ -132,8 +139,9 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	}
 	
 	public List<Turma> getListaTurma(){
+		Boolean somenteAtiva = getModelo() != null && getModelo().getId() == null ? true : null;
 		TurmaDao turmaDao = Util.getDao(TurmaDao.class);
-		return turmaDao.findByFiltro(null, null);
+		return turmaDao.findByDisponibilidade( somenteAtiva );
 	}
 	
 	public boolean isContratoDesabilitado(){

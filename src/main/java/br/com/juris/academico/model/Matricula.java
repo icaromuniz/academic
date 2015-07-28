@@ -1,5 +1,7 @@
 package br.com.juris.academico.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,10 +41,19 @@ public class Matricula extends EntidadeAbstrata {
 	@Column(nullable=false, length=100)
 	@NotNull(message="comboboxComoConheceu#Informação obrigatória.")
 	private String comoConheceu;
+	
 	private boolean modulo1 = false;
 	private boolean modulo2 = false;
 	private boolean modulo3 = false;
 	private String observacao;
+	
+	@ManyToOne
+	@JoinColumn(name="id_usuario_cancelamento")
+	private Usuario usuarioCancelamento;
+	private Date dataCancelamento;
+	
+	@Column(name="matricula_ativa")
+	private Boolean matriculaAtiva;
 
 	public Integer getId() {
 		return id;
@@ -114,6 +125,30 @@ public class Matricula extends EntidadeAbstrata {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Usuario getUsuarioCancelamento() {
+		return usuarioCancelamento;
+	}
+
+	public void setUsuarioCancelamento(Usuario usuarioCancelamento) {
+		this.usuarioCancelamento = usuarioCancelamento;
+	}
+
+	public Date getDataCancelamento() {
+		return dataCancelamento;
+	}
+
+	public void setDataCancelamento(Date dataCancelamento) {
+		this.dataCancelamento = dataCancelamento;
+	}
+
+	public Boolean isMatriculaAtiva() {
+		return matriculaAtiva;
+	}
+
+	public void setMatriculaAtiva(Boolean matriculaAtiva) {
+		this.matriculaAtiva = matriculaAtiva;
 	}
 
 }

@@ -30,4 +30,21 @@ public class TurmaDao extends DaoAbstrato<Turma> {
 		
 		return getEm().createQuery(sqlQuery, Turma.class).getResultList();
 	}
+
+	public List<Turma> findByDisponibilidade (Boolean isAtiva){
+		
+		String sqlQuery = "select t from Turma t where true is true ";
+		
+		if (isAtiva != null) {
+			if (isAtiva) {
+				sqlQuery += "and t.dataInicio <= now() and now() <= t.dataTermino  ";
+			} else {
+				sqlQuery += "and t.dataInicio > now() or t.dataTermino < now() ";
+			}
+		}
+		
+		sqlQuery = sqlQuery.concat("order by t.dataInicio");
+		
+		return getEm().createQuery(sqlQuery, Turma.class).getResultList();
+	}
 }

@@ -7,7 +7,7 @@
 		<caption style="font-weight: bold;"/>
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
 		
-		<grid style="border: none;">
+		<grid id="grid" style="border: none;">
 			<columns>
 				<column hflex="min"/>
 				<column/>

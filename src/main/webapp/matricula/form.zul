@@ -61,12 +61,12 @@
 					<label value="Observação"/>
 					<textbox id="textboxObservacao" style="resize: none;" rows="4" width="100%" value="@bind($composer.modelo.observacao)"/>
 				</row>
-				<!-- <row spans="2" align="right">
-					<progressmeter value="90"/>
+				<row spans="2" align="right" visible="@load($composer.modelo.matriculaAtiva)">
+					<div>
+						<label style="color: red;" value="Matrícula cancelada em "/>
+						<label style="color: red;" value="@load($composer.modelo.dataCancelamento)"/>
+					</div>
 				</row>
-				<row spans="2" align="right">
-					<slider/>
-				</row> -->
 				<row spans="2" align="right">
 					<div>
 						<button label="Contrato" tooltiptext="Emitir Contrato" onClick="$composer.emiteContrato()"/>

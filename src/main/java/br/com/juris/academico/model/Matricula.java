@@ -151,4 +151,7 @@ public class Matricula extends EntidadeAbstrata {
 		this.matriculaAtiva = matriculaAtiva;
 	}
 
+	public Boolean getMatriculaAtiva(){
+		return matriculaAtiva;
+	}
 }

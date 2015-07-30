@@ -2,7 +2,9 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<window id="win" title="Cadastro de Disciplina" border="normal" self="@define(content)" vflex="1" >
+	<window id="win" title="Cadastro de Disciplina" border="normal" self="@define(content)" vflex="1" 
+		apply="br.com.juris.academico.controller.DisciplinaComposer">
+		
 		<caption style="font-weight: bold;"/>
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
 		
@@ -13,16 +15,16 @@
 			</columns>
 			<rows>
 				<row>
+					<label value="Nome"/>
+					<textbox hflex="true"/>
+				</row>
+				<row>
 					<label value="Turma"/>
-					<combobox/>
+					<combobox width="50%"/>
 				</row>
 				<row>
 					<label value="Docente"/>
-					<combobox/>
-				</row>
-				<row>
-					<label value="Nome"/>
-					<textbox/>
+					<combobox hflex="true"/>
 				</row>
 				<row>
 					<label value="Ementa"/>

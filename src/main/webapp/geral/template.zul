@@ -35,8 +35,8 @@
 				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul" disabled="true" />
 				<menuitem label="Cadastro de Docente" href="/docente/form.zul" />
 				<menuitem label="Cadastro de Turma" href="/turma/form.zul" />
-				<menuitem label="Matrícula de Aluno" href="/matricula/form.zul" />
 				<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul" disabled="true"/>
+				<menuitem label="Matrícula de Aluno" href="/matricula/form.zul" />
 				<menuitem label="Registro de Aula" disabled="true" />
 				<menu label="Relatório">
 					<menupopup>

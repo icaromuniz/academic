@@ -21,13 +21,16 @@
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
         comoConheceu varchar(100) not null,
+        dataCancelamento timestamp,
         formaPagamento varchar(100) not null,
+        matricula_ativa bool,
         modulo1 bool not null,
         modulo2 bool not null,
         modulo3 bool not null,
         observacao varchar(255),
         id_pessoa_fisica int4 not null,
         id_turma int4 not null,
+        id_usuario_cancelamento int4,
         primary key (id)
     );
 
@@ -57,9 +60,9 @@
         dataInicio date not null,
         dataTermino date,
         nome varchar(255) not null,
-        preço numeric(19, 2),
         sala varchar(50),
         unidade varchar(50) not null,
+        valor numeric(19, 2),
         primary key (id)
     );
 
@@ -84,6 +87,11 @@
         add constraint FKB5B91D5EB9FD90DC 
         foreign key (id_pessoa_fisica) 
         references PessoaFisica;
+
+    alter table Matricula 
+        add constraint FKB5B91D5EF445E57A 
+        foreign key (id_usuario_cancelamento) 
+        references Usuario;
 
     alter table Matricula 
         add constraint FKB5B91D5E2DADA413 

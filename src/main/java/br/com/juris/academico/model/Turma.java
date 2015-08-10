@@ -44,8 +44,8 @@ public class Turma extends EntidadeAbstrata {
 	@Column(length=50)
 	private String sala;
 	
-	@NotNull(message="decimalboxPreco#Informação obrigatória.")
-	private BigDecimal preco; 
+	@NotNull(message="decimalboxValor#Informação obrigatória.")
+	private BigDecimal valor; 
 
 	public Integer getId() {
 		return id;
@@ -95,12 +95,12 @@ public class Turma extends EntidadeAbstrata {
 		this.sala = sala;
 	}
 	
-	public BigDecimal getPreco() {
-		return preco;
+	public BigDecimal getValor() {
+		return valor;
 	}
 
-	public void setPreco(BigDecimal preço) {
-		this.preco = preço;
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 
 	@Override

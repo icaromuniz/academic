@@ -82,15 +82,26 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 			comboboxPessoaFisica.setDisabled(true);
 			
 		} else {
-			Messagebox.show("Este registro não pode ser alterado por Usuário sem permissão de Administrador.",
-					"Operação não permitida", 1, Messagebox.EXCLAMATION);
+			Messagebox.show("Esta operação não pode ser efetuada por Usuário sem permissão de Administrador.",
+					"Permissão negada", 1, Messagebox.EXCLAMATION);
 		}
 	}
 	
 	@Override
 	public void excluiRegistro() {
-		super.excluiRegistro();
-		comboboxPessoaFisica.setDisabled(false);
+		
+		Usuario usuario = (Usuario) Executions.getCurrent().getSession().getAttribute("usuario");
+		
+		
+		if (usuario.isAdministrador()) {
+			
+			super.excluiRegistro();
+			comboboxPessoaFisica.setDisabled(false);
+			
+		} else {
+			Messagebox.show("Esta operação não pode ser efetuada por Usuário sem permissão de Administrador.",
+					"Permissão negada", 1, Messagebox.EXCLAMATION);
+		}
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{

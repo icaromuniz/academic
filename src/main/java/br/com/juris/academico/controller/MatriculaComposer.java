@@ -13,7 +13,6 @@ import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
-import org.zkoss.zul.impl.InputElement;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Matricula;
@@ -109,19 +108,6 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	
 	public void emiteContrato(){
 		System.out.println("contrato");
-	}
-	
-	private void atribuiPermissaoEdicao(Component component, boolean isEdicaoPermitida){
-		
-		if (component.getChildren() != null) {
-			for (Component c : component.getChildren()) {
-				atribuiPermissaoEdicao(c, isEdicaoPermitida);
-			}
-		}
-		
-		if(component instanceof InputElement && component.isVisible() && !component.getId().equals("textboxObservacao")){
-			((InputElement) component).setDisabled(!isEdicaoPermitida);
-		}
 	}
 
 	private void cancelaMatricula(Matricula matricula) {

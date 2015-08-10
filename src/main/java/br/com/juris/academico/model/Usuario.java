@@ -58,6 +58,10 @@ public class Usuario extends EntidadeAbstrata {
 	public boolean isAdministrador() {
 		return administrador;
 	}
+	
+	public boolean getAdministrador(){
+		return administrador;
+	}
 
 	public void setAdministrador(boolean administrador) {
 		this.administrador = administrador;

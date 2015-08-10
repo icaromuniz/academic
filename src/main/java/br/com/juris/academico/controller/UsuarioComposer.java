@@ -7,6 +7,7 @@ import javax.naming.NamingException;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Grid;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
 
@@ -20,7 +21,10 @@ import br.com.juris.academico.service.Util;
 public class UsuarioComposer extends AbstractComposer<Usuario>{
 	
 	// componentes do form
+	private Grid grid;
 	private Combobox comboboxPessoaFisica;
+	private Combobox comboboxAdministrador;
+	private Textbox textboxLogin;
 	
 	// componentes do list
 	private Textbox filtroNome;
@@ -38,13 +42,27 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 		
 		super.doAfterCompose(comp);
 
-		// FIXME (icaromuniz) Retirar após implementar vinculado
 		if (Executions.getCurrent().getDesktop().getRequestPath().endsWith("/form.zul")) {
+			
+			Usuario usuario = Executions.getCurrent().getSession().getAttribute("usuario") != null ?
+					(Usuario) Executions.getCurrent().getSession().getAttribute("usuario") : null;
+			
+			// atualiza a permissão conforme o tipo de usuário
+			atribuiPermissaoEdicao(grid, usuario != null && usuario.isAdministrador());
+			
+			// carrega as pessoas físicas cadastradas
 			comboboxPessoaFisica.setModel(new ListModelList<>(this.getListaPessoaFisica()));
-		}
-		
-		if (getModelo() != null && getModelo().getId() != null) {
-			comboboxPessoaFisica.setDisabled(true);
+			
+			
+			if (getModelo() != null && getModelo().getId() != null) {
+				
+				// desabilita a alteração da pessoa física
+				comboboxPessoaFisica.setDisabled(true);
+				textboxLogin.setDisabled(true);
+				
+				// seleciona a opção adequada
+				comboboxAdministrador.setSelectedIndex( getModelo().isAdministrador() ? 0 : 1 );
+			}
 		}
 	}
 

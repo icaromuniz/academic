@@ -160,6 +160,19 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 	public abstract void limpaFiltro();
 
 	public abstract void filtraLista();
+	
+	protected void atribuiPermissaoEdicao(Component component, boolean isEdicaoPermitida){
+		
+		if (component.getChildren() != null) {
+			for (Component c : component.getChildren()) {
+				atribuiPermissaoEdicao(c, isEdicaoPermitida);
+			}
+		}
+		
+		if(component instanceof InputElement && component.isVisible() && !component.getId().equals("textboxObservacao")){
+			((InputElement) component).setDisabled(!isEdicaoPermitida);
+		}
+	}
 
 	/** Percorre a árvore de componentes buscando pelo primeiro InputElement habilitado para retornar */
 	private InputElement recuperaPrimeiroInput(Component component) {

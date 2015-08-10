@@ -10,7 +10,7 @@
 		
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
 		
-		<grid style="border: none;">
+		<grid id="grid" style="border: none;">
 			<columns>
 				<column hflex="min" />
 				<column />
@@ -26,7 +26,7 @@
 				</row>
 				<row>
 					<label value="Administrador" />
-					<combobox readonly="true" autodrop="true"
+					<combobox id="comboboxAdministrador" readonly="true" autodrop="true"
 							onSelect="$composer.modelo.setAdministrador( self.getSelectedIndex() == 0 ? true : false )">
 						<comboitem label="Sim"/>
 						<comboitem label="Não"/>

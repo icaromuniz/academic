@@ -5,7 +5,6 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Grid;
 import org.zkoss.zul.Textbox;
-import org.zkoss.zul.impl.InputElement;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Turma;
@@ -53,18 +52,5 @@ public class TurmaComposer extends AbstractComposer<Turma> {
 		setListaModelo(((TurmaDao)dao).findByFiltro(filtroNome.getValue(),
 				filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null));
 		getBinder().notifyChange(this, "*");
-	}
-	
-	private void atribuiPermissaoEdicao(Component component, boolean isEdicaoPermitida){
-		
-		if (component.getChildren() != null) {
-			for (Component c : component.getChildren()) {
-				atribuiPermissaoEdicao(c, isEdicaoPermitida);
-			}
-		}
-		
-		if(component instanceof InputElement && component.isVisible()){
-			((InputElement) component).setDisabled(!isEdicaoPermitida);
-		}
 	}
 }

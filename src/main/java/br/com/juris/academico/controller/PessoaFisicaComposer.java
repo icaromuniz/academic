@@ -11,11 +11,7 @@ import org.zkoss.zul.Textbox;
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.PessoaFisica;
 import br.com.juris.academico.model.Usuario;
-import br.com.juris.academico.persistence.DocenteDao;
-import br.com.juris.academico.persistence.MatriculaDao;
 import br.com.juris.academico.persistence.PessoaFisicaDao;
-import br.com.juris.academico.persistence.UsuarioDao;
-import br.com.juris.academico.service.Util;
 
 public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 
@@ -27,6 +23,7 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 	
 	// componentes do form
 	private Textbox textboxCpf;
+	private Textbox textboxNome;
 	
 	// componentes do list
 	private Textbox filtroNome;
@@ -37,11 +34,17 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 	
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
+		
 		super.doAfterCompose(comp);
 		
 		// desabilita o cpf na edição
 		if (Executions.getCurrent().getParameter("ref") != null) {
-			textboxCpf.setDisabled(true);
+			
+			Object usuario = Executions.getCurrent().getSession().getAttribute("usuario");
+			boolean isAdministrador = usuario != null && ((Usuario)usuario).isAdministrador();
+			
+			textboxNome.setDisabled(!isAdministrador);	// somente administrador altera nome
+			textboxCpf.setDisabled(true);				// nunca altera CPF
 		}
 	}
 	
@@ -86,28 +89,7 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 	
 	@Override
 	protected boolean isPersistenciaAutorizada(PessoaFisica modelo) {
-		
-		Usuario usuario = (Usuario) Executions.getCurrent().getSession().getAttribute("usuario");
-		
-		return usuario.isAdministrador() || !isReferenciado( modelo );
-	}
-
-	private boolean isReferenciado(PessoaFisica modelo) {
-		
-		UsuarioDao usuarioDao = Util.getDao(UsuarioDao.class);
-		DocenteDao docenteDao = Util.getDao(DocenteDao.class);
-		MatriculaDao matriculaDao = Util.getDao(MatriculaDao.class);
-		
-		// verifica se a Pessoa Física é referenciada por outro Caso de Uso
-		if (!usuarioDao.findByFiltro(null, modelo.getCpf(), null).isEmpty()) {	// Usuário
-			return true;
-		} else if (!docenteDao.findByFiltro(null, modelo.getCpf()).isEmpty()) {	// Docente
-			return true;
-		} else if (matriculaDao.isAluno(modelo.getId())) {						// Matrícula
-			return true;
-		}
-		
-		return false;
+		return true; // somente nome e cpf têm restrição de edição
 	}
 
 	@Override

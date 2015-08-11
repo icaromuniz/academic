@@ -56,13 +56,13 @@ public class TurmaComposer extends AbstractComposer<Turma> {
 
 	@Override
 	protected boolean isPersistenciaAutorizada(Turma modelo) {
-		// TODO Auto-generated method stub
-		return false;
+		Object usuario = Executions.getCurrent().getSession().getAttribute("usuario");
+		return usuario != null && ((Usuario)usuario).isAdministrador();
 	}
 
 	@Override
 	protected boolean isExclusaoAutorizada(Turma modelo) {
-		// TODO Auto-generated method stub
-		return false;
+		Object usuario = Executions.getCurrent().getSession().getAttribute("usuario");
+		return usuario != null && ((Usuario)usuario).isAdministrador();
 	}
 }

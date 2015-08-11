@@ -86,7 +86,17 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	
 	@Override
 	public void excluiRegistro() {
-		Messagebox.show("Confirma o cancelamento?", "Cancelamento de Matrícula", 3, Messagebox.EXCLAMATION, listenerExclusao);
+		Messagebox.show("Confirma o cancelamento da Matrícula?", "Confirmação de Cancelamento", 3,
+				Messagebox.EXCLAMATION, listenerExclusao);
+	}
+
+	private void cancelaMatricula(Matricula matricula) {
+		
+		matricula.setMatriculaAtiva(false);
+		matricula.setUsuarioCancelamento((Usuario) Executions.getCurrent().getSession().getAttribute("usuario"));
+		matricula.setDataCancelamento(new Date());
+		
+		super.salvaRegistro();
 	}
 
 	@Override
@@ -110,15 +120,6 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 		System.out.println("contrato");
 	}
 
-	private void cancelaMatricula(Matricula matricula) {
-		
-		matricula.setMatriculaAtiva(false);
-		matricula.setUsuarioCancelamento((Usuario) Executions.getCurrent().getSession().getAttribute("usuario"));
-		matricula.setDataCancelamento(new Date());
-		
-		super.salvaRegistro();
-	}
-
 	public List<PessoaFisica> getListaPessoaFisica(){
 		PessoaFisicaDao pessoaFisicaDao = Util.getDao(PessoaFisicaDao.class);
 		return pessoaFisicaDao.findByFiltro(null, null, null);
@@ -139,13 +140,12 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 
 	@Override
 	protected boolean isPersistenciaAutorizada(Matricula modelo) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	protected boolean isExclusaoAutorizada(Matricula modelo) {
-		// TODO Auto-generated method stub
-		return false;
+		Object usuario = Executions.getCurrent().getSession().getAttribute("usuario");
+		return usuario != null && ((Usuario)usuario).isAdministrador();
 	}
 }

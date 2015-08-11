@@ -6,6 +6,7 @@ import javax.ejb.EJBTransactionRolledbackException;
 import javax.naming.NamingException;
 
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Textbox;
@@ -13,6 +14,7 @@ import org.zkoss.zul.Textbox;
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Docente;
 import br.com.juris.academico.model.PessoaFisica;
+import br.com.juris.academico.model.Usuario;
 import br.com.juris.academico.persistence.DocenteDao;
 import br.com.juris.academico.persistence.PessoaFisicaDao;
 import br.com.juris.academico.service.Util;
@@ -88,13 +90,13 @@ public class DocenteComposer extends AbstractComposer<Docente> {
 
 	@Override
 	protected boolean isPersistenciaAutorizada(Docente modelo) {
-		// TODO Auto-generated method stub
-		return false;
+		Object usuario = Executions.getCurrent().getSession().getAttribute("usuario");
+		return usuario != null && ((Usuario)usuario).isAdministrador();
 	}
 
 	@Override
 	protected boolean isExclusaoAutorizada(Docente modelo) {
-		// TODO Auto-generated method stub
-		return false;
+		Object usuario = Executions.getCurrent().getSession().getAttribute("usuario");
+		return usuario != null && ((Usuario)usuario).isAdministrador();
 	}
 }

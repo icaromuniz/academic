@@ -31,4 +31,16 @@ public class DisciplinaComposer extends AbstractComposer<Disciplina> {
 		TurmaDao turmaDao = Util.getDao(TurmaDao.class);
 		return turmaDao.findByDisponibilidade( somenteAtiva );
 	}
+
+	@Override
+	protected boolean isPersistenciaAutorizada(Disciplina modelo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected boolean isExclusaoAutorizada(Disciplina modelo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

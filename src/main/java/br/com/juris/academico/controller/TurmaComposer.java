@@ -53,4 +53,16 @@ public class TurmaComposer extends AbstractComposer<Turma> {
 				filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null));
 		getBinder().notifyChange(this, "*");
 	}
+
+	@Override
+	protected boolean isPersistenciaAutorizada(Turma modelo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected boolean isExclusaoAutorizada(Turma modelo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

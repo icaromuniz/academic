@@ -38,4 +38,9 @@ public class MatriculaDao extends DaoAbstrato<Matricula> {
 				
 		return getEm().createQuery(sqlQuery, Matricula.class).getResultList();
 	}
+
+	public boolean isAluno(Integer idPessoaFisica) {
+		String sqlQuery = "select count(*) from Matricula m where m.pessoaFisica.id = :idPessoaFisica";
+		return getEm().createQuery(sqlQuery).setParameter("idPessoaFisica", idPessoaFisica).getSingleResult() != null;
+	}
 }

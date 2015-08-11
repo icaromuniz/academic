@@ -136,4 +136,16 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 		
 		return false;
 	}
+
+	@Override
+	protected boolean isPersistenciaAutorizada(Matricula modelo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected boolean isExclusaoAutorizada(Matricula modelo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -8,7 +8,6 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
-import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
@@ -73,39 +72,30 @@ public class UsuarioComposer extends AbstractComposer<Usuario>{
 	
 	@Override
 	public void salvaRegistro() {
-		
-		Usuario usuario = (Usuario) Executions.getCurrent().getSession().getAttribute("usuario");
-		
-		if (usuario.isAdministrador()) {
-			
-			super.salvaRegistro();
-			comboboxPessoaFisica.setDisabled(true);
-			
-		} else {
-			Messagebox.show("Esta operação não pode ser efetuada por Usuário sem permissão de Administrador.",
-					"Permissão negada", 1, Messagebox.EXCLAMATION);
-		}
+		super.salvaRegistro();
+		comboboxPessoaFisica.setDisabled(true);
 	}
 	
 	@Override
 	public void excluiRegistro() {
-		
-		Usuario usuario = (Usuario) Executions.getCurrent().getSession().getAttribute("usuario");
-		
-		
-		if (usuario.isAdministrador()) {
-			
-			super.excluiRegistro();
-			comboboxPessoaFisica.setDisabled(false);
-			
-		} else {
-			Messagebox.show("Esta operação não pode ser efetuada por Usuário sem permissão de Administrador.",
-					"Permissão negada", 1, Messagebox.EXCLAMATION);
-		}
+		super.excluiRegistro();
+		comboboxPessoaFisica.setDisabled(false);
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica() throws NamingException{
 		PessoaFisicaDao pessoaFisicaDao = Util.getDao(PessoaFisicaDao.class);
 		return pessoaFisicaDao.findByFiltro(null, null, null);
+	}
+
+	@Override
+	protected boolean isPersistenciaAutorizada(Usuario modelo) {
+		Usuario usuario = (Usuario) Executions.getCurrent().getSession().getAttribute("usuario");
+		return usuario.isAdministrador();
+	}
+
+	@Override
+	protected boolean isExclusaoAutorizada(Usuario modelo) {
+		Usuario usuario = (Usuario) Executions.getCurrent().getSession().getAttribute("usuario");
+		return usuario.isAdministrador();
 	}
 }

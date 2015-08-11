@@ -10,7 +10,12 @@ import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.PessoaFisica;
+import br.com.juris.academico.model.Usuario;
+import br.com.juris.academico.persistence.DocenteDao;
+import br.com.juris.academico.persistence.MatriculaDao;
 import br.com.juris.academico.persistence.PessoaFisicaDao;
+import br.com.juris.academico.persistence.UsuarioDao;
+import br.com.juris.academico.service.Util;
 
 public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 
@@ -41,6 +46,29 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 	}
 	
 	@Override
+	public void salvaRegistro() {
+		
+		try {
+			super.salvaRegistro();
+		} catch (EJBException e) {
+			if (e.getCause().getCause().getCause().getCause().getLocalizedMessage().startsWith(
+					"ERROR: duplicate key value violates unique constraint \"pessoafisica_cpf_key\"")) {
+				throw new WrongValueException(textboxCpf, "O CPF informado já está cadastrado no sistema.");
+			}
+		}
+	}
+
+	@Override
+	public void excluiRegistro() {
+		
+		super.excluiRegistro();
+		
+		if(getModelo().getId() == null){
+			textboxCpf.setDisabled(false);
+		}
+	}
+
+	@Override
 	public void limpaFiltro() {
 		filtroNome.setValue(null);
 		filtroCPF.setRawValue(null);
@@ -57,25 +85,33 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 	}
 	
 	@Override
-	public void salvaRegistro() {
+	protected boolean isPersistenciaAutorizada(PessoaFisica modelo) {
 		
-		try {
-			super.salvaRegistro();
-		} catch (EJBException e) {
-			if (e.getCause().getCause().getCause().getCause().getLocalizedMessage().startsWith(
-					"ERROR: duplicate key value violates unique constraint \"pessoafisica_cpf_key\"")) {
-				throw new WrongValueException(textboxCpf, "O CPF informado já está cadastrado no sistema.");
-			}
-		}
+		Usuario usuario = (Usuario) Executions.getCurrent().getSession().getAttribute("usuario");
+		
+		return usuario.isAdministrador() || !isReferenciado( modelo );
 	}
-	
-	@Override
-	public void excluiRegistro() {
+
+	private boolean isReferenciado(PessoaFisica modelo) {
 		
-		super.excluiRegistro();
+		UsuarioDao usuarioDao = Util.getDao(UsuarioDao.class);
+		DocenteDao docenteDao = Util.getDao(DocenteDao.class);
+		MatriculaDao matriculaDao = Util.getDao(MatriculaDao.class);
 		
-		if(getModelo().getId() == null){
-			textboxCpf.setDisabled(false);
+		// verifica se a Pessoa Física é referenciada por outro Caso de Uso
+		if (!usuarioDao.findByFiltro(null, modelo.getCpf(), null).isEmpty()) {	// Usuário
+			return true;
+		} else if (!docenteDao.findByFiltro(null, modelo.getCpf()).isEmpty()) {	// Docente
+			return true;
+		} else if (matriculaDao.isAluno(modelo.getId())) {						// Matrícula
+			return true;
 		}
+		
+		return false;
+	}
+
+	@Override
+	protected boolean isExclusaoAutorizada(PessoaFisica modelo) {
+		return true; // restrições de integridade são suficientes
 	}
 }

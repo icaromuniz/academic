@@ -11,6 +11,21 @@
 		link.href = 'http://www.jurisconcursos.com/templates/juris_concursos/favicon.ico';
 		document.getElementsByTagName('head')[0].appendChild(link);
 	]]></script>
+	
+	<!-- =============================== -->
+	<!-- Atribuição dos Dados do Usuário -->
+	<!-- =============================== -->
+	<zscript>
+		<![CDATA[
+
+			java.text.DateFormat df = java.text.DateFormat.getDateInstance(java.text.DateFormat.LONG);
+			br.com.juris.academico.model.Usuario u = (br.com.juris.academico.model.Usuario)
+					session.getAttribute("usuario");
+			String data = "Data: " + df.format(new Date());
+			String usuario = "Usuario: " + ( u != null ? u.toString() : "");
+			String permissao = "Perfil: " + (u != null && u.isAdministrador() ? "Administrador" : "Padrão");
+		]]>
+	</zscript>
 
 	<!-- ====================================== -->
 	<!-- Definição das dimensões da notificação -->
@@ -19,13 +34,21 @@
 		.z-notification-content {
 		    width: 400px;
 		    min-height: 30px;
-		    font-size: 20px;
+		    font-size: 15px;
 		}
 	</style>
 	
 	<borderlayout width="1000px">
-		<north style="text-align: center;">
-			<image src="/geral/img/logo.jpg" />
+		<north>
+			<hlayout>
+				<image src="/geral/img/logo.jpg" />
+				<vlayout style="text-align: left; font-weight: bold; font-style: oblique;" vflex="true">
+					<label/>
+					<label value="${data}"/>
+					<label value="${usuario}"/>
+					<label value="${permissao}"/>
+				</vlayout>
+			</hlayout>
 		</north>
 		
 		<west width="200px">

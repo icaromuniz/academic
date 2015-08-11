@@ -84,4 +84,9 @@ public class Usuario extends EntidadeAbstrata {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+	
+	@Override
+	public String toString() {
+		return getPessoaFisica().getCpf() + " - " + getPessoaFisica().getNome();
+	}
 }

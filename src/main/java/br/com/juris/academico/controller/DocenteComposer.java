@@ -85,4 +85,16 @@ public class DocenteComposer extends AbstractComposer<Docente> {
 		PessoaFisicaDao pessoaFisicaDao = Util.getDao(PessoaFisicaDao.class);
 		return pessoaFisicaDao.findByFiltro(null, null, null);
 	}
+
+	@Override
+	protected boolean isPersistenciaAutorizada(Docente modelo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected boolean isExclusaoAutorizada(Docente modelo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

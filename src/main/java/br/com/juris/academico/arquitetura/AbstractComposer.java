@@ -22,7 +22,6 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.ConventionWires;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Include;
-import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.impl.InputElement;
 
@@ -104,63 +103,83 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 	
 	public void salvaRegistro(){
 		
-		Set<ConstraintViolation<T>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator().validate(this.getModelo(), Default.class);
-
-		if(constraintViolations != null && !constraintViolations.isEmpty()){
+		if (isPersistenciaAutorizada(modelo)) {
 			
-			List<WrongValueException> listaExceções = new ArrayList<>();
+			Set<ConstraintViolation<T>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator().validate(this.getModelo(), Default.class);
 			
-			// exibe as violações
-			for (ConstraintViolation<T> cv : constraintViolations) {
-				listaExceções.add(new WrongValueException(getBinder().getView().getFellow(cv.getMessage().split("#")[0].trim()),
-						cv.getMessage().split("#")[1]));
+			if(constraintViolations != null && !constraintViolations.isEmpty()){
+				
+				List<WrongValueException> listaExceções = new ArrayList<>();
+				
+				// exibe as violações
+				for (ConstraintViolation<T> cv : constraintViolations) {
+					listaExceções.add(new WrongValueException(getBinder().getView().getFellow(cv.getMessage().split("#")[0].trim()),
+							cv.getMessage().split("#")[1]));
+				}
+				
+				throw new WrongValuesException(listaExceções.toArray(new WrongValueException[0]));
 			}
 			
-			throw new WrongValuesException(listaExceções.toArray(new WrongValueException[0]));
+			modelo = dao.save(modelo);
+			getBinder().notifyChange(this, "*");
+			Clients.showNotification( "Informações salvas com sucesso!" );
+			
+		} else {
+			Clients.showNotification("Usuário não autorizado a realizar esta operação.", "warning",
+					null, null, 0);
 		}
-		
-		modelo = dao.save(modelo);
-		getBinder().notifyChange(this, "*");
-		Clients.showNotification( "Informações salvas com sucesso!" );
 	}
 	
 	public void excluiRegistro(){
 		
 		if (getModelo().getId() == null) {
-			Messagebox.show("O registro atual não está salvo, portanto não pode ser excluído.", "Exclusão", 1, Messagebox.EXCLAMATION);
+			Clients.showNotification("Impossível excluir. Este registro não está salvo.", "warning", null, null, 0);
 			return;
 		}
 		
-		try {
-			dao.remove(modelo.getId());
-		} catch (EJBTransactionRolledbackException e) {
-
-			// informa que o registro está sendo referenciado
-			if( e.getCause().getCause().getMessage().contains("violates foreign key constraint") ){
-				Clients.showNotification("Este registro não pode ser excluído.", "error", null, null, 0);
-				return;
-			} else {
+		// verifica se o usuário tem permissão
+		if (isExclusaoAutorizada(modelo)) {
+			
+			// executa a exclusão
+			try {
+				dao.remove(modelo.getId());
+			} catch (EJBTransactionRolledbackException e) {
+				
+				// informa que o registro está sendo referenciado
+				if( e.getCause().getCause().getMessage().contains("violates foreign key constraint") ){
+					Clients.showNotification("Este registro não pode ser excluído.", "error", null, null, 0);
+					return;
+				} else {
+					e.printStackTrace();
+				}
+			}
+			
+			// cria um novo registro
+			try {
+				setModelo(classeModelo.newInstance());
+			} catch (InstantiationException | IllegalAccessException e) {
 				e.printStackTrace();
 			}
+			
+			getModelo().setDataCriacao(new Date());
+			getModelo().setUsuarioCriacao( ((Usuario) Executions.getCurrent().getSession().getAttribute("usuario")).getPessoaFisica().getCpf() );
+			
+			getBinder().notifyChange(this, "*");
+			Clients.showNotification( "Exclusão efetuada com sucesso!" );
+			
+		} else {
+			Clients.showNotification("Usuário não autorizado a realizar esta operação.", "warning", null, null, 0);
 		}
-		
-		try {
-			setModelo(classeModelo.newInstance());
-		} catch (InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		
-		getModelo().setDataCriacao(new Date());
-		getModelo().setUsuarioCriacao( ((Usuario) Executions.getCurrent().getSession().getAttribute("usuario")).getPessoaFisica().getCpf() );
-		
-		getBinder().notifyChange(this, "*");
-		Clients.showNotification( "Exclusão efetuada com sucesso!" );
 	}
 	
 	public abstract void limpaFiltro();
 
 	public abstract void filtraLista();
 	
+	protected abstract boolean isPersistenciaAutorizada(T modelo);
+	
+	protected abstract boolean isExclusaoAutorizada(T modelo);
+
 	protected void atribuiPermissaoEdicao(Component component, boolean isEdicaoPermitida){
 		
 		if (component.getChildren() != null) {

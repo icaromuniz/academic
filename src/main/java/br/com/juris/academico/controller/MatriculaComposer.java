@@ -9,6 +9,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Messagebox;
@@ -65,6 +66,11 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	@Override
 	public void salvaRegistro() {
 		
+		if (!getModelo().isMatriculaAtiva()) {
+			Clients.showNotification("Matrícula já cancelada. Operação não permitida.", "warning", null, null, 0);
+			return;
+		}
+		
 		try {
 			
 			super.salvaRegistro();
@@ -92,11 +98,27 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 
 	private void cancelaMatricula(Matricula matricula) {
 		
-		matricula.setMatriculaAtiva(false);
-		matricula.setUsuarioCancelamento((Usuario) Executions.getCurrent().getSession().getAttribute("usuario"));
-		matricula.setDataCancelamento(new Date());
+		if (getModelo().getId() == null) {
+			Clients.showNotification("Impossível excluir. Este registro não está salvo.", "warning", null, null, 0);
+			return;
+		}
 		
-		super.salvaRegistro();
+		if (!getModelo().isMatriculaAtiva()) {
+			Clients.showNotification("Matrícula já cancelada. Operação não permitida.", "warning", null, null, 0);
+			return;
+		}
+		
+		if (isExclusaoAutorizada(getModelo())) {
+			
+			matricula.setMatriculaAtiva(false);
+			matricula.setUsuarioCancelamento((Usuario) Executions.getCurrent().getSession().getAttribute("usuario"));
+			matricula.setDataCancelamento(new Date());
+			
+			super.salvaRegistro();
+			
+		} else {
+			Clients.showNotification("Usuário não autorizado a realizar esta operação.", "warning", null, null, 0);
+		}
 	}
 
 	@Override

@@ -53,7 +53,7 @@ public class Matricula extends EntidadeAbstrata {
 	private Date dataCancelamento;
 	
 	@Column(name="matricula_ativa")
-	private Boolean matriculaAtiva;
+	private Boolean matriculaAtiva = true;
 
 	public Integer getId() {
 		return id;

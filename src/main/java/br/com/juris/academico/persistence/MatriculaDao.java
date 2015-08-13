@@ -14,7 +14,7 @@ public class MatriculaDao extends DaoAbstrato<Matricula> {
 		super(Matricula.class);
 	}
 
-	public List<Matricula> findByFiltro(String nomeAluno, String nomeUnidade, Integer idTurma, String formaPagamento){
+	public List<Matricula> findByFiltro(String nomeAluno, String nomeUnidade, Integer idTurma, String formaPagamento, Boolean matriculaAtiva){
 		
 		String sqlQuery = "select m from Matricula m where true is true ";
 		
@@ -32,6 +32,10 @@ public class MatriculaDao extends DaoAbstrato<Matricula> {
 		
 		if (formaPagamento != null && !formaPagamento.isEmpty()) {
 			sqlQuery += " and m.formaPagamento = '" + formaPagamento + "' ";
+		}
+		
+		if (matriculaAtiva != null) {
+			sqlQuery += " and m.matriculaAtiva = " + matriculaAtiva;
 		}
 		
 		sqlQuery += " order by m.pessoaFisica.nome, m.turma.nome";

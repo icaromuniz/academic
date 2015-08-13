@@ -44,6 +44,7 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	
 	// componentes do list
 	private Textbox filtroNome;
+	private Combobox filtroSituacao;
 	private Combobox filtroUnidade;
 	private Combobox filtroTurma;
 	private Combobox filtroFormaPagamento;
@@ -92,7 +93,7 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	
 	@Override
 	public void excluiRegistro() {
-		Messagebox.show("Confirma o cancelamento da Matrícula?", "Confirmação de Cancelamento", 3,
+		Messagebox.show("Deseja cancelar a Matrícula permanentemente?", "Confirmação", 3,
 				Messagebox.EXCLAMATION, listenerExclusao);
 	}
 
@@ -124,6 +125,7 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	@Override
 	public void limpaFiltro() {
 		filtroNome.setValue(null);
+		filtroSituacao.setSelectedIndex(-1);
 		filtroUnidade.setSelectedIndex(-1);
 		((ListModelList<?>)filtroTurma.getModel()).clearSelection();
 		filtroFormaPagamento.setSelectedIndex(-1);
@@ -131,10 +133,19 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 
 	@Override
 	public void filtraLista() {
+		
+		Boolean filtroMatriculaAtiva = null;
+		
+		if (filtroSituacao.getSelectedItem() != null) {
+			filtroMatriculaAtiva = "Ativa".equals(filtroSituacao.getSelectedItem().getLabel());
+		}
+		
 		setListaModelo(((MatriculaDao)dao).findByFiltro(filtroNome.getValue(), 
 				filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null,
 				filtroTurma.getSelectedItem() != null ? ((Turma)filtroTurma.getSelectedItem().getValue()).getId() : null,
-				filtroFormaPagamento.getSelectedItem() != null ? filtroFormaPagamento.getSelectedItem().getLabel() : null));
+				filtroFormaPagamento.getSelectedItem() != null ? filtroFormaPagamento.getSelectedItem().getLabel() : null,
+				filtroMatriculaAtiva));
+		
 		getBinder().notifyChange(this, "*");
 	}
 	

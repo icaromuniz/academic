@@ -61,13 +61,14 @@
 					<label value="Observação"/>
 					<textbox id="textboxObservacao" style="resize: none;" rows="4" width="100%" value="@bind($composer.modelo.observacao)"/>
 				</row>
-				<row spans="2" align="right" visible="@load($composer.modelo.matriculaAtiva)">
+				<row spans="2" align="right" visible="@load($composer.modelo.matriculaAtiva ? false : true)">
 					<div>
 						<label style="color: red;" value="Matrícula cancelada em "/>
-						<label style="color: red;" value="@load($composer.modelo.dataCancelamento)"/>
+						<label value="@load($composer.modelo.dataCancelamento) @converter('formatedDate', format='dd/MM/yyyy')"
+								 style="color: red;"/>
 					</div>
 				</row>
-				<row spans="2" align="right">
+				<row spans="2" align="right" visible="@load($composer.modelo.matriculaAtiva)">
 					<div>
 						<button label="Contrato" tooltiptext="Emitir Contrato" onClick="$composer.emiteContrato()"/>
 					</div>

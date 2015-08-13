@@ -15,20 +15,25 @@
 			<grid style="border: none; padding: 0px;">
 				<columns>
 					<column hflex="min"/>
-					<column/>
+					<column width="150px"/>
 					<column hflex="min"/>
 					<column/>
 					<column hflex="min"/>
-					<column/>
+					<column width="150px"/>
 				</columns>
 				<rows>
-					<row spans="1,5">
+					<row spans="1,3">
 						<label value="Aluno"/>
 						<textbox id="filtroNome" hflex="true" onOK="$composer.filtraLista()"/>
+						<label value="Situação"/>
+						<combobox id="filtroSituacao" readonly="true" autodrop="true" hflex="true" tooltiptext="Situação da matrícula">
+							<comboitem label="Ativa"/>
+							<comboitem label="Cancelada"/>
+						</combobox>
 					</row>
 					<row>
 						<label value="Unidade"/>
-						<combobox id="filtroUnidade" readonly="true" autodrop="true" onOK="$composer.filtraLista()">
+						<combobox id="filtroUnidade" hflex="true" readonly="true" autodrop="true" onOK="$composer.filtraLista()">
 							<comboitem label="Cohama"/>
 							<comboitem label="Renascença"/>
 						</combobox>
@@ -38,7 +43,7 @@
 								autodrop="true" onOK="$composer.filtraLista()"/>
 						
 						<label value="Pagamento"/>
-						<combobox id="filtroFormaPagamento" readonly="true" autodrop="true" onOK="$composer.filtraLista()">
+						<combobox id="filtroFormaPagamento" hflex="true" readonly="true" autodrop="true" onOK="$composer.filtraLista()">
 							<comboitem label="PagSeguro"/>
 							<comboitem label="Espécie"/>
 							<comboitem label="Cartão de Débito"/>
@@ -61,10 +66,10 @@
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">
-					<listcell label="@load(obj.pessoaFisica.nome)"/>
-					<listcell label="@load(obj.turma.unidade)"/>
-					<listcell label="@load(obj.turma.nome)"/>
-					<listcell label="@load(obj.formaPagamento)"/>
+					<listcell label="@load(obj.pessoaFisica.nome)" style="@load(!obj.matriculaAtiva ? 'font-style: italic;' : 'font-weight: bold;')"/>
+					<listcell label="@load(obj.turma.unidade)" style="@load(!obj.matriculaAtiva ? 'font-style: italic;' : 'font-weight: bold;')"/>
+					<listcell label="@load(obj.turma.nome)" style="@load(!obj.matriculaAtiva ? 'font-style: italic;' : 'font-weight: bold;')"/>
+					<listcell label="@load(obj.formaPagamento)" style="@load(!obj.matriculaAtiva ? 'font-style: italic;' : 'font-weight: bold;')"/>
 				</listitem>
 			</template>
 		</listbox>

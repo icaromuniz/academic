@@ -39,6 +39,7 @@ public class Turma extends EntidadeAbstrata {
 	private Date dataInicio;
 	
 	@Temporal(TemporalType.DATE)
+	@NotNull(message="dateboxTermino#Infomação obrigatória.")
 	private Date dataTermino;
 	
 	@Column(length=50)

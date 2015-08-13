@@ -34,12 +34,17 @@
 				</row>
 				<row>
 					<label value="Término"/>
-					<datebox value="@bind($composer.modelo.dataTermino)"/>
+					<datebox id="dateboxTermino" value="@bind($composer.modelo.dataTermino)"/>
 				</row>
 				<row>
 					<label value="Valor"/>
 					<decimalbox id="decimalboxValor" style="text-align: right;" format=",##0.00" maxlength="10"
 							value="@bind($composer.modelo.valor)"/>
+				</row>
+				<row>
+					<label value="Parcelamento"/>
+					<spinner cols="2" constraint="min 1, max 99" maxlength="2"
+							tooltiptext="Quantidade máxima de parcelas disponível"/>
 				</row>
 			</rows>
 		</grid>

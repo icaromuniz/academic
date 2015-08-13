@@ -18,7 +18,7 @@
 					<column width="150px"/>
 					<column hflex="min"/>
 					<column/>
-					<column hflex="min"/>
+					<column hflex="min" align="center"/>
 					<column width="150px"/>
 				</columns>
 				<rows>

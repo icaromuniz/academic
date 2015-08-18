@@ -16,19 +16,25 @@
 			<rows>
 				<row>
 					<label value="Nome"/>
-					<textbox hflex="true"/>
+					<textbox id="textboxNome" hflex="true" maxlength="100" value="@bind($composer.modelo.nome)"/>
 				</row>
 				<row>
 					<label value="Turma"/>
-					<combobox width="50%"/>
+					<combobox id="comboboxTurma" width="50%" autodrop="true" model="@load($composer.listaTurma)"
+							selectedItem="@bind($composer.modelo.turma)"/>
 				</row>
 				<row>
 					<label value="Docente"/>
-					<combobox hflex="true"/>
+					<combobox id="comboboxDocente" hflex="true" autodrop="true" model="@load($composer.listaDocente)"
+							selectedItem="@bind($composer.modelo.docente)">
+						<template name="model">
+							<comboitem label="${each.pessoaFisica.nome}"/>
+						</template>
+					</combobox>
 				</row>
 				<row>
 					<label value="Ementa"/>
-					<textbox hflex="true" rows="3"/>
+					<textbox hflex="true" rows="4" maxlength="255"/>
 				</row>
 				<row>
 					<label value="Sala"/>

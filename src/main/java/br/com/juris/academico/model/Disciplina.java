@@ -1,22 +1,43 @@
 package br.com.juris.academico.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
+@Entity
 public class Disciplina extends EntidadeAbstrata {
 
 	private static final long serialVersionUID = -7153300919397783095L;
 	
+	@Id
+	@SequenceGenerator(name="seq_disciplina", sequenceName="seq_disciplina", allocationSize=1)
+	@GeneratedValue(generator="seq_disciplina", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
+	@Column(nullable=false, length=100)
+	@NotEmpty(message="textboxNome#Informação obrigatória!")
 	private String nome;
 	
+	@OneToOne
+	@JoinColumn(name="id_turma", nullable=false)
+	@NotNull(message="comboboxTurma#Informação obrigatória!")
 	private Turma turma;
 	
+	@OneToOne
+	@JoinColumn(name="id_docente", nullable=false)
+	@NotNull(message="comboboxDocente#Informação obrigatória!")
 	private Docente docente;
 	
-	@Column(length=300)
 	private String ementa;
 	
 	@Column(length=50)

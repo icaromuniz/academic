@@ -18,7 +18,7 @@
 			<rows>
 				<row>
 					<label value="Pessoa Física" />
-					<combobox id="comboboxPessoaFisica" hflex="true" selectedItem="@bind($composer.modelo.pessoaFisica)">
+					<combobox id="comboboxPessoaFisica" hflex="true" autodrop="true" selectedItem="@bind($composer.modelo.pessoaFisica)">
 						<template name="model">
 							<comboitem label="${each.nome}"/>
 						</template>

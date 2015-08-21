@@ -81,7 +81,7 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 	@Override
 	public void filtraLista() {
 		this.setListaModelo(((PessoaFisicaDao)dao).findByFiltro(filtroNome.getValue(),
-				filtroCPF.getValue() != null && !filtroCPF.getValue().isEmpty() ? Long.parseLong(filtroCPF.getValue()) : null,
+				filtroCPF.getValue() != null && !filtroCPF.getValue().isEmpty() ? filtroCPF.getValue() : null,
 				filtroTelefone.getValue() != null ? filtroTelefone.getValue().longValue() : null));
 
 		getBinder().notifyChange(this, "*");

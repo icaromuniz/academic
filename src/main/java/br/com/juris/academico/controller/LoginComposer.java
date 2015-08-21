@@ -43,7 +43,7 @@ public class LoginComposer extends BindComposer<Component> {
 		}
 		
 		// recupera o usuário cadastrado
-		usuario = usuarioDao.findByAutenticacao(textboxCpf.getValue(), textboxSenha.getValue());
+		usuario = usuarioDao.findByAutenticacao(textboxCpf.getValue(), textboxSenha.getValue(), true);
 		
 		if( usuario != null ){
 			Executions.getCurrent().getSession().setAttribute("usuario", usuario);

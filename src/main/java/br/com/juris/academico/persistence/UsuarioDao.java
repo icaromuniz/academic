@@ -43,10 +43,17 @@ public class UsuarioDao extends DaoAbstrato<Usuario> {
 		return getEm().createQuery(sqlQuery, Usuario.class).getResultList();
 	}
 
-	public Usuario findByAutenticacao(String cpf, String senha) {
+	public Usuario findByAutenticacao(String cpf, String senha, Boolean isAtivo) {
 		try {
-			return getEm().createQuery("select u from Usuario u where u.pessoaFisica.cpf = :cpf and u.senha = :senha", Usuario.class)
-					.setParameter("cpf", cpf).setParameter("senha", senha).getSingleResult();
+			
+			String sqlQuery = "select u from Usuario u where u.pessoaFisica.cpf = :cpf and u.senha = :senha ";
+			
+			if (isAtivo != null) {
+				sqlQuery += "and ativo = " + isAtivo.toString();
+			}
+			
+			return getEm().createQuery(sqlQuery, Usuario.class).setParameter("cpf", cpf).setParameter("senha", senha).getSingleResult();
+			
 		} catch (NoResultException e) {
 			return null;
 		}

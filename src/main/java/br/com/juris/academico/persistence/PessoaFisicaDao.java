@@ -14,7 +14,7 @@ public class PessoaFisicaDao extends DaoAbstrato<PessoaFisica>{
 		super(PessoaFisica.class);
 	}
 
-	public List<PessoaFisica> findByFiltro(String nome, Long cpf, Long telefone) {
+	public List<PessoaFisica> findByFiltro(String nome, String cpf, Long telefone) {
 		
 		String qlString = "select pf from PessoaFisica pf where 1 = 1 ";
 		

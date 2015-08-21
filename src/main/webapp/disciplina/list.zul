@@ -16,7 +16,7 @@
 			<grid style="border: none; padding: 0px;">
 				<columns>
 					<column hflex="min"/>
-					<column/>
+					<column hflex="min"/>
 					<column hflex="min"/>
 					<column/>
 				</columns>

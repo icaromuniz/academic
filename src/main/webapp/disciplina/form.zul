@@ -34,11 +34,11 @@
 				</row>
 				<row>
 					<label value="Ementa"/>
-					<textbox hflex="true" rows="4" maxlength="255"/>
+					<textbox hflex="true" rows="4" maxlength="255" value="@bind($composer.modelo.ementa)"/>
 				</row>
 				<row>
 					<label value="Sala"/>
-					<textbox/>
+					<textbox maxlength="50" value="@bind($composer.modelo.sala)"/>
 				</row>
 			</rows>
 		</grid>

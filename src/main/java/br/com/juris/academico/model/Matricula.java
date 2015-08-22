@@ -10,9 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
+import br.com.juris.academico.persistence.MatriculaDao;
+import br.com.juris.academico.service.Util;
 
 @Entity
 public class Matricula extends EntidadeAbstrata {
@@ -54,6 +57,18 @@ public class Matricula extends EntidadeAbstrata {
 	
 	@Column(name="matricula_ativa")
 	private Boolean matriculaAtiva = true;
+	
+	@AssertTrue(message="comboboxPessoaFisica#Pessoa Física já cadastrada na Turma selecionada.")
+	public boolean isMatriculaPermitida(){
+		
+		// Verifica, na inclusão, se a Pessoa já está matriculada na turma
+		if (this.getId() == null && this.getPessoaFisica() != null && this.getTurma() != null) {
+			MatriculaDao matriculaDao = Util.getDao(MatriculaDao.class);
+			return matriculaDao.isMatriculaPermitida(this.getPessoaFisica().getId(), this.getTurma().getId());
+		}
+		
+		return true;
+	}
 
 	public Integer getId() {
 		return id;

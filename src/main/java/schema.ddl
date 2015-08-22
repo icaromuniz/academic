@@ -4,6 +4,7 @@
         dataCriacao time not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
+        cargaHoraria int4 not null,
         ementa varchar(255),
         nome varchar(100) not null,
         sala varchar(50),

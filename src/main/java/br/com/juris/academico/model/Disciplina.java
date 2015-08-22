@@ -42,6 +42,10 @@ public class Disciplina extends EntidadeAbstrata {
 	
 	@Column(length=50)
 	private String sala;
+	
+	@Column(nullable=false)
+	@NotNull(message="intboxCargaHoraria#Informação obrigatória!")
+	private Integer cargaHoraria;
 
 	@Override
 	public Integer getId() {
@@ -91,5 +95,13 @@ public class Disciplina extends EntidadeAbstrata {
 
 	public void setSala(String sala) {
 		this.sala = sala;
+	}
+
+	public Integer getCargaHoraria() {
+		return cargaHoraria;
+	}
+
+	public void setCargaHoraria(Integer cargaHoraria) {
+		this.cargaHoraria = cargaHoraria;
 	}
 }

@@ -37,6 +37,10 @@
 					<textbox hflex="true" rows="4" maxlength="255" value="@bind($composer.modelo.ementa)"/>
 				</row>
 				<row>
+					<label value="Carga Horária"/>
+					<intbox id="intboxCargaHoraria" style="text-align: right;" cols="5" maxlength="4" value="@bind($composer.modelo.cargaHoraria)"/>
+				</row>
+				<row>
 					<label value="Sala"/>
 					<textbox maxlength="50" value="@bind($composer.modelo.sala)"/>
 				</row>

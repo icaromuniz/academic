@@ -66,10 +66,10 @@
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">
-					<listcell label="@load(obj.pessoaFisica.nome)" style="@load(!obj.matriculaAtiva ? 'font-style: italic;' : 'font-weight: bold;')"/>
-					<listcell label="@load(obj.turma.unidade)" style="@load(!obj.matriculaAtiva ? 'font-style: italic;' : 'font-weight: bold;')"/>
-					<listcell label="@load(obj.turma.nome)" style="@load(!obj.matriculaAtiva ? 'font-style: italic;' : 'font-weight: bold;')"/>
-					<listcell label="@load(obj.formaPagamento)" style="@load(!obj.matriculaAtiva ? 'font-style: italic;' : 'font-weight: bold;')"/>
+					<listcell label="@load(obj.pessoaFisica.nome)" style="@load(!obj.matriculaAtiva ? 'text-decoration: line-through;' : '')"/>
+					<listcell label="@load(obj.turma.unidade)" style="@load(!obj.matriculaAtiva ? 'text-decoration: line-through;' : '')"/>
+					<listcell label="@load(obj.turma.nome)" style="@load(!obj.matriculaAtiva ? 'text-decoration: line-through;' : '')"/>
+					<listcell label="@load(obj.formaPagamento)" style="@load(!obj.matriculaAtiva ? 'text-decoration: line-through;' : '')"/>
 				</listitem>
 			</template>
 		</listbox>

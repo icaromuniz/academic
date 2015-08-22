@@ -105,7 +105,8 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 		
 		if (isPersistenciaAutorizada(modelo)) {
 			
-			Set<ConstraintViolation<T>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator().validate(this.getModelo(), Default.class);
+			Set<ConstraintViolation<T>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator()
+					.validate(this.getModelo(), Default.class);
 			
 			if(constraintViolations != null && !constraintViolations.isEmpty()){
 				
@@ -125,8 +126,7 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 			Clients.showNotification( "Informações salvas com sucesso!" );
 			
 		} else {
-			Clients.showNotification("Usuário não autorizado a realizar esta operação.", "warning",
-					null, null, 0);
+			Clients.showNotification("Usuário não autorizado a realizar esta operação.", "warning", null, null, 0);
 		}
 	}
 	

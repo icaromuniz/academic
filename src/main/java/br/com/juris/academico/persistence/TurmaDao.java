@@ -26,7 +26,7 @@ public class TurmaDao extends DaoAbstrato<Turma> {
 			sqlQuery = sqlQuery.concat("and t.unidade = '" + unidade + "' ");
 		}
 		
-		sqlQuery = sqlQuery.concat("order by t.dataInicio");
+		sqlQuery = sqlQuery.concat("order by t.dataInicio desc, t.dataTermino desc, t.nome");
 		
 		return getEm().createQuery(sqlQuery, Turma.class).getResultList();
 	}
@@ -43,7 +43,7 @@ public class TurmaDao extends DaoAbstrato<Turma> {
 			}
 		}
 		
-		sqlQuery = sqlQuery.concat("order by t.dataInicio");
+		sqlQuery = sqlQuery.concat("order by t.dataInicio desc, t.dataTermino desc, t.nome");
 		
 		return getEm().createQuery(sqlQuery, Turma.class).getResultList();
 	}

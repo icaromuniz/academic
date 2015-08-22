@@ -21,6 +21,10 @@ public class DisciplinaComposer extends AbstractComposer<Disciplina> {
 
 	private static final long serialVersionUID = 2513924180250166084L;
 	
+	// componentes do form
+	Combobox comboboxTurma;
+	Combobox comboboxDocente;
+	
 	// filtros do list
 	Textbox filtroNome;
 	Combobox filtroUnidade;
@@ -28,6 +32,16 @@ public class DisciplinaComposer extends AbstractComposer<Disciplina> {
 
 	public DisciplinaComposer() {
 		super(Disciplina.class);
+	}
+	
+	@Override
+	public void excluiRegistro() {
+		super.excluiRegistro();
+		
+		if (getModelo().getId() == null) {
+			comboboxTurma.setSelectedIndex(-1); 
+			comboboxDocente.setSelectedIndex(-1);
+		}
 	}
 	
 	@Override

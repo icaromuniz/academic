@@ -31,15 +31,15 @@ public class TurmaDao extends DaoAbstrato<Turma> {
 		return getEm().createQuery(sqlQuery, Turma.class).getResultList();
 	}
 
-	public List<Turma> findByDisponibilidade (Boolean isAtiva){
+	public List<Turma> findByDisponibilidade (Boolean isDisponivel){
 		
 		String sqlQuery = "select t from Turma t where true is true ";
 		
-		if (isAtiva != null) {
-			if (isAtiva) {
-				sqlQuery += "and t.dataInicio <= now() and now() <= t.dataTermino  ";
+		if (isDisponivel != null) {
+			if (isDisponivel) {
+				sqlQuery += "and now() <= t.dataTermino  ";	// não encerradas
 			} else {
-				sqlQuery += "and t.dataInicio > now() or t.dataTermino < now() ";
+				sqlQuery += "and t.dataTermino < now() ";	// já encerradas
 			}
 		}
 		

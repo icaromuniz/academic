@@ -40,12 +40,14 @@
 				<listheader label="Nome" sort="auto(nome)"/>
 				<listheader label="Unidade" hflex="min" sort="auto(unidade)"/>
 				<listheader label="Início" hflex="min" sort="auto(dataInicio)"/>
+				<listheader label="Término" hflex="min" sort="auto(dataTermino)"/>
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">
 					<listcell label="@load(obj.nome)"/>
 					<listcell label="@load(obj.unidade)"/>
 					<listcell label="@load(obj.dataInicio) @converter('formatedDate', format='dd/MM/yyyy')"/>
+					<listcell label="@load(obj.dataTermino) @converter('formatedDate', format='dd/MM/yyyy')"/>
 				</listitem>
 			</template>
 		</listbox>

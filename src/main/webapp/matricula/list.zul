@@ -3,7 +3,7 @@
 
 <zk>
 
-	<window id="win" title="Listagem de Matrícula" border="normal" self="@define(content)" vflex="1"
+	<window id="win" title="Listagem de Matrícula" border="normal" self="@define(content)" vflex="1" onOK="$composer.filtraLista()"
 			apply="br.com.juris.academico.controller.MatriculaComposer">
 		<caption style="font-weight: bold;"/>
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>

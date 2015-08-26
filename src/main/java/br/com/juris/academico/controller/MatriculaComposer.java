@@ -1,16 +1,23 @@
 package br.com.juris.academico.controller;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJBTransactionRolledbackException;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+
+import org.apache.commons.collections.map.HashedMap;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
@@ -150,7 +157,23 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	}
 	
 	public void emiteContrato(){
+		
 		System.out.println("contrato");
+		JasperPrint jasperPrint;
+		
+		try {
+			jasperPrint = JasperFillManager.fillReport("", new HashedMap());
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			Filedownload.save(Executions.getCurrent().getDesktop().getWebApp().getRealPath("/relatorio/texte.txt"), "application/pdf");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public List<PessoaFisica> getListaPessoaFisica(){

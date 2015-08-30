@@ -1,16 +1,13 @@
 package br.com.juris.academico.controller;
 
-import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJBTransactionRolledbackException;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperRunManager;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
@@ -158,19 +155,11 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	
 	public void emiteContrato(){
 		
-		System.out.println("contrato");
-		JasperPrint jasperPrint;
-		
 		try {
-			jasperPrint = JasperFillManager.fillReport("", new HashedMap());
+			Filedownload.save(
+					JasperRunManager.runReportToPdf(Executions.getCurrent().getDesktop().getWebApp().getRealPath("/relatorio/contrato.jasper"),null),
+					null, "Contrato.pdf");
 		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			Filedownload.save(Executions.getCurrent().getDesktop().getWebApp().getRealPath("/relatorio/texte.txt"), "application/pdf");
-		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

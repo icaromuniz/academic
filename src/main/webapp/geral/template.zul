@@ -53,7 +53,7 @@
 		</north>
 		
 		<west width="200px">
-			<menubar orient="vertical" hflex="1">
+			<menubar id="menubar" orient="vertical" hflex="1">
 				<menuitem label="Início" href="/index.zul" />
 				<menuitem label="Cadastro de Pessoa Física" href="/pessoafisica/form.zul" />
 				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul" />
@@ -61,7 +61,7 @@
 				<menuitem label="Cadastro de Turma" href="/turma/form.zul" />
 				<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul"/>
 				<menuitem label="Matrícula de Aluno" href="/matricula/form.zul" />
-				<menuitem label="Registro de Aula" disabled="true" />
+				<menuitem label="Registro de Aula" href="/aula/form.zul" disabled="true" />
 				<menu label="Relatório">
 					<menupopup>
 						<menuitem label="Emitir Contrato" disabled="true" />

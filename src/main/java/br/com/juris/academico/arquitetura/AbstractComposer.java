@@ -98,6 +98,8 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 		// coloca o foco no primeiro Input da página
 		recuperaPrimeiroInput(comp).focus();
 		
+//		TODO Destacar o item do menu correspondente à window
+		
 		getBinder().notifyChange(this, "*");
 	}
 	

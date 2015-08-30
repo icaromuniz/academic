@@ -1,6 +1,7 @@
 package br.com.juris.academico.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJBTransactionRolledbackException;
@@ -155,10 +156,20 @@ public class MatriculaComposer extends AbstractComposer<Matricula> {
 	
 	public void emiteContrato(){
 		
+		HashMap<String, Object> hashMap = new HashMap<>();
+		
+		// verifica se a matrícula está salva
+		if (getModelo().getId() == null) {
+			Clients.showNotification("Salve a Matrícula para emitir o Contrato.", "error", null, null, 0);
+			return;
+		}
+		
+		hashMap.put("nomeAluno", getModelo().getPessoaFisica().getNome());
+		hashMap.put("idMatricula", getModelo().getId());
+		
 		try {
-			Filedownload.save(
-					JasperRunManager.runReportToPdf(Executions.getCurrent().getDesktop().getWebApp().getRealPath("/relatorio/contrato.jasper"),null),
-					null, "Contrato.pdf");
+			Filedownload.save( JasperRunManager.runReportToPdf(
+					Executions.getCurrent().getDesktop().getWebApp().getRealPath("/relatorio/contrato.jasper"), hashMap), null, "Contrato.pdf");
 		} catch (JRException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

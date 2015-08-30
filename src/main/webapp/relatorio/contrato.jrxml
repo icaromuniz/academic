@@ -1,35 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contrato" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="623e3531-48d5-4f60-8f8a-cd6d78e2eca1">
-	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.zoom" value="1.948717100000002"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="1099"/>
+	<parameter name="nomeAluno" class="java.lang.String"/>
+	<parameter name="idMatricula" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="802" splitType="Stretch">
 			<staticText>
-				<reportElement x="160" y="38" width="100" height="20" uuid="1b8a18c6-b42b-4900-86de-31a1905c7858"/>
-				<text><![CDATA[Static text]]></text>
+				<reportElement x="403" y="0" width="152" height="33" uuid="1b8a18c6-b42b-4900-86de-31a1905c7858"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRATO]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="0" y="12" width="403" height="12" uuid="56a80fd1-6e35-422f-83db-fe8fb26588c1"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Contratado: JURIS CONCURSOS LTDA.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="33" width="555" height="676" uuid="69223cde-db5d-4d21-829f-c91756ee1a28"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[JÚRIS CONCURSOS LTDA, com sede em São Luís do Maranhão, CNPJ no 07.499.027/0001-10, doravante denominado simplesmente contratado, por seu representante legal, na Unidade São Luís-MA, no final assinado, têm entre si justo e acordado o presente CONTRATO DE PRESTAÇÃO DE SERVIÇOS, que se regerá pelas cláusulas seguintes:
+
+CLÁUSULA PRIMEIRA – DO OBJETO
+O presente contrato visa viabilizar a efetivação da PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS, através do CURSOPREPARATÓRIO para a turma definida na FICHA DE MATRÍCULA, de acordo com as condições ali estabelecidas.
+
+CLÁUSULA SEGUNDA – DA RESPONSABILIDADE
+É atribuição e responsabilidade do CONTRATADO o planejamento e a prestação dos serviços educacionais, a designação de docentes qualificados, a orientação didático-pedagógico e a educacional e demais providências necessárias ao bom desenvolvimento dos programas, nos termos das normas legais e regimentais.
+
+CLÁUSULA TERCEIRA – DO INVESTIMENTO
+O valor total do curso, objeto do presente CONTRATO, é de R$ __________, podendo ser parcelado em até ____x no cartão, observadas as condições estabelecidas na descrição do Curso contratado. O curso contratado terá duração aproximada de _____ dias, com data inicial prevista de ____/____/20____ e data final prevista de ____/____/20____. Esta poderá ser alterada de acordo com o cumprimento do conteúdo programático.
+Parágrafo Único: Os valores cobrados neste Contrato dizem respeito à totalidade do Curso Preparatório em epígrafe, tratando-se, o parcelamento do montante, mera liberdade do Contratado, razão pela qual não se procederá a qualquer desconto ou abatimento aos dias de aula efetivamente assistidos pelo aluno, sendo de inteira responsabilidade a frequência às aulas ministradas.
+
+CLÁUSULA QUARTA – NÃO FORMAÇÃO DA TURMA
+O curso, objeto do presente CONTRATO, não terá início caso não se complete o número mínimo de 50% (cinquenta por cento) do número previsto de alunos para a turma,sendo assegurado o ressarcimento ao CLIENTE, em caso de cancelamento do curso, dos valores recebidos pelo CONTRATADO, a título de taxa de matrícula.
+
+CLÁUSULA QUINTA – DESISTÊNCIA DO CURSO
+Iniciado o curso, somente haverá devolução de valores pagos caso haja a suspensão dos serviços educacionais prestados ou, quando devidamente justificado, sendo descontados Taxa de Administração de 30% do valor total do curso, material didático e valor proporcional às aulas já ocorridas. Mesmo neste caso, não haverá cancelamento após transcorrido o tempo referente a 50% da duração total do curso. Não haverá cancelamento da matrícula por quaisquer outros fatores, como desistência, mudança de domicílio ou razões particulares, não tendo, por consequência, a devolução de valores já pagos.
+
+CLÁUSULA SEXTA – DURAÇÃO DO CONTRATO E MOTIVOS DE RESCISÃO
+O presente CONTRATO vigorará até a total quitação do mesmo, independentemente do tempo de duração do Curso, constituído para sua rescisão:
+· Ocorrência de caso fortuito ou força maior, nos termos da legislação civil.
+· Inobservância de qualquer das obrigações estipuladas.
+· A inadimplência do CLIENTE, quando pagamento efeito por cheque ou promissória, por prazo igual ou superior a 30 (trinta) dias, independentemente de notificação, sem prejuízo da cobrança através das medidas judiciais cabíveis.
+
+CLÁUSULA SÉTIMA – ANEXOS
+Ficam fazendo parte integrante deste contrato, inclusive para os fins de fixar direitos e obrigações, os ANEXOS I – MANUAL DO ALUNO e II – CONTEÚDO PROGRAMÁTICO E CARGA HORÁRIA DO CURSO, que serão entregues no ato da matricula.
+
+CLÁUSULA OITAVA – DO FORO
+Para dirimir quaisquer dúvidas ou litígios decorrentes do presente contrato, fica eleito o foro de São Luís-MA, com renúncia expressa de qualquer outro, por mais privilegiado que seja. E, por estarem assim justas e contratadas, as partes assinam o presente CONTRATO.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="403" height="12" uuid="4006c7b1-02c0-42ea-9c92-81c704497b58"/>
+				<textFieldExpression><![CDATA["CLIENTE: " + $P{nomeAluno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="709" width="555" height="20" uuid="3dce3cb1-902d-459a-9c53-5198d8dcc9d4"/>
+				<textFieldExpression><![CDATA["São Luis, " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " de " +
+new java.text.SimpleDateFormat("MMMM").format(new Date()) + " de " +
+Calendar.getInstance().get(Calendar.YEAR)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="766" width="555" height="20" uuid="6939c750-c96c-47eb-a2c3-a7087e1e58b9"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[JÚRIS CONCURSOS: _________________________ CLIENTE: __________________________________]]></text>
+			</staticText>
+			<textField pattern="0000">
+				<reportElement x="455" y="786" width="100" height="16" uuid="7ebc9e4d-135d-4801-ae2f-b5a0ed4298d0"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idMatricula}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch"/>
-	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

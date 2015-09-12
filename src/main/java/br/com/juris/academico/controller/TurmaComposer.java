@@ -9,7 +9,9 @@ import org.zkoss.zul.Textbox;
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Turma;
 import br.com.juris.academico.model.Usuario;
+import br.com.juris.academico.persistence.MatriculaDao;
 import br.com.juris.academico.persistence.TurmaDao;
+import br.com.juris.academico.service.Util;
 
 public class TurmaComposer extends AbstractComposer<Turma> {
 
@@ -52,6 +54,18 @@ public class TurmaComposer extends AbstractComposer<Turma> {
 		setListaModelo(((TurmaDao)dao).findByFiltro(filtroNome.getValue(),
 				filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null));
 		getBinder().notifyChange(this, "*");
+	}
+	
+	public Integer getQuantidadeMatriculada(){
+
+		int quantidadeMatriculada = 0;
+		
+		if (this.getModelo() != null && this.getModelo().getId() != null) {
+			MatriculaDao matriculaDao = Util.getDao(MatriculaDao.class);
+			quantidadeMatriculada = matriculaDao.findByFiltro(null, null, getModelo().getId(), null, true).size();
+		}
+		
+		return quantidadeMatriculada;
 	}
 
 	@Override

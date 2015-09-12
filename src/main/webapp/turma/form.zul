@@ -51,14 +51,14 @@
 		
 		<separator/>
 		
-		<groupbox open="false">
+		<groupbox>
 			<caption>Sumário</caption>
-			<vbox>
-				<label value="Quantidade atual de disciplinas: ???"/>
-				<label value="Quantidade de alunos matriculados: ???"/>
-				<label value="Quantidade de aulas realizadas no mês: ???"/>
-				<label value="Quantidade de aulas realizadas no ano: ???"/>
-			</vbox>
+			<hlayout>
+				<label value="Alunos matriculados: "/> <label style="font-weight: bold" value="@load($composer.quantidadeMatriculada)"/>
+			</hlayout>
+			<hlayout>
+				<label value="Aulas realizadas: "/>
+			</hlayout>
 		</groupbox>
 	</window>
 </zk>

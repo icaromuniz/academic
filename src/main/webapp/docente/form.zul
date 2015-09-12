@@ -57,10 +57,9 @@
 		<groupbox open="false">
 			<caption>Sumário</caption>
 			<vbox>
-				<label value="Quantidade atual de disciplinas: ???"/>
-				<label value="Quantidade total de alunos: ???"/>
-				<label value="Quantidade de aulas ministradas no mês: ???"/>
-				<label value="Quantidade de aulas ministradas no ano: ???"/>
+				<label value="Quantidade de disciplinas: ???"/>
+				<label value="Quantidade de alunos: ???"/>
+				<label value="Aulas ministradas: ???"/>
 			</vbox>
 		</groupbox>
 	</window>

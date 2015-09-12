@@ -46,8 +46,8 @@ public class Turma extends EntidadeAbstrata {
 	private String sala;
 	
 	@NotNull(message="decimalboxValor#Informação obrigatória.")
-	private BigDecimal valor; 
-
+	private BigDecimal valor;
+	
 	public Integer getId() {
 		return id;
 	}

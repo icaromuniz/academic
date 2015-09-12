@@ -1,20 +1,26 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<window id="win" title="Início" border="normal" self="@define(content)" vflex="1">
+	<window id="win" title="Início" border="normal" self="@define(content)" vflex="1" apply="br.com.juris.academico.controller.IndexComposer">
 		<caption style="font-weight: bold;"/>
 		<groupbox>
 			<caption>Últimas Notícias</caption>
 			...
 		</groupbox>
+		
 		<separator/>
+		
 		<grid>
+			<auxhead>
+				<auxheader colspan="4" label="Turmas em Andamento"/>
+			</auxhead>
 			<columns>
 				<column label="Unidade"/>
-				<column label="Turma"/>
+				<column label="Nome"/>
 				<column label="Início"/>
 				<column label="Alunos"/>
 			</columns>
+			
 			<rows>
 				<row>
 					<label value="Renascença"/>
@@ -48,8 +54,9 @@
 				</row>
 			</rows>
 		</grid>
+			
 		<groupbox>
-			<caption>Próximas Turmas</caption>
+			<caption style="font-weight: bold" label="Próximas Turmas"/>
 			...
 		</groupbox>
 		<groupbox>

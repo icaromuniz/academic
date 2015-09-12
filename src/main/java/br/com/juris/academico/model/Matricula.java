@@ -58,7 +58,7 @@ public class Matricula extends EntidadeAbstrata {
 	@Column(name="matricula_ativa")
 	private Boolean matriculaAtiva = true;
 	
-	@AssertTrue(message="comboboxPessoaFisica#Pessoa Física já cadastrada na Turma selecionada.")
+	@AssertTrue(message="comboboxPessoaFisica#Pessoa Física já matriculada na Turma selecionada.")
 	public boolean isMatriculaPermitida(){
 		
 		// Verifica, na inclusão, se a Pessoa já está matriculada na turma

@@ -39,44 +39,51 @@
 		}
 	</style>
 	
-	<borderlayout width="1000px">
-		<north>
-			<hlayout>
-				<image src="/geral/img/logo.jpg" />
-				<vlayout style="text-align: left; font-weight: bold; font-style: oblique;" vflex="true">
-					<label/>
-					<label value="${data}"/>
-					<label value="${usuario}"/>
-					<label value="${permissao}"/>
-				</vlayout>
-			</hlayout>
-		</north>
-		
-		<west width="200px">
-			<menubar id="menubar" orient="vertical" hflex="1">
-				<menuitem label="Início" href="/index.zul" />
-				<menuitem label="Cadastro de Pessoa Física" href="/pessoafisica/form.zul" />
-				<menuitem label="Cadastro de Usuário" href="/usuario/form.zul" />
-				<menuitem label="Cadastro de Docente" href="/docente/form.zul" />
-				<menuitem label="Cadastro de Turma" href="/turma/form.zul" />
-				<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul"/>
-				<menuitem label="Matrícula de Aluno" href="/matricula/form.zul" />
-				<menuitem label="Registro de Aula" href="/aula/form.zul" disabled="true" />
-				<menu label="Relatório">
-					<menupopup>
-						<menuitem label="Emitir Contrato" disabled="true" />
-						<menuitem label="Balanço de Turma" disabled="true" />
-						<menuitem label="Histórico do Aluno" disabled="true" tooltiptext="Emite o histórico"/>
-					</menupopup>
-				</menu>
-				<menuitem label="Sair" apply="br.com.juris.academico.controller.LoginComposer" onClick='$composer.executaLogout()'/>
-			</menubar>
-		</west>
-
-		<center id="mainContent" autoscroll="true" border="normal" self="@insert(content)" />
-
-		<south>
-			<image src="/geral/img/rodape.png" hflex="true" />
-		</south>
-	</borderlayout>
+	<hbox height="100%" width="100%">
+	
+		<cell hflex="true"/>
+	
+		<borderlayout width="1000px">
+			<north>
+				<hlayout>
+					<image src="/geral/img/logo.jpg" />
+					<vlayout style="text-align: left; font-weight: bold; font-style: oblique;" vflex="true">
+						<label/>
+						<label value="${data}"/>
+						<label value="${usuario}"/>
+						<label value="${permissao}"/>
+					</vlayout>
+				</hlayout>
+			</north>
+			
+			<west width="200px">
+				<menubar id="menubar" orient="vertical" hflex="1">
+					<menuitem label="Início" href="/index.zul" />
+					<menuitem label="Cadastro de Pessoa Física" href="/pessoafisica/form.zul" />
+					<menuitem label="Cadastro de Usuário" href="/usuario/form.zul" />
+					<menuitem label="Cadastro de Docente" href="/docente/form.zul" />
+					<menuitem label="Cadastro de Turma" href="/turma/form.zul" />
+					<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul"/>
+					<menuitem label="Matrícula de Aluno" href="/matricula/form.zul" />
+					<menuitem label="Registro de Aula" href="/aula/form.zul" disabled="true" />
+					<menu label="Relatório">
+						<menupopup>
+							<menuitem label="Emitir Contrato" disabled="true" />
+							<menuitem label="Balanço de Turma" disabled="true" />
+							<menuitem label="Histórico do Aluno" disabled="true" tooltiptext="Emite o histórico"/>
+						</menupopup>
+					</menu>
+					<menuitem label="Sair" apply="br.com.juris.academico.controller.LoginComposer" onClick='$composer.executaLogout()'/>
+				</menubar>
+			</west>
+	
+			<center id="mainContent" autoscroll="true" border="normal" self="@insert(content)" />
+	
+			<south>
+				<image src="/geral/img/rodape.png" hflex="true" />
+			</south>
+		</borderlayout>
+	
+		<cell hflex="true"/>
+	</hbox>
 </zk>

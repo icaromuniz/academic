@@ -65,10 +65,10 @@
 					<menuitem label="Cadastro de Turma" href="/turma/form.zul" />
 					<menuitem label="Cadastro de Disciplina" href="/disciplina/form.zul"/>
 					<menuitem label="Matrícula de Aluno" href="/matricula/form.zul" />
-					<menuitem label="Registro de Aula" href="/aula/form.zul" disabled="true" />
+					<menuitem label="Registro de Aula" href="/aula/form.zul"/>
 					<menu label="Relatório">
 						<menupopup>
-							<menuitem label="Emitir Contrato" disabled="true" />
+							<menuitem label="Fechamento Diário" disabled="true" />
 							<menuitem label="Balanço de Turma" disabled="true" />
 							<menuitem label="Histórico do Aluno" disabled="true" tooltiptext="Emite o histórico"/>
 						</menupopup>

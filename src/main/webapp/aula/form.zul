@@ -1,0 +1,41 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+	<window id="win" title="Registro de Aula Ministrada" border="normal" self="@define(content)" vflex="1" 
+			apply="br.com.juris.academico.controller.AulaComposer">
+			
+		<caption style="font-weight: bold;"/>
+		
+		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
+		
+		<grid style="border: none;">
+			<columns>
+				<column hflex="min"/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<label value="Data"/>
+					<datebox/>
+				</row>
+				<row>
+					<label value="Unidade"/>
+					<combobox/>
+				</row>
+				<row>
+					<label value="Turma"/>
+					<combobox/>
+				</row>
+				<row>
+					<label value="Disciplina"/>
+					<combobox/>
+				</row>
+				<row>
+					<label value="Docente"/>
+					<combobox/>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

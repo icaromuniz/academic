@@ -1,0 +1,57 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+
+	<window id="win" title="Listagem Aulas Ministradas" border="normal" self="@define(content)" vflex="1"
+			apply="br.com.juris.academico.controller.AulaComposer">
+		<caption style="font-weight: bold;"/>
+		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
+		
+		<groupbox style="padding-top: 5px;">
+		
+			<caption label="Filtro"/>
+			
+			<grid style="border: none; padding: 0px;">
+				<columns>
+					<column hflex="min"/>
+					<column hflex="min"/>
+					<column hflex="min" align="center"/>
+					<column/>
+				</columns>
+				<rows>
+					<row>
+						<label value="Data"/>
+						<datebox/>
+						<label value="Docente"/>
+						<textbox hflex="true"/>
+					</row>
+					<row>
+						<label value="Unidade"/>
+						<combobox/>
+						<label value="Turma"/>
+						<combobox hflex="true"/>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		
+		<separator/>
+		
+		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="@bind($composer.listaModelo)" selectedItem="@bind($composer.modelo)"
+				onSelect='Executions.sendRedirect("/aula/form.zul?ref=" + self.getSelectedItem().getValue().getId())'>
+			<listhead>
+				<listheader label="Data" hflex="min"/>
+				<listheader label="Docente"/>
+				<listheader label="Unidade" hflex="min"/>
+				<listheader label="Turma"/>
+			</listhead>
+			<template name="model" var="obj">
+				<listitem value="@bind(obj)">
+					<listcell label="@load(obj.pessoaFisica.nome)"/>
+					<listcell label="@load(obj.pessoaFisica.cpf)"/>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

@@ -23,6 +23,7 @@ public class TurmaComposer extends AbstractComposer<Turma> {
 	// componentes do list
 	private Textbox filtroNome;
 	private Combobox filtroUnidade;
+	private Combobox filtroSituacao;
 	
 	public TurmaComposer() {
 		super(Turma.class);
@@ -47,12 +48,14 @@ public class TurmaComposer extends AbstractComposer<Turma> {
 	public void limpaFiltro() {
 		filtroNome.setValue(null);
 		filtroUnidade.setSelectedIndex(-1);
+		filtroSituacao.setSelectedIndex(-1);
 	}
 
 	@Override
 	public void filtraLista() {
 		setListaModelo(((TurmaDao)dao).findByFiltro(filtroNome.getValue(),
-				filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null));
+				filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null,
+				filtroSituacao.getSelectedItem() != null ? "Aberta".equals(filtroSituacao.getSelectedItem().getLabel()) : null));
 		getBinder().notifyChange(this, "*");
 	}
 	

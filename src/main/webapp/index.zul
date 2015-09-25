@@ -2,66 +2,52 @@
 
 <zk>
 	<window id="win" title="Início" border="normal" self="@define(content)" vflex="1" apply="br.com.juris.academico.controller.IndexComposer">
+	
 		<caption style="font-weight: bold;"/>
-		<groupbox>
-			<caption>Últimas Notícias</caption>
-			...
+	
+		<groupbox open="false" closable="false">
+			<caption style="font-weight: bold; font-style: italic;" label="Últimas Aulas"/>
 		</groupbox>
+		
+		<div align="center" style="padding: 15px;">
+			<listbox model="@load($composer.listaUltimasAulas)">
+				<listhead>
+					<listheader label="Disciplina" align="center"/>
+					<listheader label="Professor" align="center"/>
+					<listheader label="Turma" align="center"/>
+				</listhead>
+			</listbox>
+		</div>
 		
 		<separator/>
 		
-		<grid>
-			<auxhead>
-				<auxheader colspan="4" label="Turmas em Andamento"/>
-			</auxhead>
-			<columns>
-				<column label="Unidade"/>
-				<column label="Nome"/>
-				<column label="Início"/>
-				<column label="Alunos"/>
-			</columns>
-			
-			<rows>
-				<row>
-					<label value="Renascença"/>
-					<label value="Manhã 01"/>
-					<label value="01/01/2015"/>
-					<label value="100"/>
-				</row>
-				<row>
-					<label value="Renascença"/>
-					<label value="Manhã 02"/>
-					<label value="01/01/2015"/>
-					<label value="100"/>
-				</row>
-				<row>
-					<label value="Renascença"/>
-					<label value="Tarde 01"/>
-					<label value="01/01/2015"/>
-					<label value="100"/>
-				</row>
-				<row>
-					<label value="Renascença"/>
-					<label value="Noite 01"/>
-					<label value="01/01/2015"/>
-					<label value="100"/>
-				</row>
-				<row>
-					<label value="Cohama"/>
-					<label value="Manhã 01"/>
-					<label value="01/01/2015"/>
-					<label value="100"/>
-				</row>
-			</rows>
-		</grid>
-			
-		<groupbox>
-			<caption style="font-weight: bold" label="Próximas Turmas"/>
-			...
+		<groupbox open="false" closable="false">
+			<caption style="font-weight: bold; font-style: italic;" label="Turmas Abertas"/>
 		</groupbox>
-		<groupbox>
-			<caption>Próximos Concursos</caption>
-			...
+		
+		<div align="center" style="padding: 15px;">
+			<listbox model="@load($composer.listaTurmasAbertas)">
+				<listhead>
+					<listheader label="Nome" align="center"/>
+					<listheader label="Unidade" align="center"/>
+					<listheader label="Término" align="center"/>
+					<listheader label="Alunos" align="center"/>
+				</listhead>
+				<template name="model" var="turma">
+					<listitem value="@bind(turma)">
+						<listcell label="@load(turma.nome)"/>
+						<listcell label="@load(turma.unidade)"/>
+						<listcell label="@load(turma.dataTermino)"/>
+						<listcell label="@load(turma.nome)"/>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+		
+		<separator/>
+		
+		<groupbox open="false" closable="false">
+			<caption style="font-weight: bold; font-style: italic;" label="Próximas Turmas"/>
 		</groupbox>
 	</window>
 </zk>

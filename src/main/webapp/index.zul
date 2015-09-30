@@ -1,7 +1,7 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
 
 <zk>
-	<window id="win" title="Início" border="normal" self="@define(content)" vflex="1" apply="br.com.juris.academico.controller.IndexComposer">
+	<window id="win" title="Início" border="normal" self="@define(content)" vflex="true" apply="br.com.juris.academico.controller.IndexComposer">
 	
 		<caption style="font-weight: bold;"/>
 	
@@ -25,8 +25,8 @@
 			<caption style="font-weight: bold; font-style: italic;" label="Turmas Abertas"/>
 		</groupbox>
 		
-		<div align="center" style="padding: 15px;">
-			<listbox model="@load($composer.listaTurmasAbertas)">
+		<div align="center" style="padding: 15px;" vflex="true">
+			<listbox model="@load($composer.listaTurmasAbertas)" vflex="true">
 				<listhead>
 					<listheader label="Nome" align="center"/>
 					<listheader label="Unidade" align="center"/>
@@ -41,6 +41,12 @@
 						<listcell label="@load(turma.nome)"/>
 					</listitem>
 				</template>
+				<listfoot>
+					<listfooter span="3" label="Total:" align="left"/>
+					<listfooter>
+						<label value="000"/>
+					</listfooter>
+				</listfoot>
 			</listbox>
 		</div>
 		

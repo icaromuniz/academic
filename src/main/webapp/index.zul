@@ -22,29 +22,29 @@
 		<separator/>
 		
 		<groupbox open="false" closable="false">
-			<caption style="font-weight: bold; font-style: italic;" label="Turmas Abertas"/>
+			<caption style="font-weight: bold; font-style: italic;" label="Turmas em Andamento"/>
 		</groupbox>
 		
 		<div align="center" style="padding: 15px;" vflex="true">
 			<listbox model="@load($composer.listaTurmasAbertas)" vflex="true">
 				<listhead>
-					<listheader label="Nome" align="center"/>
-					<listheader label="Unidade" align="center"/>
-					<listheader label="Término" align="center"/>
-					<listheader label="Alunos" align="center"/>
+					<listheader label="Nome" align="center" sort="auto(nome)" width="40%"/>
+					<listheader label="Unidade" align="center" sort="auto(unidade)"/>
+					<listheader label="Término" align="center" sort="auto(dataTermino)"/>
+					<listheader label="Alunos" align="center" sort="auto(nome)"/>
 				</listhead>
 				<template name="model" var="turma">
 					<listitem value="@bind(turma)">
 						<listcell label="@load(turma.nome)"/>
 						<listcell label="@load(turma.unidade)"/>
 						<listcell label="@load(turma.dataTermino)"/>
-						<listcell label="@load(turma.nome)"/>
+						<listcell label="???"/>
 					</listitem>
 				</template>
 				<listfoot>
 					<listfooter span="3" label="Total:" align="left"/>
 					<listfooter>
-						<label value="000"/>
+						<label value="???"/>
 					</listfooter>
 				</listfoot>
 			</listbox>

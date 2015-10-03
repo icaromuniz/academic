@@ -6,11 +6,11 @@
 		<caption style="font-weight: bold;"/>
 	
 		<groupbox open="false" closable="false">
-			<caption style="font-weight: bold; font-style: italic;" label="Últimas Aulas"/>
+			<caption style="font-weight: bold; font-style: italic;" label="Últimas Aulas Ministradas"/>
 		</groupbox>
 		
-		<div align="center" style="padding: 15px;">
-			<listbox model="@load($composer.listaUltimasAulas)">
+		<div align="center" style="padding: 15px;" vflex="true">
+			<listbox model="@load($composer.listaUltimasAulas)" vflex="true">
 				<listhead>
 					<listheader label="Disciplina" align="center"/>
 					<listheader label="Professor" align="center"/>
@@ -30,23 +30,17 @@
 				<listhead>
 					<listheader label="Nome" align="center" sort="auto(nome)" width="40%"/>
 					<listheader label="Unidade" align="center" sort="auto(unidade)"/>
+					<listheader label="Início" align="center" sort="auto(dataInicio)"/>
 					<listheader label="Término" align="center" sort="auto(dataTermino)"/>
-					<listheader label="Alunos" align="center" sort="auto(nome)"/>
 				</listhead>
 				<template name="model" var="turma">
 					<listitem value="@bind(turma)">
 						<listcell label="@load(turma.nome)"/>
 						<listcell label="@load(turma.unidade)"/>
+						<listcell label="@load(turma.dataInicio)"/>
 						<listcell label="@load(turma.dataTermino)"/>
-						<listcell label="???"/>
 					</listitem>
 				</template>
-				<listfoot>
-					<listfooter span="3" label="Total:" align="left"/>
-					<listfooter>
-						<label value="???"/>
-					</listfooter>
-				</listfoot>
 			</listbox>
 		</div>
 		
@@ -55,5 +49,16 @@
 		<groupbox open="false" closable="false">
 			<caption style="font-weight: bold; font-style: italic;" label="Próximas Turmas"/>
 		</groupbox>
+		
+		<div align="center" style="padding: 15px;" vflex="true">
+			<listbox model="@load($composer.listaUltimasAulas)" vflex="true">
+				<listhead>
+					<listheader label="Nome" align="center" sort="auto(nome)" width="40%"/>
+					<listheader label="Unidade" align="center" sort="auto(unidade)"/>
+					<listheader label="Término" align="center" sort="auto(dataTermino)"/>
+					<listheader label="Alunos" align="center" sort="auto(nome)"/>
+				</listhead>
+			</listbox>
+		</div>
 	</window>
 </zk>

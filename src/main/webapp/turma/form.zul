@@ -46,6 +46,11 @@
 					<spinner cols="2" constraint="min 1, max 99" maxlength="2"
 							tooltiptext="Quantidade máxima de parcelas disponível"/>
 				</row>
+				<!-- <row spans="2" align="right">
+					<div>
+						<button label="Contatos" tooltiptext="Relatório com os contatos dos alunos matriculados" onClick="$composer.emiteContatos()"/>
+					</div>
+				</row> -->
 			</rows>
 		</grid>
 		

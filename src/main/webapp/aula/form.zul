@@ -17,23 +17,28 @@
 			<rows>
 				<row>
 					<label value="Data"/>
-					<datebox/>
+					<datebox id="dateboxDataAula" value="@bind($composer.modelo.data)"/>
 				</row>
 				<row>
 					<label value="Unidade"/>
-					<combobox/>
+					<combobox readonly="true" autodrop="true">
+						<comboitem label="Cohama"/>
+						<comboitem label="Renascença"/>
+					</combobox>
 				</row>
 				<row>
 					<label value="Turma"/>
-					<combobox/>
+					<combobox model="@load($composer.listaTurma)" readonly="true" autodrop="true"/>
 				</row>
 				<row>
 					<label value="Disciplina"/>
-					<combobox/>
+					<combobox id="comboboxDisciplina" readonly="true" autodrop="true" model="@load($composer.listaDisciplina)"
+							value="@bind($composer.modelo.disciplina)"/>
 				</row>
 				<row>
 					<label value="Docente"/>
-					<combobox/>
+					<combobox id="comboboxDocente" readonly="true" autodrop="true" model="@load($composer.listaDocente)"
+							value="@bind($composer.modelo.disciplina)"/>
 				</row>
 			</rows>
 		</grid>

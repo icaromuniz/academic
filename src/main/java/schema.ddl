@@ -1,4 +1,15 @@
 
+    create table Aula (
+        id int4 not null,
+        dataCriacao time not null,
+        usuarioCriacao varchar(11) not null,
+        versao int4 not null,
+        data timestamp not null,
+        id_disciplina int4 not null,
+        id_docente int4 not null,
+        primary key (id)
+    );
+
     create table Disciplina (
         id int4 not null,
         dataCriacao time not null,
@@ -92,6 +103,16 @@
         primary key (id)
     );
 
+    alter table Aula 
+        add constraint FK1F50C9B7D9972F 
+        foreign key (id_disciplina) 
+        references Disciplina;
+
+    alter table Aula 
+        add constraint FK1F50C9C5E5D32D 
+        foreign key (id_docente) 
+        references Docente;
+
     alter table Disciplina 
         add constraint FK8C4D778CC5E5D32D 
         foreign key (id_docente) 
@@ -130,6 +151,8 @@
     create sequence SEQ_USUARIO;
 
     create sequence SE_DOCENTE;
+
+    create sequence seq_aula;
 
     create sequence seq_disciplina;
 

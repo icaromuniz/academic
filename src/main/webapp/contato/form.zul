@@ -1,0 +1,38 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/geral/template.zul"?>
+
+<zk>
+	<window title="Relatório de Contatos dos Alunos" border="normal" self="@define(content)" vflex="1"
+			apply="br.com.juris.academico.controller.ContatoComposer">
+			
+	<caption style="font-weight: bold;"/>
+		
+	<hlayout style="text-align: right;">
+		<button id="buttonLimpar" label="Limpar" onClick="$composer.limpaFiltro()" tooltiptext="Limpa os filtros informados."/>
+		<button label="Emitir" onClick="$composer.emiteRelatorio()" tooltip="Gera o Relatório."/>
+	</hlayout>
+		
+		<groupbox style="padding-top: 5px;">
+			<caption label="Filtro"/>
+			<grid style="border: none;">
+				<columns>
+					<column hflex="min"/>
+				</columns>
+				<rows>
+					<row>
+						<label value="Unidade"/>
+						<combobox id="filtroUnidade" onOK="$composer.emiteRelatorio()" autodrop="true" readonly="true"
+								onChange='$composer.getBinder().notifyChange($composer, "listaTurma")'>
+							<comboitem label="Cohama"/>
+							<comboitem label="Renascença"/>
+						</combobox>
+					</row>
+					<row>
+						<label value="Turma"/>
+						<combobox id="filtroTurma" readonly="true" autodrop="true" hflex="true" model="@bind($composer.listaTurma)"/>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</window>
+</zk>

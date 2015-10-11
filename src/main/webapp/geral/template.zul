@@ -68,7 +68,7 @@
 					<menuitem label="Registro de Aula" href="/aula/form.zul" disabled="true" />
 					<menu label="Relatório">
 						<menupopup>
-							<menuitem label="Contatos de Alunos" disabled="true" />
+							<menuitem label="Contatos de Alunos" href="/contato/form.zul" />
 							<menuitem label="Receita de Matrículas" disabled="true" />
 							<menuitem label="Despesa de Docência" disabled="true" />
 						</menupopup>

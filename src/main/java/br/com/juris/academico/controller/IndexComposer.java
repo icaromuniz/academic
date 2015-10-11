@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.zkoss.bind.BindComposer;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zul.Window;
 
 import br.com.juris.academico.model.Aula;
 import br.com.juris.academico.model.Turma;
@@ -15,8 +16,13 @@ public class IndexComposer extends BindComposer<Component> {
 
 	private static final long serialVersionUID = -7000444445306178175L;
 
-	public IndexComposer() {
-		// TODO Auto-generated constructor stub
+	@Override
+	public void doAfterCompose(Component comp) throws Exception {
+
+		super.doAfterCompose(comp);
+
+		// atualiza o título da página
+		comp.getPage().setTitle("Júris Acadêmico - " + ((Window)comp).getTitle());
 	}
 
 	public List<Aula> getListaUltimasAulas(){

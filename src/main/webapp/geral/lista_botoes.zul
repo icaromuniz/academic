@@ -5,7 +5,7 @@
 		<button id="buttonLimpar" label="Limpar" onClick="$composer.limpaFiltro()"
 			tooltiptext="Limpa os filtros informados."/>
 		<button id="buttonFiltrar" label="Filtrar" onClick="$composer.filtraLista()"
-			tooltiptext="Filtra os registros cadastrados pelos dados informados."/>
+			tooltiptext="Filtra os registros exibidos pelos dados informados."/>
 		<button id="buttonSalvar" label="Salvar" onClick="$composer.salvaRegistro()"
 			tooltiptext="Salva o registro atual."/>
 		<button id="buttonExcluir" label="Excluir" onClick="$composer.excluiRegistro()"

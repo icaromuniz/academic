@@ -22,7 +22,7 @@
 		<separator/>
 		
 		<groupbox open="false" closable="false">
-			<caption style="font-weight: bold; font-style: italic;" label="Turmas em Andamento"/>
+			<caption style="font-weight: bold; font-style: italic;" label="Turmas Abertas"/>
 		</groupbox>
 		
 		<div align="center" style="padding: 15px;" vflex="true">
@@ -44,7 +44,7 @@
 			</listbox>
 		</div>
 		
-		<separator/>
+		<!-- <separator/>
 		
 		<groupbox open="false" closable="false">
 			<caption style="font-weight: bold; font-style: italic;" label="Próximas Turmas"/>
@@ -59,6 +59,6 @@
 					<listheader label="Alunos" align="center" sort="auto(nome)"/>
 				</listhead>
 			</listbox>
-		</div>
+		</div> -->
 	</window>
 </zk>

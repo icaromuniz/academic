@@ -69,8 +69,8 @@
 					<menu label="Relatório">
 						<menupopup>
 							<menuitem label="Contatos de Alunos" href="/contato/form.zul" />
-							<menuitem label="Receita de Matrículas" disabled="true" />
-							<menuitem label="Despesa de Docência" disabled="true" />
+							<menuitem label="Receita com Matrícula" disabled="true" />
+							<menuitem label="Despesa com Docência" disabled="true" />
 						</menupopup>
 					</menu>
 					<menuitem label="Sair" apply="br.com.juris.academico.controller.LoginComposer" onClick='$composer.executaLogout()'/>

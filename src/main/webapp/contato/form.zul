@@ -12,7 +12,7 @@
 		<button label="Emitir" onClick="$composer.emiteRelatorio()" tooltip="Gera o Relatório."/>
 	</hlayout>
 		
-		<groupbox style="padding-top: 5px;">
+		<groupbox style="padding-top: 5px;" closable="false">
 			<caption label="Filtro"/>
 			<grid style="border: none;">
 				<columns>
@@ -22,7 +22,7 @@
 					<row>
 						<label value="Unidade"/>
 						<combobox id="filtroUnidade" onOK="$composer.emiteRelatorio()" autodrop="true" readonly="true"
-								onChange='$composer.getBinder().notifyChange($composer, "listaTurma")'>
+								onChange='$composer.trataSelecaoFiltroUnidade()'>
 							<comboitem label="Cohama"/>
 							<comboitem label="Renascença"/>
 						</combobox>

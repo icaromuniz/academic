@@ -9,6 +9,7 @@ import org.zkoss.zk.ui.Page;
 import org.zkoss.zk.ui.metainfo.ComponentInfo;
 import org.zkoss.zk.ui.util.ConventionWires;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Window;
 
 import br.com.juris.academico.model.Turma;
@@ -51,15 +52,25 @@ public class ContatoComposer extends BindComposer<Component> {
 	}
 	
 	public void limpaFiltro(){
-		filtroUnidade.setSelectedIndex(-1);
-		filtroTurma.setSelectedIndex(-1);
-		getBinder().notifyChange(this, "listaTurma");
+		Executions.sendRedirect(Executions.getCurrent().getDesktop().getRequestPath());
 	}
 	
 	public void emiteRelatorio(){
 	}
+	
+	// TODO Criar RelatorioComposer incluindo os metodos até aqui
+	
+	public void trataSelecaoFiltroUnidade(){
+		((ListModelList<?>) filtroTurma.getModel()).clear();
+		getBinder().notifyChange(this, "listaTurma");
+	}
 
 	public List<Turma> getListaTurma(){
+		
+		if (filtroUnidade.getSelectedItem() == null) {
+			return null;
+		}
+		
 		return turmaDao.findByFiltro(null, filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null, null);
 	}
 }

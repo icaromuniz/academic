@@ -9,7 +9,7 @@
 		
 	<hlayout style="text-align: right;">
 		<button id="buttonLimpar" label="Limpar" onClick="$composer.limpaFiltro()" tooltiptext="Limpa os filtros informados."/>
-		<button label="Emitir" onClick="$composer.emiteRelatorio()" tooltip="Gera o Relatório."/>
+		<button label="Relatório" onClick="$composer.emiteRelatorio()" tooltip="Gera o Relatório."/>
 	</hlayout>
 		
 		<groupbox style="padding-top: 5px;" closable="false">

@@ -3,13 +3,13 @@
 
 <zk>
 	<window title="Relatório de Contatos dos Alunos" border="normal" self="@define(content)" vflex="1"
-			apply="br.com.juris.academico.controller.ContatoComposer">
+			apply="br.com.juris.academico.controller.ContatoComposer" forward="onOK = buttonRelatorio.onClick">
 			
 	<caption style="font-weight: bold;"/>
 		
 	<hlayout style="text-align: right;">
 		<button id="buttonLimpar" label="Limpar" onClick="$composer.limpaFiltro()" tooltiptext="Limpa os filtros informados."/>
-		<button label="Relatório" onClick="$composer.emiteRelatorio()" tooltip="Gera o Relatório."/>
+		<button id="buttonRelatorio" label="Relatório" onClick="$composer.emiteRelatorio()" forward="onOK = this.onClick" tooltip="Gera o Relatório."/>
 	</hlayout>
 		
 		<groupbox style="padding-top: 5px;" closable="false">
@@ -22,14 +22,15 @@
 					<row>
 						<label value="Unidade"/>
 						<combobox id="filtroUnidade" onOK="$composer.emiteRelatorio()" autodrop="true" readonly="true"
-								onChange='$composer.trataSelecaoFiltroUnidade()'>
+								onChange='$composer.trataSelecaoFiltroUnidade()' forward="onOK = buttonRelatorio.onClick">
 							<comboitem label="Cohama"/>
 							<comboitem label="Renascença"/>
 						</combobox>
 					</row>
 					<row>
 						<label value="Turma"/>
-						<combobox id="filtroTurma" readonly="true" autodrop="true" hflex="true" model="@bind($composer.listaTurma)"/>
+						<combobox id="filtroTurma" readonly="true" autodrop="true" hflex="true" forward="onOK = buttonRelatorio.onClick"
+								model="@bind($composer.listaTurma)"/>
 					</row>
 				</rows>
 			</grid>

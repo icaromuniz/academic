@@ -1,40 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contatos" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8b1bfc0-0ae5-40c5-a565-f4621fa9d048">
-	<property name="ireport.zoom" value="2.357947691000002"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contatos" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8b1bfc0-0ae5-40c5-a565-f4621fa9d048">
+	<property name="ireport.zoom" value="2.3579476910000032"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="nomeTurma" class="java.lang.String"/>
+	<parameter name="unidade" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
 	<field name="nome" class="java.lang.String"/>
+	<field name="dddFixo" class="java.lang.String"/>
+	<field name="telefoneFixo" class="java.lang.String"/>
+	<field name="dddAlternativo" class="java.lang.String"/>
+	<field name="telefoneAlternativo" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="38" splitType="Stretch">
+		<band height="47" splitType="Stretch">
 			<staticText>
-				<reportElement x="237" y="0" width="100" height="20" uuid="f6ed1bc5-5c4e-4288-9c93-b9d827d5f824"/>
-				<text><![CDATA[Static text]]></text>
+				<reportElement x="0" y="0" width="802" height="12" uuid="f6ed1bc5-5c4e-4288-9c93-b9d827d5f824"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Relatório de Contatos dos Alunos]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="0" y="12" width="802" height="12" uuid="41ddb85f-0131-46ef-8796-e0f9097b340d"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Unidade: " + $P{unidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="24" width="802" height="12" uuid="94849ac3-d2c9-484d-97e7-d32c7c3a872c"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Turma: " + $P{nomeTurma}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="21" splitType="Stretch">
+		<band height="15" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="ab595418-e332-4d53-824d-44d949ec8f41"/>
-				<textElement>
-					<font fontName="SansSerif"/>
+				<reportElement mode="Opaque" x="0" y="0" width="328" height="15" backcolor="#EEEEEE" uuid="ab595418-e332-4d53-824d-44d949ec8f41"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[nome]]></text>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="328" y="0" width="90" height="15" backcolor="#EEEEEE" uuid="37979d5a-7125-4ff6-a9f7-79ffed28ea3e"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Telefone Fixo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="418" y="0" width="90" height="15" backcolor="#EEEEEE" uuid="95cfd256-ac06-4008-96b9-0b991daf42fa"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Tel. Alternativo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="508" y="0" width="294" height="15" backcolor="#EEEEEE" uuid="3c65699e-ec73-4461-9568-f2528e46f64f"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[E-Mail]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="45e8ea52-72f7-4987-aaab-3126ca49671c"/>
+				<reportElement x="0" y="0" width="328" height="15" uuid="45e8ea52-72f7-4987-aaab-3126ca49671c"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="508" y="0" width="294" height="15" uuid="7ddfa8a9-2164-4a30-8111-f3880ed30297"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="328" y="0" width="90" height="15" uuid="e59226ee-704e-4460-a759-c2dd59badc71"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{dddFixo} != null ? "(" + $F{dddFixo} + ") " : "") + ($F{telefoneFixo} != null ? $F{telefoneFixo} : "")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="0" width="90" height="15" uuid="393b9860-008c-450a-959e-fa5bf2cbd183"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{dddAlternativo} != null ? "(" + $F{dddAlternativo} + ") " : "") +
+($F{telefoneAlternativo} != null ? $F{telefoneAlternativo} : "")]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="682" y="0" width="80" height="20" uuid="e5fa4577-9125-4f87-a049-27a1e436e8d8"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="762" y="0" width="40" height="20" uuid="7bc6abf7-2f2a-4142-9ff5-b9672971e49e"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="42" y="0" width="100" height="20" uuid="b945f38b-b6ab-493d-ad0f-7c790f73b384"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="42" height="20" uuid="f2b15844-0703-4743-9201-5caf0f3fe6aa"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Emissão: ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="15">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="15" backcolor="#EEEEEE" uuid="2ad79f46-1e25-4a92-9733-5d2455c146ed"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total de Alunos: " + $V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
 </jasperReport>

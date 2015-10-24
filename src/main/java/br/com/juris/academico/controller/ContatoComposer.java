@@ -1,9 +1,7 @@
 package br.com.juris.academico.controller;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
@@ -20,10 +18,9 @@ import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Window;
 
-import br.com.juris.academico.model.Matricula;
 import br.com.juris.academico.model.PessoaFisica;
 import br.com.juris.academico.model.Turma;
-import br.com.juris.academico.persistence.MatriculaDao;
+import br.com.juris.academico.persistence.PessoaFisicaDao;
 import br.com.juris.academico.persistence.TurmaDao;
 import br.com.juris.academico.service.Util;
 
@@ -67,22 +64,20 @@ public class ContatoComposer extends BindComposer<Component> {
 	}
 	
 	public void emiteRelatorio(){
-		 
-		MatriculaDao matriculaDao = Util.getDao(MatriculaDao.class);
-		Integer idTurma = filtroTurma.getSelectedItem() != null ? ((Turma)filtroTurma.getSelectedItem().getValue()).getId() : null;
-		List<Matricula> listaMatricula = matriculaDao.findByFiltro(null, null, idTurma, null, true);
-		Set<PessoaFisica> setPessoaFisica = new HashSet<>();
-		HashMap<String, Object> hashMap = new HashMap<>();
 		
-		// popula a lista de Pessoas Físicas
-		for (Matricula matricula : listaMatricula) {
-			setPessoaFisica.add(matricula.getPessoaFisica());
-		}
+		String unidade = filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : null;
+		Integer idTurma = filtroTurma.getSelectedItem() != null ? ((Turma)filtroTurma.getSelectedItem().getValue()).getId() : null;
+		PessoaFisicaDao pessoaFisicaDao = Util.getDao(PessoaFisicaDao.class);
+		List<PessoaFisica> listaPessoaFisica = pessoaFisicaDao.findByFiltroContatos(unidade, idTurma);
+		HashMap<String, Object> parametrosRelatorio = new HashMap<>();
+
+		parametrosRelatorio.put("unidade", filtroUnidade.getSelectedItem() != null ? filtroUnidade.getSelectedItem().getLabel() : "Todas");
+		parametrosRelatorio.put("nomeTurma", filtroTurma.getSelectedItem() != null ? ((Turma)filtroTurma.getSelectedItem().getValue()).getNome() : "Todas");
 		
 		try {
 			Filedownload.save( JasperRunManager.runReportToPdf(
 					Executions.getCurrent().getDesktop().getWebApp().getRealPath("/relatorio/contatos.jasper"),
-					hashMap, new JRBeanCollectionDataSource(setPessoaFisica)), null, "Contatos.pdf");
+					parametrosRelatorio, new JRBeanCollectionDataSource(listaPessoaFisica)), null, "Contatos.pdf");
 		} catch (JRException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -33,4 +33,20 @@ public class PessoaFisicaDao extends DaoAbstrato<PessoaFisica>{
 		
 		return getEm().createQuery(qlString.concat(" order by nome, cpf"), PessoaFisica.class).getResultList();
 	}
+	
+	public List<PessoaFisica> findByFiltroContatos(String unidade, Integer idTurma){
+
+		String qlString = "select distinct(pf) from PessoaFisica pf, Matricula m " +
+				"where pf.id = m.pessoaFisica.id and m.matriculaAtiva = true ";
+		
+		if (unidade != null) {
+			qlString += "and m.turma.unidade = '" + unidade + "'";
+		}
+		
+		if (idTurma != null) {
+			qlString += "and m.turma.id = " + idTurma;
+		}
+		
+		return getEm().createQuery(qlString.concat(" order by pf.nome"), PessoaFisica.class).getResultList();
+	}
 }

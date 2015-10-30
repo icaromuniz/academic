@@ -47,7 +47,7 @@ public class TurmaDao extends DaoAbstrato<Turma> {
 			}
 		}
 		
-		sqlQuery = sqlQuery.concat("order by t.dataInicio desc, t.dataTermino desc, t.nome");
+		sqlQuery = sqlQuery.concat("order by t.unidade, t.nome");
 		
 		return getEm().createQuery(sqlQuery, Turma.class).getResultList();
 	}

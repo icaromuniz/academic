@@ -99,6 +99,7 @@
 				<box leftPadding="2">
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" isBold="false"/>
@@ -110,6 +111,7 @@
 				<box leftPadding="2">
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>

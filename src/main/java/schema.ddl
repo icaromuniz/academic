@@ -1,7 +1,7 @@
 
     create table Aula (
         id int4 not null,
-        dataCriacao time not null,
+        dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
         data timestamp not null,
@@ -12,7 +12,7 @@
 
     create table Disciplina (
         id int4 not null,
-        dataCriacao time not null,
+        dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
         cargaHoraria int4 not null,
@@ -26,7 +26,7 @@
 
     create table Docente (
         id int4 not null,
-        dataCriacao time not null,
+        dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
         areaFormacao varchar(255),
@@ -42,7 +42,7 @@
 
     create table Matricula (
         id int4 not null,
-        dataCriacao time not null,
+        dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
         comoConheceu varchar(100) not null,
@@ -61,7 +61,7 @@
 
     create table PessoaFisica (
         id int4 not null,
-        dataCriacao time not null,
+        dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
         bairro varchar(255),
@@ -79,7 +79,7 @@
 
     create table Turma (
         id int4 not null,
-        dataCriacao time not null,
+        dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
         dataInicio date not null,
@@ -93,7 +93,7 @@
 
     create table Usuario (
         id int4 not null,
-        dataCriacao time not null,
+        dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
         administrador bool not null,

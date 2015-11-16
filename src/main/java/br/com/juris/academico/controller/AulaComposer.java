@@ -58,12 +58,10 @@ public class AulaComposer extends AbstractComposer<Aula> {
 	}
 	
 	public List<Disciplina> getListaDisciplina(){
-		// TODO Auto-generated method stub
-		return null;
+		return disciplinaDao.findByFiltro(null, null, null);
 	}
 	
 	public List<Docente> getListaDocente(){
-		// TODO Auto-generated method stub
-		return null;
+		return docenteDao.findByFiltro(null, null);
 	}
 }

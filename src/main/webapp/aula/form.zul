@@ -28,17 +28,25 @@
 				</row>
 				<row>
 					<label value="Turma"/>
-					<combobox model="@load($composer.listaTurma)" readonly="true" autodrop="true"/>
+					<combobox model="@load($composer.listaTurma)" readonly="true" autodrop="true" hflex="true"/>
 				</row>
 				<row>
 					<label value="Disciplina"/>
-					<combobox id="comboboxDisciplina" readonly="true" autodrop="true" model="@load($composer.listaDisciplina)"
-							value="@bind($composer.modelo.disciplina)"/>
+					<combobox id="comboboxDisciplina" readonly="true" autodrop="true" model="@load($composer.listaDisciplina)" hflex="true"
+							selectedItem="@bind($composer.modelo.disciplina)">
+						<template name="model">
+							<comboitem label="${each.nome}" />
+						</template>
+					</combobox>
 				</row>
 				<row>
 					<label value="Docente"/>
-					<combobox id="comboboxDocente" readonly="true" autodrop="true" model="@load($composer.listaDocente)"
-							value="@bind($composer.modelo.disciplina)"/>
+					<combobox id="comboboxDocente" readonly="true" autodrop="true" model="@load($composer.listaDocente)" hflex="true"
+							selectedItem="@bind($composer.modelo.docente)">
+						<template name="model">
+							<comboitem label="${each.pessoaFisica.nome}" />
+						</template>
+					</combobox>
 				</row>
 			</rows>
 		</grid>

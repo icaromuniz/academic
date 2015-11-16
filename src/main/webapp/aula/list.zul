@@ -42,9 +42,9 @@
 				onSelect='Executions.sendRedirect("/aula/form.zul?ref=" + self.getSelectedItem().getValue().getId())'>
 			<listhead>
 				<listheader label="Data" hflex="min"/>
-				<listheader label="Docente"/>
-				<listheader label="Unidade" hflex="min"/>
+				<listheader label="Disciplina"/>
 				<listheader label="Turma"/>
+				<listheader label="Docente"/>
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">

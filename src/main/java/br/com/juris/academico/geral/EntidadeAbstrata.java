@@ -5,8 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 @MappedSuperclass
@@ -17,7 +15,6 @@ public abstract class EntidadeAbstrata implements Serializable {
 	private String usuarioCriacao;
 	
 	@Column(nullable=false)
-	@Temporal(TemporalType.TIME)
 	private Date dataCriacao;
 	
 	@Version

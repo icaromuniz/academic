@@ -15,7 +15,7 @@
 			<grid style="border: none; padding: 0px;">
 				<columns>
 					<column hflex="min"/>
-					<column hflex="min"/>
+					<column />
 					<column hflex="min" align="center"/>
 					<column/>
 				</columns>
@@ -23,14 +23,14 @@
 					<row>
 						<label value="Data"/>
 						<datebox/>
-						<label value="Docente"/>
-						<textbox hflex="true"/>
+						<label value="Disciplina"/>
+						<combobox hflex="true"/>
 					</row>
 					<row>
-						<label value="Unidade"/>
-						<combobox/>
 						<label value="Turma"/>
 						<combobox hflex="true"/>
+						<label value="Docente"/>
+						<textbox hflex="true"/>
 					</row>
 				</rows>
 			</grid>

@@ -10,6 +10,7 @@ import br.com.juris.academico.model.Disciplina;
 import br.com.juris.academico.model.Docente;
 import br.com.juris.academico.model.Turma;
 import br.com.juris.academico.model.Usuario;
+import br.com.juris.academico.persistence.AulaDao;
 import br.com.juris.academico.persistence.DisciplinaDao;
 import br.com.juris.academico.persistence.DocenteDao;
 import br.com.juris.academico.persistence.TurmaDao;
@@ -49,8 +50,8 @@ public class AulaComposer extends AbstractComposer<Aula> {
 
 	@Override
 	public void filtraLista() {
-		// TODO Auto-generated method stub
-		
+		this.setListaModelo(((AulaDao)dao).findByFiltro(null, null, null, null));
+		getBinder().notifyChange(this, "*");
 	}
 	
 	public List<Turma> getListaTurma(){

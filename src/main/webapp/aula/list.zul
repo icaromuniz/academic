@@ -4,7 +4,7 @@
 <zk>
 
 	<window id="win" title="Listagem Aulas Ministradas" border="normal" self="@define(content)" vflex="1"
-			apply="br.com.juris.academico.controller.AulaComposer">
+			apply="br.com.juris.academico.controller.AulaComposer" onOK="$composer.filtraLista()">
 		<caption style="font-weight: bold;"/>
 		<include id="includeListaBotoes" src="/geral/lista_botoes.zul"/>
 		
@@ -24,11 +24,11 @@
 						<label value="Data"/>
 						<datebox/>
 						<label value="Disciplina"/>
-						<combobox hflex="true"/>
+						<combobox autodrop="true" hflex="true"/>
 					</row>
 					<row>
 						<label value="Turma"/>
-						<combobox hflex="true"/>
+						<combobox id="comboboxTurma" readonly="true" autodrop="true" hflex="true" model="@bind($composer.listaTurma)"/>
 						<label value="Docente"/>
 						<textbox hflex="true"/>
 					</row>
@@ -41,15 +41,17 @@
 		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="@bind($composer.listaModelo)" selectedItem="@bind($composer.modelo)"
 				onSelect='Executions.sendRedirect("/aula/form.zul?ref=" + self.getSelectedItem().getValue().getId())'>
 			<listhead>
-				<listheader label="Data" hflex="min"/>
+				<listheader label="Data" hflex="min" align="center"/>
 				<listheader label="Disciplina"/>
 				<listheader label="Turma"/>
 				<listheader label="Docente"/>
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">
-					<listcell label="@load(obj.pessoaFisica.nome)"/>
-					<listcell label="@load(obj.pessoaFisica.cpf)"/>
+					<listcell label="@load(obj.data) @converter('formatedDate', format='dd/MM/yyyy')"/>
+					<listcell label="@load(obj.disciplina.nome)"/>
+					<listcell label="@load(obj.disciplina.turma)"/>
+					<listcell label="@load(obj.docente.pessoaFisica.nome)"/>
 				</listitem>
 			</template>
 		</listbox>

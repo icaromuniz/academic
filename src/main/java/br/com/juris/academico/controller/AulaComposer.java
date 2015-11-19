@@ -43,8 +43,7 @@ public class AulaComposer extends AbstractComposer<Aula> {
 
 	@Override
 	public void limpaFiltro() {
-		// TODO Auto-generated method stub
-		
+		Executions.sendRedirect(Executions.getCurrent().getDesktop().getRequestPath());
 	}
 
 

@@ -1,5 +1,6 @@
 package br.com.juris.academico.persistence;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class AulaDao extends DaoAbstrato<Aula> {
 		String qlQuery = "select a from Aula a where true is true ";
 		
 		if (data != null) {
-			qlQuery += " and a.data = " + data;
+			qlQuery += " and to_char(a.data, 'dd/MM/yyyy') = '" + new SimpleDateFormat("dd/MM/yyyy").format(data) + "' ";
 		}
 		
 		if (idDisciplina != null) {

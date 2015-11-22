@@ -3,6 +3,7 @@ package br.com.juris.academico.controller;
 import java.util.List;
 
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zul.Datebox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Aula;
@@ -23,6 +24,9 @@ public class AulaComposer extends AbstractComposer<Aula> {
 	private TurmaDao turmaDao = Util.getDao(TurmaDao.class);
 	private DisciplinaDao disciplinaDao = Util.getDao(DisciplinaDao.class);
 	private DocenteDao docenteDao = Util.getDao(DocenteDao.class);
+	
+	// filtros
+	private Datebox filtroData;
 	
 	public AulaComposer() {
 		super(Aula.class);
@@ -49,7 +53,7 @@ public class AulaComposer extends AbstractComposer<Aula> {
 
 	@Override
 	public void filtraLista() {
-		this.setListaModelo(((AulaDao)dao).findByFiltro(null, null, null, null));
+		this.setListaModelo(((AulaDao)dao).findByFiltro(filtroData.getValue(), null, null, null));
 		getBinder().notifyChange(this, "*");
 	}
 	
@@ -58,7 +62,7 @@ public class AulaComposer extends AbstractComposer<Aula> {
 	}
 	
 	public List<Disciplina> getListaDisciplina(){
-		return disciplinaDao.findByFiltro(null, null, null);
+		return disciplinaDao.findBySituacaoTurma(Executions.getCurrent().getDesktop().getRequestPath().equals("/aula/form.zul") ? true : null);
 	}
 	
 	public List<Docente> getListaDocente(){

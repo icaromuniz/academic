@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
@@ -47,6 +48,11 @@ public class Turma extends EntidadeAbstrata {
 	
 	@NotNull(message="decimalboxValor#Informação obrigatória.")
 	private BigDecimal valor;
+	
+	@AssertTrue(message="dateboxTermino#O Término deve ser posterior ao Início da Turma.")
+	private boolean isDataTerminoValida(){
+		return this.dataInicio != null && this.dataTermino != null && dataTermino.after(dataInicio);
+	}
 	
 	public Integer getId() {
 		return id;

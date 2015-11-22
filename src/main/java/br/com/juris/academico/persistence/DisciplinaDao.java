@@ -31,4 +31,15 @@ public class DisciplinaDao extends DaoAbstrato<Disciplina> {
 		
 		return getEm().createQuery(sqlQuery, Disciplina.class).getResultList();
 	}
+	
+	public List<Disciplina> findBySituacaoTurma(Boolean isTurmaAberta){
+		
+		String qlQuery = "select d from Disciplina d ";
+		
+		if (isTurmaAberta != null) {
+			qlQuery += "where d.turma.dataTermino " + (isTurmaAberta ? ">=" : "<") + " now()";
+		}
+		
+		return getEm().createQuery(qlQuery, Disciplina.class).getResultList();
+	}
 }

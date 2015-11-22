@@ -22,7 +22,7 @@
 				<rows>
 					<row>
 						<label value="Data"/>
-						<datebox/>
+						<datebox id="filtroData"/>
 						<label value="Disciplina"/>
 						<combobox autodrop="true" hflex="true"/>
 					</row>

@@ -3,7 +3,9 @@ package br.com.juris.academico.controller;
 import java.util.List;
 
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Textbox;
 
 import br.com.juris.academico.arquitetura.AbstractComposer;
 import br.com.juris.academico.model.Aula;
@@ -27,6 +29,9 @@ public class AulaComposer extends AbstractComposer<Aula> {
 	
 	// filtros
 	private Datebox filtroData;
+	private Combobox filtroTurma;
+	private Combobox filtroDisciplina;
+	private Textbox filtroDocente;
 	
 	public AulaComposer() {
 		super(Aula.class);
@@ -53,7 +58,10 @@ public class AulaComposer extends AbstractComposer<Aula> {
 
 	@Override
 	public void filtraLista() {
-		this.setListaModelo(((AulaDao)dao).findByFiltro(filtroData.getValue(), null, null, null));
+		this.setListaModelo(((AulaDao)dao).findByFiltro(filtroData.getValue(), 
+				filtroDisciplina.getSelectedItem() != null ? ((Disciplina)filtroDisciplina.getSelectedItem().getValue()).getId() : null,
+				filtroTurma.getSelectedItem() != null ? ((Turma)filtroTurma.getSelectedItem().getValue()).getId() : null,
+				filtroDocente.getValue()));
 		getBinder().notifyChange(this, "*");
 	}
 	

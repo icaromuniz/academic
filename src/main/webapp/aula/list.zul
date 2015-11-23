@@ -24,13 +24,17 @@
 						<label value="Data"/>
 						<datebox id="filtroData"/>
 						<label value="Disciplina"/>
-						<combobox autodrop="true" hflex="true"/>
+						<combobox id="filtroDisciplina" readonly="true" autodrop="true" hflex="true" model="@bind($composer.listaDisciplina)">
+							<template name="model">
+								<comboitem label="${each.nome}"/>
+							</template>
+						</combobox>
 					</row>
 					<row>
 						<label value="Turma"/>
-						<combobox id="comboboxTurma" readonly="true" autodrop="true" hflex="true" model="@bind($composer.listaTurma)"/>
+						<combobox id="filtroTurma" readonly="true" autodrop="true" hflex="true" model="@bind($composer.listaTurma)"/>
 						<label value="Docente"/>
-						<textbox hflex="true"/>
+						<textbox id="filtroDocente" hflex="true"/>
 					</row>
 				</rows>
 			</grid>

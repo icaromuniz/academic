@@ -32,8 +32,8 @@ public class AulaDao extends DaoAbstrato<Aula> {
 			qlQuery += " and a.disciplina.turma.id = " + idTurma;
 		}
 		
-		if (nomeDocente != null && !nomeDocente.isEmpty()) {
-			qlQuery += " and upper(a.disciplina.docente.pessoaFisica.nome) like '%" + nomeDocente.toUpperCase() + "%'";
+		if (nomeDocente != null && !nomeDocente.trim().isEmpty()) {
+			qlQuery += " and upper(a.disciplina.docente.pessoaFisica.nome) like '%" + nomeDocente.trim().toUpperCase() + "%'";
 		}
 		
 		return getEm().createQuery(qlQuery, Aula.class).getResultList();

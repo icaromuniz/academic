@@ -19,21 +19,22 @@
 					<label value="Data"/>
 					<datebox id="dateboxDataAula" value="@bind($composer.modelo.data)"/>
 				</row>
-				<row>
+				<!-- <row>
 					<label value="Unidade"/>
 					<combobox readonly="true" autodrop="true">
 						<comboitem label="Cohama"/>
 						<comboitem label="Renascença"/>
 					</combobox>
-				</row>
+				</row> -->
 				<row>
 					<label value="Turma"/>
-					<combobox model="@load($composer.listaTurma)" readonly="true" autodrop="true" hflex="true"/>
+					<combobox id="comboboxTurma" model="@load($composer.listaTurma)" readonly="true" autodrop="true" width="50%"
+						onChange="$composer.trataSelecaoTurma()"/>
 				</row>
 				<row>
 					<label value="Disciplina"/>
-					<combobox id="comboboxDisciplina" readonly="true" autodrop="true" model="@load($composer.listaDisciplina)" hflex="true"
-							selectedItem="@bind($composer.modelo.disciplina)">
+					<combobox id="comboboxDisciplina" readonly="true" autodrop="true" model="@load($composer.listaDisciplina)" width="50%"
+							selectedItem="@bind($composer.modelo.disciplina)" onChange="$composer.trataSelecaoDisciplina()">
 						<template name="model">
 							<comboitem label="${each.nome}" />
 						</template>
@@ -41,12 +42,19 @@
 				</row>
 				<row>
 					<label value="Docente"/>
-					<combobox id="comboboxDocente" readonly="true" autodrop="true" model="@load($composer.listaDocente)" hflex="true"
+					<combobox id="comboboxDocente" readonly="true" autodrop="true" model="@load($composer.listaDocente)" width="50%"
 							selectedItem="@bind($composer.modelo.docente)">
 						<template name="model">
 							<comboitem label="${each.pessoaFisica.nome}" />
 						</template>
 					</combobox>
+				</row>
+				<row spans="2" align="right" visible="@load($composer.modelo.aulaAtiva ? false : true)">
+					<div>
+						<label style="color: red;" value="Registro de Aula cancelado em "/>
+						<label value="@load($composer.modelo.dataCancelamento) @converter('formatedDate', format='dd/MM/yyyy')"
+								 style="color: red;"/>
+					</div>
 				</row>
 			</rows>
 		</grid>

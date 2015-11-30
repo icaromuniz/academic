@@ -37,6 +37,16 @@ public class Aula extends EntidadeAbstrata {
 	@JoinColumn(name="id_docente", nullable=false)
 	@NotNull(message="comboboxDocente#Informação obrigatória.")
 	private Docente docente;
+	
+	@Column(name="aula_ativa")
+	private boolean aulaAtiva = true;
+
+	@Column(name="data_cancelamento")
+	private Date dataCancelamento;
+	
+	@ManyToOne
+	@JoinColumn(name="id_usuario_cancelamento")
+	private Usuario usuarioCancelamento;
 
 	public Integer getId() {
 		return id;
@@ -68,5 +78,29 @@ public class Aula extends EntidadeAbstrata {
 
 	public void setDocente(Docente docente) {
 		this.docente = docente;
+	}
+
+	public boolean isAulaAtiva() {
+		return aulaAtiva;
+	}
+
+	public void setAulaAtiva(boolean aulaAtiva) {
+		this.aulaAtiva = aulaAtiva;
+	}
+
+	public Date getDataCancelamento() {
+		return dataCancelamento;
+	}
+
+	public void setDataCancelamento(Date dataCancelamento) {
+		this.dataCancelamento = dataCancelamento;
+	}
+
+	public Usuario getUsuarioCancelamento() {
+		return usuarioCancelamento;
+	}
+
+	public void setUsuarioCancelamento(Usuario usuarioCancelamento) {
+		this.usuarioCancelamento = usuarioCancelamento;
 	}
 }

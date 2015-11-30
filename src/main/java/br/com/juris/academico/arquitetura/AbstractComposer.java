@@ -105,7 +105,9 @@ public abstract class AbstractComposer<T extends EntidadeAbstrata> extends BindC
 	
 	public void salvaRegistro(){
 		
-		if (isPersistenciaAutorizada(modelo)) {
+		Object usuario = Executions.getCurrent().getSession().getAttribute("usuario");
+		
+		if (usuario != null && ((Usuario)usuario).isAtivo() && isPersistenciaAutorizada(modelo)) {
 			
 			Set<ConstraintViolation<T>> constraintViolations = Validation.buildDefaultValidatorFactory().getValidator()
 					.validate(this.getModelo(), Default.class);

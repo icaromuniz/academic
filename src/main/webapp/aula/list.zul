@@ -45,17 +45,17 @@
 		<listbox id="listboxSelecao" vflex="true" mold="paging" autopaging="true" model="@bind($composer.listaModelo)" selectedItem="@bind($composer.modelo)"
 				onSelect='Executions.sendRedirect("/aula/form.zul?ref=" + self.getSelectedItem().getValue().getId())'>
 			<listhead>
-				<listheader label="Data" hflex="min" align="center"/>
-				<listheader label="Disciplina"/>
-				<listheader label="Turma"/>
-				<listheader label="Docente"/>
+				<listheader label="Data" hflex="min" align="center" sort="auto(data)"/>
+				<listheader label="Disciplina" sort="auto(disciplina.nome)"/>
+				<listheader label="Turma" sort="auto(disciplina.turma.nome)"/>
+				<listheader label="Docente" sort="auto(docente.pessoaFisica.nome)"/>
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">
-					<listcell label="@load(obj.data) @converter('formatedDate', format='dd/MM/yyyy')"/>
-					<listcell label="@load(obj.disciplina.nome)"/>
-					<listcell label="@load(obj.disciplina.turma)"/>
-					<listcell label="@load(obj.docente.pessoaFisica.nome)"/>
+					<listcell label="@load(obj.data) @converter('formatedDate', format='dd/MM/yyyy')" style="@load(!obj.aulaAtiva ? 'text-decoration: line-through;' : '')"/>
+					<listcell label="@load(obj.disciplina.nome)" style="@load(!obj.aulaAtiva ? 'text-decoration: line-through;' : '')"/>
+					<listcell label="@load(obj.disciplina.turma)" style="@load(!obj.aulaAtiva ? 'text-decoration: line-through;' : '')"/>
+					<listcell label="@load(obj.docente.pessoaFisica.nome)" style="@load(!obj.aulaAtiva ? 'text-decoration: line-through;' : '')"/>
 				</listitem>
 			</template>
 		</listbox>

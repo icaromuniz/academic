@@ -4,9 +4,12 @@
         dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
+        aula_ativa bool,
         data timestamp not null,
+        data_cancelamento timestamp,
         id_disciplina int4 not null,
         id_docente int4 not null,
+        id_usuario_cancelamento int4,
         primary key (id)
     );
 
@@ -107,6 +110,11 @@
         add constraint FK1F50C9B7D9972F 
         foreign key (id_disciplina) 
         references Disciplina;
+
+    alter table Aula 
+        add constraint FK1F50C9F445E57A 
+        foreign key (id_usuario_cancelamento) 
+        references Usuario;
 
     alter table Aula 
         add constraint FK1F50C9C5E5D32D 

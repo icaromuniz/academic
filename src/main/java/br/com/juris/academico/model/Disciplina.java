@@ -1,11 +1,14 @@
 package br.com.juris.academico.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
@@ -46,6 +49,9 @@ public class Disciplina extends EntidadeAbstrata {
 	@Column(nullable=false)
 	@NotNull(message="intboxCargaHoraria#Informação obrigatória!")
 	private Integer cargaHoraria;
+	
+	@OneToMany(mappedBy="disciplina")
+	private List<Aula> listaAula;
 
 	@Override
 	public Integer getId() {
@@ -103,5 +109,26 @@ public class Disciplina extends EntidadeAbstrata {
 
 	public void setCargaHoraria(Integer cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
+	}
+
+	public List<Aula> getListaAula() {
+		return listaAula;
+	}
+
+	public void setListaAula(List<Aula> listaAula) {
+		this.listaAula = listaAula;
+	}
+	
+	public Integer getQuantidadeAulasAtivas(){
+		
+		int count = 0;
+		
+		for (Aula aula : this.listaAula) {
+			if (aula.isAulaAtiva()) {
+				count++;
+			}
+		}
+		
+		return count;
 	}
 }

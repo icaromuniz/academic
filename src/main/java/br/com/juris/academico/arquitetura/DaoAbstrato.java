@@ -2,12 +2,13 @@ package br.com.juris.academico.arquitetura;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
 
 public abstract class DaoAbstrato<T extends EntidadeAbstrata> {
 
-	@PersistenceContext
+	@PersistenceContext(type=PersistenceContextType.EXTENDED)
     private EntityManager em;
 	
 	private Class<T> entityClass = null;

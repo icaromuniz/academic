@@ -46,20 +46,5 @@
 				</row>
 			</rows>
 		</grid>
-		
-		<separator/>
-		
-		<groupbox open="false">
-		
-			<caption>Sumário</caption>
-			
-			<vbox>
-				<label value="Horas/Aulas ministradas: ???"/>
-				<label value="Mínimo de alunos presentes: ???"/>
-				<label value="Média de alunos presentes: ???"/>
-				<label value="Máximo de alunos presentes: ???"/>
-			</vbox>
-			
-		</groupbox>
 	</window>
 </zk>

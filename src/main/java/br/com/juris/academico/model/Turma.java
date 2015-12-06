@@ -2,12 +2,14 @@ package br.com.juris.academico.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,6 +50,9 @@ public class Turma extends EntidadeAbstrata {
 	
 	@NotNull(message="decimalboxValor#Informação obrigatória.")
 	private BigDecimal valor;
+	
+	@OneToMany(mappedBy="turma")
+	private List<Matricula> listaMatricula;
 	
 	@AssertTrue(message="dateboxTermino#O Término deve ser posterior ao Início da Turma.")
 	private boolean isDataTerminoValida(){
@@ -108,6 +113,27 @@ public class Turma extends EntidadeAbstrata {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public List<Matricula> getListaMatricula() {
+		return listaMatricula;
+	}
+
+	public void setListaMatricula(List<Matricula> listaMatricula) {
+		this.listaMatricula = listaMatricula;
+	}
+	
+	public Integer getQuantidadeMatriculasAtivas(){
+		
+		int counter = 0;
+		
+		for (Matricula matricula : this.getListaMatricula()) {
+			if (matricula.isMatriculaAtiva()) {
+				counter++;
+			}
+		}
+		
+		return counter;
 	}
 
 	@Override

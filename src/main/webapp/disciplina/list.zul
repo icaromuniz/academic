@@ -48,12 +48,14 @@
 				<listheader label="Nome" sort="auto(pessoaFisica.nome)"/>
 				<listheader label="Unidade" hflex="min" sort="auto(turma.unidade)"/>
 				<listheader label="Turma" hflex="min" sort="auto(turma.nome)"/>
+				<listheader label="Aulas" hflex="min" sort="auto(quantidadeAulasAtivas)"/>
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">
 					<listcell label="@load(obj.nome)"/>
 					<listcell label="@load(obj.turma.unidade)"/>
 					<listcell label="@load(obj.turma.nome)"/>
+					<listcell label="@load(obj.quantidadeAulasAtivas)"/>
 				</listitem>
 			</template>
 		</listbox>

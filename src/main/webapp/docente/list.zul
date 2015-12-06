@@ -37,11 +37,13 @@
 			<listhead>
 				<listheader label="Nome"/>
 				<listheader label="CPF" hflex="min"/>
+				<listheader label="Disciplinas" hflex="min" align="right"/>
 			</listhead>
 			<template name="model" var="obj">
 				<listitem value="@bind(obj)">
 					<listcell label="@load(obj.pessoaFisica.nome)"/>
 					<listcell label="@load(obj.pessoaFisica.cpf)"/>
+					<listcell label="@load(obj.quantidadeDisciplinasAtivas)"/>
 				</listitem>
 			</template>
 		</listbox>

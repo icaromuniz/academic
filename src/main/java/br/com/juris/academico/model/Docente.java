@@ -1,12 +1,17 @@
 package br.com.juris.academico.model;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
@@ -45,6 +50,22 @@ public class Docente extends EntidadeAbstrata {
 
 	@Column(length=3)
 	private String digitoConta;
+	
+	@OneToMany(mappedBy="docente", fetch=FetchType.EAGER)
+	private List<Disciplina> listaDisciplina;
+	
+	public Integer getQuantidadeDisciplinasAtivas(){
+		
+		int count = 0;
+		
+		for (Disciplina disciplina : this.getListaDisciplina()) {
+			if (disciplina.getTurma().getDataTermino().after(new Date())) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
 
 	public Integer getId() {
 		return id;
@@ -116,5 +137,13 @@ public class Docente extends EntidadeAbstrata {
 
 	public void setAreaFormacao(String areaFormacao) {
 		this.areaFormacao = areaFormacao;
+	}
+
+	public List<Disciplina> getListaDisciplina() {
+		return listaDisciplina;
+	}
+
+	public void setListaDisciplina(List<Disciplina> listaDisciplina) {
+		this.listaDisciplina = listaDisciplina;
 	}
 }

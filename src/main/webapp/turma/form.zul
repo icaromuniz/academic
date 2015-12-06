@@ -46,24 +46,7 @@
 					<spinner cols="2" constraint="min 1, max 99" maxlength="2"
 							tooltiptext="Quantidade máxima de parcelas disponível"/>
 				</row>
-				<!-- <row spans="2" align="right">
-					<div>
-						<button label="Contatos" tooltiptext="Relatório com os contatos dos alunos matriculados" onClick="$composer.emiteContatos()"/>
-					</div>
-				</row> -->
 			</rows>
 		</grid>
-		
-		<separator/>
-		
-		<groupbox>
-			<caption>Sumário</caption>
-			<hlayout>
-				<label value="Alunos matriculados: "/> <label style="font-weight: bold" value="@load($composer.quantidadeMatriculada)"/>
-			</hlayout>
-			<hlayout>
-				<label value="Aulas realizadas: "/>
-			</hlayout>
-		</groupbox>
 	</window>
 </zk>

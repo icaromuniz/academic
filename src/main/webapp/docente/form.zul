@@ -52,7 +52,7 @@
 			</rows>
 		</grid>
 		
-		<separator/>
+		<!-- <separator/>
 		
 		<groupbox open="false">
 			<caption>Sumário</caption>
@@ -61,6 +61,6 @@
 				<label value="Quantidade de alunos: ???"/>
 				<label value="Aulas ministradas: ???"/>
 			</vbox>
-		</groupbox>
+		</groupbox> -->
 	</window>
 </zk>

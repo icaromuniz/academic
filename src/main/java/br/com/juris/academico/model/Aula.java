@@ -38,7 +38,7 @@ public class Aula extends EntidadeAbstrata {
 	@NotNull(message="comboboxDocente#Informação obrigatória.")
 	private Docente docente;
 	
-	@Column(name="aula_ativa")
+	@Column(name="aula_ativa", nullable=false)
 	private boolean aulaAtiva = true;
 
 	@Column(name="data_cancelamento")

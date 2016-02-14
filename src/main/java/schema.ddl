@@ -4,7 +4,7 @@
         dataCriacao timestamp not null,
         usuarioCriacao varchar(11) not null,
         versao int4 not null,
-        aula_ativa bool,
+        aula_ativa bool not null,
         data timestamp not null,
         data_cancelamento timestamp,
         id_disciplina int4 not null,

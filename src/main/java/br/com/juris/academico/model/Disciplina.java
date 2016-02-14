@@ -123,12 +123,13 @@ public class Disciplina extends EntidadeAbstrata {
 		
 		int count = 0;
 		
-		for (Aula aula : this.listaAula) {
-			if (aula.isAulaAtiva()) {
-				count++;
+		if (this.listaAula != null && !this.listaAula.isEmpty()) {
+			for (Aula aula : this.listaAula) {
+				if (aula.isAulaAtiva()) {
+					count++;
+				}
 			}
 		}
-		
 		return count;
 	}
 }

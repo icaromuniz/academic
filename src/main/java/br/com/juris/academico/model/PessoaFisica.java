@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -17,6 +18,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.juris.academico.geral.EntidadeAbstrata;
+import br.com.juris.academico.persistence.PessoaFisicaDao;
+import br.com.juris.academico.service.Util;
 
 @Entity
 public class PessoaFisica extends EntidadeAbstrata {
@@ -56,11 +59,16 @@ public class PessoaFisica extends EntidadeAbstrata {
 	private String email;
 	private String endereco;
 	private String bairro;
-
-	public PessoaFisica() {
-	}
 	
-	// TODO (icaromuniz) Validar cpf duplicado com assertTrue
+	@AssertTrue(message = "textboxCpf#CPF já cadastrado no Sistema")
+	public boolean isCpfValido(){
+		
+		if (this.getId() == null && !Util.getDao(PessoaFisicaDao.class).findByFiltro(null, cpf, null).isEmpty()) {
+			return false;
+		}
+		
+		return true;
+	}
 
 	public String getNome() {
 		return nome;

@@ -7,7 +7,7 @@ import javax.naming.NamingException;
 public class Util{
 
 	@SuppressWarnings("unchecked")
-	public static <T extends Object> T getDao(@SuppressWarnings("rawtypes") Class classeDao){
+	public static <T extends Object> T getDao(Class<T> classeDao){
 		
 		try {
 			return (T) InitialContext.doLookup("java:module/" + classeDao.getSimpleName());

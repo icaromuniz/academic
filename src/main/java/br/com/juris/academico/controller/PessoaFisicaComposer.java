@@ -1,10 +1,7 @@
 package br.com.juris.academico.controller;
 
-import javax.ejb.EJBException;
-
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zul.Decimalbox;
 import org.zkoss.zul.Textbox;
 
@@ -48,19 +45,6 @@ public class PessoaFisicaComposer extends AbstractComposer<PessoaFisica> {
 		}
 	}
 	
-	@Override
-	public void salvaRegistro() {
-		
-		try {
-			super.salvaRegistro();
-		} catch (EJBException e) {
-			if (e.getCause().getCause().getCause().getCause().getLocalizedMessage().startsWith(
-					"ERROR: duplicate key value violates unique constraint \"pessoafisica_cpf_key\"")) {
-				throw new WrongValueException(textboxCpf, "O CPF informado já está cadastrado no sistema.");
-			}
-		}
-	}
-
 	@Override
 	public void excluiRegistro() {
 		
